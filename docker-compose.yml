@@ -1,33 +1,54 @@
 version: '3.8'
 
 services:
-  mysqldb:
-    image: mysql:5.7
-    restart: unless-stopped
-    env_file: ./.env
-    environment:
-      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
-      - MYSQL_DATABASE=$MYSQLDB_DATABASE
-    ports:
-      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
-    volumes:
-      - db:/var/lib/mysql
+  # mysqldb:
+  #   image: mysql:5.7
+  #   restart: unless-stopped
+  #   env_file: ./.env
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+  #     - MYSQL_DATABASE=$MYSQLDB_DATABASE
+  #   networks:
+  #     - dentnet
+  #   ports:
+  #     - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+  #   volumes:
+  #     - db:/var/lib/mysql
   app:
-    depends_on:
-      - mysqldb
+    # depends_on:
+    #   - mysqldb
+    # --기존 container db와 연결할 경우 external_links
+    # external_links:
+    #   - mariadb
+    image: diorcokorea/seqapp
+    container_name: seqapp
     build: ./bezkoder-app
     restart: unless-stopped
     env_file: ./.env
+    networks:
+      - dentnet
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     environment:
-      - DB_HOST=mysqldb
+      # --docker와 연결할 경우
+      # - DB_HOST=mariadb 
+      # --local mariadb와 연결할 경우
+      - DB_HOST=$MYSQLDB_HOST
       - DB_USER=$MYSQLDB_USER
       - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
       - DB_NAME=$MYSQLDB_DATABASE
-      - DB_PORT=$MYSQLDB_DOCKER_PORT
+      - DB_PORT=$MYSQLDB_LOCAL_PORT
+      # - DB_PORT=$MYSQLDB_DOCKER_PORT
     stdin_open: true
     tty: true
 
-volumes: 
-  db:
+ 
+
+# volumes:
+#     maria-data:
+#         name: maria-data
+#     db:
+networks:
+    dentnet:
+        driver: bridge
+        name: dentnet

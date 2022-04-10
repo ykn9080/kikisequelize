@@ -3,12 +3,32 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
+const swaggerUi = require("swagger-ui-express");
+
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load("./swagger/swagger.yaml");
+
+var options = {
+  explorer: true,
+  customCss: ".swagger-ui .topbar { display: none }",
+  //customCssUrl: "/custom.css",
+  swaggerOptions: {
+    url: "http://petstore.swagger.io/v2/swagger.json",
+    url: "/apidoc/swagger.yaml",
+    docExpansion: "none",
+  },
+};
+app.get("/apidoc/swagger.yaml", (req, res) =>
+  res.end(JSON.stringify(swaggerDocument, null, 3))
+);
+
+app.use("/apidoc", swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:8484",
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -17,7 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
-
+console.log("password", process.env.DB_PASSWORD);
 db.sequelize.sync();
 // // drop the table if it already exists
 // db.sequelize.sync({ force: true }).then(() => {
@@ -29,10 +49,12 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-require("./app/routes/turorial.routes")(app);
+//require("./app/routes/turorial.routes")(app);
+require("./app/routes")(app);
+require("./app/routes/reuseCRUD")(app);
 
 // set port, listen for requests
-const PORT = process.env.NODE_DOCKER_PORT || 8080;
+const PORT = process.env.NODE_DOCKER_PORT || 8083;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
