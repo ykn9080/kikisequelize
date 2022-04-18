@@ -86,16 +86,19 @@ exports.couponuse = (req, res) => {
     })
     .then((resp) => {
       let rtn = resp[0]["0"];
+      if (!rtn.msg) {
+        const val = { result: false, reason: rtn.errmsg };
+        return res.status(400).send(val);
+      }
       rtn.magic_code = decr.magic_code;
-      rtn.salt = Math.random();
-
+      rtn.salt = Math.floor(Math.random() * 10000000000);
+      const val = { response: rtn, result: true };
+      console.log(rtn);
       return res.status(200).send(rtn);
-      //return res.status(200).send(resp[0]["0"]);
-      //console.log("this is resp", crypto.encrypt(resp));
-      //return res.send({ tickcount: "abc" });
     })
     .catch((err) => {
       console.log("err", err.message);
+      const val = { result: false, reason: err.message };
       return res.json(err.message);
     });
 };
@@ -116,12 +119,14 @@ exports.couponcount = (req, res) => {
     })
     .then((resp) => {
       let rtn = resp[0]["0"];
+      if (!rtn.number_of_coupon) {
+        const val = { result: false, reason: rtn.errmsg };
+        return res.status(400).send(val);
+      }
       rtn.magic_code = decr.magic_code;
-      rtn.salt = Math.random();
-      console.log(rtn);
-      return res.status(200).send(rtn);
-      //console.log("this is resp", crypto.encrypt(resp));
-      //return res.send({ tickcount: "abc" });
+      rtn.salt = Math.floor(Math.random() * 10000000000);
+      const val = { response: rtn, result: true };
+      return res.status(200).send(val);
     })
     .catch((err) => {
       return res.json(err.message);
