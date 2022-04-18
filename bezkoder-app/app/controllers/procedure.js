@@ -120,8 +120,10 @@ exports.couponcount = (req, res) => {
     .then((resp) => {
       let rtn = resp[0]["0"];
       console.log(rtn);
-      if (!rtn.number_of_coupon) {
+
+      if (!rtn.number_of_coupons) {
         const val = { result: false, reason: rtn.errmsg };
+        console.log(val);
         return res.status(400).send(val);
       }
       rtn.magic_code = decr.magic_code;
