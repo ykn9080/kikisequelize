@@ -7,7 +7,7 @@ const swaggerUi = require("swagger-ui-express");
 
 const YAML = require("yamljs");
 const swaggerDocument = YAML.load("./swagger/swagger.yaml");
-
+global.encdata;
 var options = {
   explorer: true,
   customCss: ".swagger-ui .topbar { display: none }",
@@ -38,17 +38,27 @@ app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
 console.log("password", process.env.DB_PASSWORD);
-db.sequelize.sync();
+db.sequelize.sync({ force: false, alter: true });
 // // drop the table if it already exists
 // db.sequelize.sync({ force: true }).then(() => {
 //   console.log("Drop and re-sync db.");
 // });
 
 // simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
-});
+const cryp = require("./app/util/crypto");
 
+app.get("/enc", (req, res) => {
+  console.log(req.query);
+  res.json({
+    //decrypt: cryp.decrypt(),
+    encrypt: cryp.encrypt(JSON.stringify(req.query)),
+  });
+});
+app.get("/dec", (req, res) => {
+  res.json({
+    decrypt: JSON.parse(cryp.decrypt()),
+  });
+});
 //require("./app/routes/turorial.routes")(app);
 require("./app/routes")(app);
 require("./app/routes/reuseCRUD")(app);

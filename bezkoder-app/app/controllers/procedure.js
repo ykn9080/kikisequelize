@@ -1,4 +1,5 @@
 const db = require("../models");
+const crypto = require("../util/crypto");
 
 exports.querytest = (req, res) => {
   db.sequelize
@@ -10,20 +11,13 @@ exports.querytest = (req, res) => {
       return res.status(400).send(rtn);
     });
 };
-
-exports.couponout = async (req, res) => {
-  const results = await db.sequelize.query(
-    "EXEC couponuse :doctorid, :amount, :isuse;",
-    {
-      replacements: {
-        doctorid: req.body.doctorid,
-        amount: req.body.amount,
-        isuse: req.body.isuse,
-      },
-      type: db.sequelize.QueryTypes.SELECT,
-    }
-  );
+exports.cryptotest = (req, res) => {
+  console.log(req.body);
+  const rtn = crypto.decrypt(req.body.encrypt);
+  console.log(rtn);
+  return res.status(400).send(rtn);
 };
+
 exports.proctest = (req, res) => {
   var query = "CALL SP_PATIENT_R(:id)";
 
@@ -45,19 +39,61 @@ exports.couponuse = (req, res) => {
   //     replacements: { Firstname: "fistname", Lastname: "lastname" },
   //   })
   //   .then((v) => console.log(v));
-  console.log(req.body);
-  var query = "CALL couponuse(:doctorid, :amount, :isuse)";
+
+  var query =
+    "CALL couponuse(:account_id, :islab, :service_id ,:number_of_deductions)";
+  let decr = JSON.parse(crypto.decrypt(req.body.encrypt, "DIORCO20141111"));
+
+  console.log("decr", decr);
+
   db.sequelize
     .query(query, {
       replacements: {
-        doctorid: req.body.doctorid,
-        amount: req.body.amount,
-        isuse: req.body.isuse,
+        account_id: decr.account_id,
+        islab: decr.islab,
+        service_id: decr.service_id,
+        number_of_deductions: decr.number_of_deductions,
       },
       type: db.sequelize.QueryTypes.SELECT,
     })
     .then((resp) => {
-      return res.status(200).send(resp);
+      let rtn = resp[0]["0"];
+      rtn.magic_code = decr.magic_code;
+      rtn.salt = Math.random();
+
+      return res.status(200).send(rtn);
+      //return res.status(200).send(resp[0]["0"]);
+      //console.log("this is resp", crypto.encrypt(resp));
+      //return res.send({ tickcount: "abc" });
+    })
+    .catch((err) => {
+      console.log("err", err.message);
+      return res.json(err.message);
+    });
+};
+exports.couponcount = (req, res) => {
+  console.log("body", req.body);
+  let decr = JSON.parse(crypto.decrypt(req.body.encrypt, "DIORCO20141111"));
+
+  console.log("decr", decr);
+
+  var query = "CALL couponcount(:account_id, :islab)";
+  db.sequelize
+    .query(query, {
+      replacements: {
+        account_id: parseInt(decr.account_id),
+        islab: parseInt(decr.islab),
+      },
+      type: db.sequelize.QueryTypes.SELECT,
+    })
+    .then((resp) => {
+      let rtn = resp[0]["0"];
+      rtn.magic_code = decr.magic_code;
+      rtn.salt = Math.random();
+
+      return res.status(200).send(rtn);
+      //console.log("this is resp", crypto.encrypt(resp));
+      //return res.send({ tickcount: "abc" });
     })
     .catch((err) => {
       return res.json(err.message);

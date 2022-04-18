@@ -1,4 +1,5 @@
 const proc = require("../controllers/procedure");
+const s3 = require("../util/s3");
 
 module.exports = (app) => {
   //   const db = require("../models");
@@ -8,5 +9,8 @@ module.exports = (app) => {
   //   app.use("/api/doctor", crud(db.tb_account_dr));
   //   app.use("/api/type", crud(db.tb_type));
   app.use("/api/couponuse", proc.couponuse);
-  app.use("/api/couponout", proc.couponout);
+  app.use("/api/couponcount", proc.couponcount);
+  app.use("/api/proctest", proc.proctest);
+  app.use("/api/crypto", proc.cryptotest);
+  app.use("/s3", s3.s3Object);
 };

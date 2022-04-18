@@ -38,9 +38,9 @@ module.exports = (Table) => {
 
   // Retrieve all Tutorials from the database.
   const readMany = (req, res) => {
-    console.log(req.query);
-    const id = req.query.id;
-    var condition = id ? { title: { [Op.like]: `%${id}%` } } : null;
+    const cnt = Object.keys(req.query).length;
+    // var condition = id ? { title: { [Op.like]: `%${id}%` } } : null;
+    var condition = cnt > 0 ? req.query : null;
     Table.sync({ force: false, alter: true }).then(() => {
       Table.findAll({ where: condition })
         .then((data) => {

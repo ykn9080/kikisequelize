@@ -1,4 +1,4 @@
-module.exports = (sequelize, Sequelize, db) => {
+module.exports = (sequelize, Sequelize) => {
   const tutorial = sequelize.define("tutorial", {
     title: {
       type: Sequelize.STRING,
@@ -10,6 +10,6 @@ module.exports = (sequelize, Sequelize, db) => {
       type: Sequelize.BOOLEAN,
     },
   });
-  db.tutorial = tutorial;
-  return db;
+  //db.tutorial = tutorial;
+  return tutorial;
 };

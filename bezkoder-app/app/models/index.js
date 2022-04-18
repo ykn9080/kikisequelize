@@ -27,7 +27,9 @@ let db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db = require("./tutorial.model.js")(sequelize, Sequelize, db);
-db = require("./tb_account_dr.model.js")(sequelize, Sequelize, db);
+db.tutorial = require("./tutorial.model.js")(sequelize, Sequelize);
+db.doctor = require("./tb_account_dr.model.js")(sequelize, Sequelize);
+db.lab = require("./tb_account_lab.model.js")(sequelize, Sequelize);
+db = require("./coupon.js")(sequelize, Sequelize, db);
 
 module.exports = db;

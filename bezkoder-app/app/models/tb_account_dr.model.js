@@ -1,4 +1,4 @@
-module.exports = (sequelize, Sequelize, db) => {
+module.exports = (sequelize, Sequelize) => {
   const doctor = sequelize.define("tb_account_dr", {
     account_dr_id: {
       type: Sequelize.INTEGER,
@@ -20,9 +20,6 @@ module.exports = (sequelize, Sequelize, db) => {
     parent_id: {
       type: Sequelize.INTEGER,
     },
-    coupon: {
-      type: Sequelize.INTEGER,
-    },
   });
   const tb_type = sequelize.define("tb_type", {
     type_id: {
@@ -40,7 +37,7 @@ module.exports = (sequelize, Sequelize, db) => {
       type: Sequelize.STRING(64),
     },
   });
-  db.doctor = doctor;
-  db.tb_type = tb_type;
-  return db;
+  //db.doctor = doctor;
+  //db.tb_type = tb_type;
+  return doctor;
 };
