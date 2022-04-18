@@ -119,6 +119,7 @@ exports.couponcount = (req, res) => {
     })
     .then((resp) => {
       let rtn = resp[0]["0"];
+      console.log(rtn);
       if (!rtn.number_of_coupon) {
         const val = { result: false, reason: rtn.errmsg };
         return res.status(400).send(val);
@@ -126,6 +127,7 @@ exports.couponcount = (req, res) => {
       rtn.magic_code = decr.magic_code;
       rtn.salt = Math.floor(Math.random() * 10000000000);
       const val = { response: rtn, result: true };
+      console.log(val);
       return res.status(200).send(val);
     })
     .catch((err) => {
