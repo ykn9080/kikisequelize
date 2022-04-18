@@ -35,7 +35,7 @@ exports.couponuse = (req, res) => {
       if (!rtn.msg) {
         const val = { result: false, reason: rtn.errmsg };
         return res.status(400).send({
-          request: crypto.encrypt(JSON.stringify(val)),
+          response: crypto.encrypt(JSON.stringify(val)),
         });
       }
       rtn.magic_code = decr.magic_code;
@@ -43,14 +43,14 @@ exports.couponuse = (req, res) => {
       const val = { response: rtn, result: true };
       console.log(rtn);
       return res.status(200).send({
-        request: crypto.encrypt(JSON.stringify(val)),
+        response: crypto.encrypt(JSON.stringify(val)),
       });
     })
     .catch((err) => {
       console.log("err", err.message);
       const val = { result: false, reason: err.message };
       return res.json({
-        request: crypto.encrypt(JSON.stringify(val)),
+        response: crypto.encrypt(JSON.stringify(val)),
       });
     });
 };
@@ -77,7 +77,7 @@ exports.couponcount = (req, res) => {
         const val = { result: false, reason: rtn.errmsg };
         console.log(val);
         return res.status(400).send({
-          request: crypto.encrypt(JSON.stringify(val)),
+          response: crypto.encrypt(JSON.stringify(val)),
         });
       }
       rtn.magic_code = decr.magic_code;
@@ -85,12 +85,12 @@ exports.couponcount = (req, res) => {
       const val = { response: rtn, reason: "", result: true };
 
       return res.status(200).send({
-        request: crypto.encrypt(JSON.stringify(val)),
+        response: crypto.encrypt(JSON.stringify(val)),
       });
     })
     .catch((err) => {
       return res.json({
-        request: crypto.encrypt(JSON.stringify(val)),
+        response: crypto.encrypt(JSON.stringify(val)),
       });
     });
 };
