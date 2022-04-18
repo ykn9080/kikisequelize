@@ -78,12 +78,12 @@ app.get("/enc", (req, res) => {
   console.log(req.query);
   res.json({
     //decrypt: cryp.decrypt(),
-    encrypt: encrypt(JSON.stringify(req.query)),
+    request: encrypt(JSON.stringify(req.query)),
   });
 });
 app.get("/dec", (req, res) => {
   res.json({
-    decrypt: JSON.parse(cryp.decrypt()),
+    request: JSON.parse(cryp.decrypt()),
   });
 });
 //require("./app/routes/turorial.routes")(app);

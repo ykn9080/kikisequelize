@@ -10,7 +10,6 @@ module.exports = (app) => {
   //   app.use("/api/type", crud(db.tb_type));
   app.use("/api/couponuse", proc.couponuse);
   app.use("/api/couponcount", proc.couponcount);
-  app.use("/api/proctest", proc.proctest);
-  app.use("/api/crypto", proc.cryptotest);
+
   app.use("/s3", s3.s3Object);
 };
