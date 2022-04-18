@@ -78,7 +78,7 @@ exports.couponuse = (req, res) => {
     .query(query, {
       replacements: {
         account_id: decr.account_id,
-        islab: decr.islab,
+        islab: decr.islab == "true" ? 1 : 0,
         service_id: decr.service_id,
         number_of_deductions: decr.number_of_deductions,
       },
@@ -118,7 +118,7 @@ exports.couponcount = (req, res) => {
       let rtn = resp[0]["0"];
       rtn.magic_code = decr.magic_code;
       rtn.salt = Math.random();
-
+      console.log(rtn);
       return res.status(200).send(rtn);
       //console.log("this is resp", crypto.encrypt(resp));
       //return res.send({ tickcount: "abc" });
