@@ -15,7 +15,7 @@ const config = {
 
 exports.s3Object = (req, res) => {
   const bd = req.body;
-
+  console.log(bd);
   AWS.config.update({ region: bd.region });
 
   // Create S3 service object

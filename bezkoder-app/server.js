@@ -47,11 +47,11 @@ db.sequelize.sync({ force: false, alter: true });
 // simple route
 const crypto = require("./app/util/crypto");
 
-app.get("/enc", (req, res) => {
-  console.log(req.query);
+app.post("/enc", (req, res) => {
+  console.log(req.body);
   res.json({
     //decrypt: cryp.decrypt(),
-    request: crypto.encrypt(JSON.stringify(req.query)),
+    request: crypto.encrypt(JSON.stringify(req.body)),
   });
 });
 app.post("/dec", (req, res) => {

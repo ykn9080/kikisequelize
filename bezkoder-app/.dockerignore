@@ -1,0 +1,9 @@
+
+
+# Things we should exclude from the Docker Image
+Dockerfile
+.dockerignore
+.gitignore
+README.md
+build
+node_modules

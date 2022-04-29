@@ -14,7 +14,7 @@ module.exports = (app) => {
   app.use("/api/doctor", crud(db.doctor));
   app.use("/api/lab", crud(db.lab));
   ///app.use("/api/type", crud(db.tb_type));
-  app.use("/api/coupohistoryuse", crud(db.couponhistoryuse));
+  app.use("/api/couponhistoryuse", crud(db.couponhistoryuse));
   app.use("/api/couponhistorybuy", crud(db.couponhistorybuy));
   app.use("/api/coupontype", crud(db.coupontype));
 };
