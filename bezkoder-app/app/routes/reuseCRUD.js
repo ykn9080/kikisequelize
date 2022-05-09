@@ -10,9 +10,20 @@ module.exports = (app) => {
   //const tb_account_dr = require("../models/tb_account_dr.model");
 
   //for project router
-  //app.use("/api/tutorial", crud(db.tutorial));
+  app.use("/api/tutorial", crud(db.tutorial));
   app.use("/api/doctor", crud(db.doctor));
   app.use("/api/lab", crud(db.lab));
+  app.use("/api/service", crud(db.service));
+  app.use("/api/servicehistory", crud(db.servicehistory));
+  app.use("/api/serviceinfo", crud(db.serviceinfo));
+  app.use("/api/serviceworker", crud(db.serviceworker));
+  app.use("/api/alarm", crud(db.alarm));
+  app.use("/api/revisionrequest", crud(db.revisionrequest));
+  app.use("/api/comment", crud(db.comment));
+  app.use("/api/serviceworker", crud(db.serviceworker));
+  app.use("/api/submitchange", crud(db.submitchange));
+  app.use("/api/onecheck", crud(db.onecheck));
+
   ///app.use("/api/type", crud(db.tb_type));
   app.use("/api/couponhistoryuse", crud(db.couponhistoryuse));
   app.use("/api/couponhistorybuy", crud(db.couponhistorybuy));

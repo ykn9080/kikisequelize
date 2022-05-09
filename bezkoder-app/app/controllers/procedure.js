@@ -2,14 +2,13 @@ const db = require("../models");
 const crypto = require("../util/crypto");
 const moment = require("moment");
 
-exports.querytest = (req, res) => {
+exports.findLast = (req, res) => {
   db.sequelize
-    .query("SELECT * FROM tb_type", {
-      model: db.tb_type,
-      mapToModel: true, // pass true here if you have any mapped fields
+    .query("select   LAST_INSERT_ID()", {
+      mapToModel: false, // pass true here if you have any mapped fields
     })
     .then((rtn) => {
-      return res.status(400).send(rtn);
+      return res.status(400).send(rtn[0][0]);
     });
 };
 
@@ -222,3 +221,18 @@ exports.couponbuy = (req, res) => {
       return res.json(val);
     });
 };
+
+// exports.lastInsert = (req, res) => {
+//   console.log(req.body);
+//   db.sequelize
+//     .query("CALL findlastinsert()", {
+//       mapToModel: false,
+//       type: db.sequelize.QueryTypes.SELECT,
+//     })
+//     .then(function (resp) {
+//       return res.status(200).send(resp);
+//     })
+//     .catch((err) => {
+//       return res.json(err.message);
+//     });
+// };

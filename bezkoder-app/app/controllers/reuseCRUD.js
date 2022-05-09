@@ -22,37 +22,52 @@ module.exports = (Table) => {
     // };
 
     // Save Tutorial in the database
-    Table.sync({ force: false, alter: true }).then(() => {
-      Table.create(req.body)
-        .then((data) => {
-          res.send(data);
-        })
-        .catch((err) => {
-          res.status(500).send({
-            message:
-              err.message || "Some error occurred while creating the Tutorial.",
-          });
+    // Table.sync({ force: false, alter: true }).then(() => {
+    Table.create(req.body)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || "Some error occurred while creating.",
         });
-    });
+      });
+    //});
   };
 
   // Retrieve all Tutorials from the database.
   const readMany = (req, res) => {
+    const order = req.query.order;
+    const attributes = req.query.attributes;
+    delete req.query.order;
+    delete req.query.attributes;
     const cnt = Object.keys(req.query).length;
     // var condition = id ? { title: { [Op.like]: `%${id}%` } } : null;
+
     var condition = cnt > 0 ? req.query : null;
-    Table.sync({ force: false, alter: true }).then(() => {
-      Table.findAll({ where: condition })
-        .then((data) => {
-          res.send(data);
-        })
-        .catch((err) => {
-          res.status(500).send({
-            message:
-              err.message || "Some error occurred while retrieving tutorials.",
-          });
+    let option = { where: condition };
+    if (order) {
+      var odr = order.split("^");
+      odr.map((k, i) => {
+        let kk = k.split("-");
+        if (!kk[1]) kk[1] = "asc";
+        odr.splice(i, 1, kk);
+      });
+      option.order = odr;
+    }
+    if (attributes) option.attributes = attributes.split("^");
+    console.log(option);
+    //Table.sync({ force: false, alter: true }).then(() => {
+    Table.findAll(option)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || "Some error occurred while retrieving.",
         });
-    });
+      });
+    // });
   };
 
   // Find a single Tutorial with an id
@@ -69,32 +84,33 @@ module.exports = (Table) => {
       })
       .catch((err) => {
         res.status(500).send({
-          message: "Error retrieving Tutorial with id=" + id,
+          message: "Error retrieving with id=" + id,
         });
       });
   };
 
   // Update a Tutorial by the id in the request
   const update = (req, res) => {
-    const id = req.params.id;
-
+    let condition = req.params;
+    if (Object.keys(req.query).length > 0) condition = req.query;
+    console.log(condition);
     Table.update(req.body, {
-      where: { id: id },
+      where: condition,
     })
       .then((num) => {
         if (num == 1) {
           res.send({
-            message: "Tutorial was updated successfully.",
+            message: "Updated successfully.",
           });
         } else {
           res.send({
-            message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`,
+            message: `Cannot update  with id=${id}. Maybe it was not found or req.body is empty!`,
           });
         }
       })
       .catch((err) => {
         res.status(500).send({
-          message: "Error updating Tutorial with id=" + id,
+          message: "Error updating  with id=" + id,
         });
       });
   };
@@ -102,24 +118,26 @@ module.exports = (Table) => {
   // Delete a Tutorial with the specified id in the request
   const remove = (req, res) => {
     const id = req.params.id;
+    let condition = req.params;
+    if (Object.keys(req.query).length > 0) condition = req.query;
 
     Table.destroy({
-      where: { id: id },
+      where: condition,
     })
       .then((num) => {
         if (num == 1) {
           res.send({
-            message: "Tutorial was deleted successfully!",
+            message: "deleted successfully!",
           });
         } else {
           res.send({
-            message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`,
+            message: `Cannot delete with id=${id}. Maybe Tutorial was not found!`,
           });
         }
       })
       .catch((err) => {
         res.status(500).send({
-          message: "Could not delete Tutorial with id=" + id,
+          message: "Could not delete with id=" + id,
         });
       });
   };

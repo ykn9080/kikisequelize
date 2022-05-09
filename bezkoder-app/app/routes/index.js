@@ -1,4 +1,5 @@
 const proc = require("../controllers/procedure");
+const query = require("../controllers/query");
 const s3 = require("../util/s3");
 
 module.exports = (app) => {
@@ -11,6 +12,9 @@ module.exports = (app) => {
   app.use("/api/couponuse", proc.couponuse);
   app.use("/api/couponcount", proc.couponcount);
   app.use("/api/couponbuy", proc.couponbuy);
+  app.use("/api/findlast", proc.findLast);
+  app.use("/api/getPatientInfo", query.getPatientInfo);
+  app.use("/api/getQuery", query.getQuery);
 
   app.use("/s3", s3.s3Object);
 };
