@@ -28,7 +28,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.tutorial = require("./tutorial.model.js")(sequelize, Sequelize);
-db.doctor = require("./tb_account_dr.model.js")(sequelize, Sequelize);
+db = require("./doctor.js")(sequelize, Sequelize,db);
 db.lab = require("./tb_account_lab.model.js")(sequelize, Sequelize);
 db = require("./service.js")(sequelize, Sequelize, db);
 db = require("./coupon.js")(sequelize, Sequelize, db);

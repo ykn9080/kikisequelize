@@ -28,4 +28,6 @@ module.exports = (app) => {
   app.use("/api/couponhistoryuse", crud(db.couponhistoryuse));
   app.use("/api/couponhistorybuy", crud(db.couponhistorybuy));
   app.use("/api/coupontype", crud(db.coupontype));
+  app.use("/api/couponfree", crud(db.couponfree));
+  app.use("/api/couponhistoryuse", crud(db.couponhistoryuse));
 };

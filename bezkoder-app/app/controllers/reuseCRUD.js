@@ -56,10 +56,11 @@ module.exports = (Table) => {
       option.order = odr;
     }
     if (attributes) option.attributes = attributes.split("^");
-    console.log(option);
+    console.log("herer", option);
     //Table.sync({ force: false, alter: true }).then(() => {
     Table.findAll(option)
       .then((data) => {
+        console.log("data", data);
         res.send(data);
       })
       .catch((err) => {
@@ -104,13 +105,13 @@ module.exports = (Table) => {
           });
         } else {
           res.send({
-            message: `Cannot update  with id=${id}. Maybe it was not found or req.body is empty!`,
+            message: `Cannot update Maybe it was not found or req.body is empty!`,
           });
         }
       })
       .catch((err) => {
         res.status(500).send({
-          message: "Error updating  with id=" + id,
+          message: "Error updating ",
         });
       });
   };
@@ -131,13 +132,13 @@ module.exports = (Table) => {
           });
         } else {
           res.send({
-            message: `Cannot delete with id=${id}. Maybe Tutorial was not found!`,
+            message: `Cannot delete with  Maybe Tutorial was not found!`,
           });
         }
       })
       .catch((err) => {
         res.status(500).send({
-          message: "Could not delete with id=" + id,
+          message: "Could not delete ",
         });
       });
   };

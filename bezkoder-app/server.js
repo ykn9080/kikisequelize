@@ -48,7 +48,7 @@ db.sequelize.sync({ force: false, alter: true });
 
 // simple route
 const crypto = require("./app/util/crypto");
-
+app.get("/healthcheck", (req, res) => res.send("Hello World!"));
 app.post("/enc", (req, res) => {
   console.log(req.body);
   res.json({
@@ -67,7 +67,7 @@ require("./app/routes")(app);
 require("./app/routes/reuseCRUD")(app);
 
 // set port, listen for requests
-const PORT = process.env.NODE_DOCKER_PORT || 8083;
+const PORT = process.env.LOCAL_PORT || 8083;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

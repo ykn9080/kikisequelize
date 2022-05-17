@@ -1,4 +1,16 @@
 module.exports = (sequelize, Sequelize, db) => {
+  const couponfree = sequelize.define("couponfree", {
+    id: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    isfree: {
+      type: Sequelize.BOOLEAN,
+      defaultValue: 1,
+      allowNull: false,
+    },
+  });
   const couponhistorybuy = sequelize.define("couponhistorybuy", {
     id: {
       type: Sequelize.INTEGER,
@@ -22,6 +34,28 @@ module.exports = (sequelize, Sequelize, db) => {
     },
   });
   const couponhistoryuse = sequelize.define("couponhistoryuse", {
+    id: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    account_id: {
+      type: Sequelize.INTEGER,
+    },
+    islab: {
+      type: Sequelize.INTEGER,
+    },
+    date: {
+      type: Sequelize.DATE,
+    },
+    number: {
+      type: Sequelize.INTEGER,
+    },
+    service_id: {
+      type: Sequelize.INTEGER,
+    },
+  });
+  const couponhistoryuse_free = sequelize.define("couponhistoryuse_free", {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
@@ -76,6 +110,7 @@ module.exports = (sequelize, Sequelize, db) => {
       onDelete: "CASCADE",
     });
   };
+  db.couponfree = couponfree;
   db.couponhistorybuy = couponhistorybuy;
   db.couponhistoryuse = couponhistoryuse;
   db.coupontype = coupontype;

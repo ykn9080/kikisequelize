@@ -17,7 +17,10 @@ exports.couponuse = (req, res) => {
   console.log(req.body);
   var query =
     "CALL couponuse(:account_id, :islab, :service_id,:number_of_deductions)";
-
+  if(req.body.isfree && req.body.isfree===1){
+    query =
+    "CALL couponuse_free(:account_id, :islab, :service_id,:number_of_deductions)";
+  }
   let decr = JSON.parse(crypto.decrypt(req.body.request));
 
   console.log(
