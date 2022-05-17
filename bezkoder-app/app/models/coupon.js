@@ -4,10 +4,10 @@ module.exports = (sequelize, Sequelize, db) => {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true,
+      allowNull: false,
     },
     isfree: {
       type: Sequelize.BOOLEAN,
-      defaultValue: 1,
       allowNull: false,
     },
   });
@@ -103,16 +103,18 @@ module.exports = (sequelize, Sequelize, db) => {
     },
   });
 
-  couponhistorybuy.associate = () => {
-    couponhistorybuy.belongsTo(coupontype, {
-      foreignKey: "coupontype",
-      as: "Coupontype", // Changes applied here
-      onDelete: "CASCADE",
-    });
-  };
+  // couponhistorybuy.associate = () => {
+  //   couponhistorybuy.belongsTo(coupontype, {
+  //     foreignKey: "coupontype",
+  //     as: "Coupontype", // Changes applied here
+  //     onDelete: "CASCADE",
+  //   });
+  // };
+
   db.couponfree = couponfree;
   db.couponhistorybuy = couponhistorybuy;
   db.couponhistoryuse = couponhistoryuse;
+  db.couponhistoryuse_free = couponhistoryuse_free;
   db.coupontype = coupontype;
 
   return db;
