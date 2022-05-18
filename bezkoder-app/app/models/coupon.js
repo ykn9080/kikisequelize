@@ -4,7 +4,6 @@ module.exports = (sequelize, Sequelize, db) => {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true,
-      allowNull: false,
     },
     isfree: {
       type: Sequelize.BOOLEAN,

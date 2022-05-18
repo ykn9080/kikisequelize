@@ -17,31 +17,31 @@ exports.couponuse = (req, res) => {
   console.log(req.body);
   var query =
     "CALL couponuse(:account_id, :islab, :service_id,:number_of_deductions)";
-  if(req.body.isfree && req.body.isfree===1){
-    query =
-    "CALL couponuse_free(:account_id, :islab, :service_id,:number_of_deductions)";
-  }
-  let decr = JSON.parse(crypto.decrypt(req.body.request));
 
-  console.log(
-    "decr",
-    decr,
-    !isNaN(parseInt(decr.service_id)) ? parseInt(decr.service_id) : null
-  );
+  let decr = JSON.parse(crypto.decrypt(req.body.request));
+  console.log(decr.isfree);
+  if (decr.isfree && decr.isfree === 1) {
+    query =
+      "CALL couponuse_free(:account_id, :islab, :service_id,:number_of_deductions)";
+  }
+
+  let replacement = {
+    account_id: parseInt(decr.account_id),
+    islab: (decr.islab === true) | (decr.islab === "true") ? 1 : 0,
+    service_id: !isNaN(parseInt(decr.service_id))
+      ? parseInt(decr.service_id)
+      : null,
+    isfree: (decr.isfree === true) | (decr.isfree === "true") ? 1 : 0,
+    number_of_deductions: parseInt(decr.number_of_deductions),
+  };
 
   db.sequelize
     .query(query, {
-      replacements: {
-        account_id: parseInt(decr.account_id),
-        islab: (decr.islab === true) | (decr.islab === "true") ? 1 : 0,
-        service_id: !isNaN(parseInt(decr.service_id))
-          ? parseInt(decr.service_id)
-          : null,
-        number_of_deductions: parseInt(decr.number_of_deductions),
-      },
+      replacements: replacement,
       type: db.sequelize.QueryTypes.SELECT,
     })
     .then((resp) => {
+      console.log(resp);
       let rtn = resp[0]["0"];
       if (!rtn.msg) {
         let encrytedrtn = crypto.encrypt(
@@ -91,7 +91,7 @@ exports.couponuse = (req, res) => {
         reason: err.message,
         result_code: 10,
       };
-      return res.json(val);
+      return res.status(200).json(val);
     });
 };
 exports.couponcount = (req, res) => {
@@ -225,6 +225,62 @@ exports.couponbuy = (req, res) => {
     });
 };
 
+exports.couponisfree = (req, res) => {
+  const intime = new Date();
+  console.log(req.body);
+  var query = "select isfree from couponfree where id=1";
+  let decr = JSON.parse(crypto.decrypt(req.body.request));
+  db.sequelize
+    .query(query, {
+      type: db.sequelize.QueryTypes.SELECT,
+    })
+    .then((resp) => {
+      console.log("res:p", resp);
+      let rtn = resp[0];
+      if (!rtn.isfree) {
+        const val = {
+          response: "",
+          result: false,
+          reason: rtn.errmsg,
+          result_code: rtn.result_code,
+        };
+        console.log(val);
+        return res.status(400).send(val);
+      }
+      rtn.magic_code = decr.magic_code;
+      rtn.salt = Math.floor(Math.random() * 10000000000);
+      rtn.isfree = rtn.isfree === 1 ? true : false;
+      let encrytedrtn = crypto.encrypt(JSON.stringify(rtn));
+
+      var ms = moment(new Date(), "DD/MM/YYYY HH:mm:ss.SSS").diff(
+        moment(intime, "DD/MM/YYYY HH:mm:ss.SSS")
+      );
+      var d = moment.duration(ms);
+      var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss.SSS");
+
+      const val = {
+        response: encrytedrtn,
+        reason: "",
+        result: true,
+        result_code: 0,
+        intime: intime,
+        outtime: new Date(),
+        length: s,
+      };
+
+      return res.status(200).send(val);
+    })
+    .catch((err) => {
+      console.log("err", err.message);
+      const val = {
+        response: "",
+        result: false,
+        reason: err.message,
+        result_code: 10,
+      };
+      return res.json(val);
+    });
+};
 // exports.lastInsert = (req, res) => {
 //   console.log(req.body);
 //   db.sequelize

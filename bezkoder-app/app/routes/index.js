@@ -12,6 +12,7 @@ module.exports = (app) => {
   app.use("/api/couponuse", proc.couponuse);
   app.use("/api/couponcount", proc.couponcount);
   app.use("/api/couponbuy", proc.couponbuy);
+  app.use("/api/couponisfree", proc.couponisfree);
   app.use("/api/findlast", proc.findLast);
   app.use("/api/getPatientInfo", query.getPatientInfo);
   app.use("/api/getQuery", query.getQuery);
