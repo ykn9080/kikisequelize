@@ -20,7 +20,7 @@ exports.couponuse = (req, res) => {
 
   let decr = JSON.parse(crypto.decrypt(req.body.request));
   console.log(decr.isfree);
-  if (decr.isfree && decr.isfree === 1) {
+  if (decr.isfree && decr.isfree === true) {
     query =
       "CALL couponuse_free(:account_id, :islab, :service_id,:number_of_deductions)";
   }
@@ -44,13 +44,17 @@ exports.couponuse = (req, res) => {
       console.log(resp);
       let rtn = resp[0]["0"];
       if (!rtn.msg) {
-        let encrytedrtn = crypto.encrypt(
-          JSON.stringify({
-            number_of_coupons: rtn.number_of_coupons,
-            magic_code: decr.magic_code,
-            salt: Math.floor(Math.random() * 10000000000),
-          })
-        );
+        let makertn = {
+          magic_code: decr.magic_code,
+          salt: Math.floor(Math.random() * 10000000000),
+          number_of_coupons: rtn.number_of_coupons,
+        };
+        console.log("decr.isfree", decr.isfree);
+        if ((decr.isfree === true) | (decr.isfree === "true")) {
+          delete makertn.number_of_coupons;
+          makertn.cumulative_usage_count = rtn.number_of_coupons;
+        }
+        let encrytedrtn = crypto.encrypt(JSON.stringify(makertn));
         const val = {
           response: encrytedrtn,
           result: false,
@@ -69,6 +73,10 @@ exports.couponuse = (req, res) => {
       var d = moment.duration(ms);
       var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss.SSS");
       console.log(rtn);
+      if ((decr.isfree === true) | (decr.isfree === "true")) {
+        rtn.cumulative_usage_count = rtn.number_of_coupons;
+        delete rtn.number_of_coupons;
+      }
       let encrytedrtn = crypto.encrypt(JSON.stringify(rtn));
       if (decr.plain) encrytedrtn = rtn;
       const val = {
@@ -114,7 +122,7 @@ exports.couponcount = (req, res) => {
       let rtn = resp[0]["0"];
       console.log(rtn);
 
-      if (!rtn.number_of_coupons) {
+      if (rtn.number_of_coupons) {
         const val = {
           response: "",
           result: false,
@@ -237,7 +245,7 @@ exports.couponisfree = (req, res) => {
     .then((resp) => {
       console.log("res:p", resp);
       let rtn = resp[0];
-      if (!rtn.isfree) {
+      if (rtn.isfree==="undefined") {
         const val = {
           response: "",
           result: false,

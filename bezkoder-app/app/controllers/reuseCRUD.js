@@ -34,7 +34,89 @@ module.exports = (Table) => {
       });
     //});
   };
+  const makeCondition = (condition) => {
+    const makeOp = (opp) => {
+      let op;
+      switch (opp) {
+        case ">=":
+          op = Op.gte;
+          break;
+        case ">":
+          op = Op.gt;
+          break;
+        case "<=":
+          op = Op.lte;
+          break;
+        case "<":
+          op = Op.lt;
+          break;
+        case "like":
+          op = Op.like;
+          break;
+        case "in":
+          op = Op.in;
+          break;
+        case "not in":
+          op = Op.notIn;
+          break;
+        case "between":
+          op = Op.between;
+          break;
+        case "not between":
+          op = Op.notBetween;
+          break;
+        case "is null":
+          op = Op.isNull;
+          break;
+        case "is not null":
+          op = Op.isNotNull;
+          break;
+        default:
+          null;
+      }
+      return op;
+    };
+    //--------------query example----------------
+    // created_date=2020-01-01,2020-01-01$between
+    // created_date=2020-01-01$>=
+    // service_id=36$like
+    // service_id=365,374$in
+    //--------------------------------------------
+    const likeattach = (op, txt) => {
+      if (op === Op.like) {
+        return "%" + txt + "%";
+      }
+      return txt;
+    };
+    return Object.keys(condition).map((k, i) => {
+      let val1 = Object.values(condition)[i];
 
+      const vals = val1.split("$");
+      if (vals.length === 1) {
+        return { [k]: vals };
+      }
+      const op = makeOp(vals[1]);
+
+      const valarr = vals[0].split(",");
+      valarr.map((s, j) => {
+        valarr.splice(j, 1, likeattach(op, dateParse(s)));
+      });
+      console.log(JSON.stringify({ [k]: { [op]: valarr } }));
+
+      return { [k]: { [op]: valarr } };
+    });
+  };
+  const dateParse = (date) => {
+    try {
+      let datt = new Date(date);
+      if ((datt.toString() === "Invalid Date") | !NaN(date)) {
+        return date;
+      }
+      return datt;
+    } catch {
+      return date;
+    }
+  };
   // Retrieve all Tutorials from the database.
   const readMany = (req, res) => {
     const order = req.query.order;
@@ -45,6 +127,8 @@ module.exports = (Table) => {
     // var condition = id ? { title: { [Op.like]: `%${id}%` } } : null;
 
     var condition = cnt > 0 ? req.query : null;
+    if (condition) condition = makeCondition(condition);
+
     let option = { where: condition };
     if (order) {
       var odr = order.split("^");
@@ -56,11 +140,11 @@ module.exports = (Table) => {
       option.order = odr;
     }
     if (attributes) option.attributes = attributes.split("^");
-    console.log("herer", option);
+
     //Table.sync({ force: false, alter: true }).then(() => {
     Table.findAll(option)
       .then((data) => {
-        console.log("data", data);
+        //console.log("data", data);
         res.send(data);
       })
       .catch((err) => {
