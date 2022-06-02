@@ -169,6 +169,19 @@ module.exports = (sequelize, Sequelize, db) => {
       type: Sequelize.DATE,
     },
   });
+  const dashboard = sequelize.define("dashboard", {
+    id: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    user: {
+      type: Sequelize.STRING(100),
+    },
+    data: {
+      type: Sequelize.STRING(10000),
+    },
+  });
 
   db.alarm = alarm;
   db.revisionrequest = revisionrequest;
@@ -176,6 +189,7 @@ module.exports = (sequelize, Sequelize, db) => {
   db.serviceworker = serviceworker;
   db.submitchange = submitchange;
   db.onecheck = onecheck;
+  db.dashboard = dashboard;
 
   return db;
 };

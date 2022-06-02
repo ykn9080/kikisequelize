@@ -178,7 +178,7 @@ module.exports = (Table) => {
   const update = (req, res) => {
     let condition = req.params;
     if (Object.keys(req.query).length > 0) condition = req.query;
-    console.log(condition);
+    console.log(condition, req.body);
     Table.update(req.body, {
       where: condition,
     })
