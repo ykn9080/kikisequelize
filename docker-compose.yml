@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # mysqldb:
@@ -22,7 +22,7 @@ services:
     #   - mariadb
     image: diorcokorea/seqapp
     container_name: seqapp
-    build: ./bezkoder-app
+    build: ./.
     restart: unless-stopped
     env_file: ./.env
     # networks:
@@ -31,19 +31,15 @@ services:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     environment:
       # --docker와 연결할 경우
-      # - DB_HOST=mariadb 
+      # - DB_HOST=mariadb
       # --local mariadb와 연결할 경우
-      - DB_HOST=$MYSQLDB_HOST
-      - DB_USER=$MYSQLDB_USER
-      - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
-      - DB_NAME=$MYSQLDB_DATABASE
-      - DB_PORT=$MYSQLDB_LOCAL_PORT
-      # - DB_PORT=$MYSQLDB_DOCKER_PORT
+      - DB_HOST=$DB_HOST
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
+      - DB_NAME=$DB_NAME
+      - DB_PORT=$DB_PORT
     stdin_open: true
     tty: true
-
- 
-
 # volumes:
 #     maria-data:
 #         name: maria-data
