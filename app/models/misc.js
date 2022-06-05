@@ -182,6 +182,28 @@ module.exports = (sequelize, Sequelize, db) => {
       type: Sequelize.STRING(10000),
     },
   });
+  const dashdata = sequelize.define("dashdata", {
+    id: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    data: {
+      type: Sequelize.INTEGER,
+    },
+    country: {
+      type: Sequelize.STRING(100),
+    },
+    date: {
+      type: Sequelize.DATE,
+    },
+    usertype: {
+      type: Sequelize.STRING(100),
+    },
+    datatype: {
+      type: Sequelize.STRING(100),
+    },
+  });
 
   db.alarm = alarm;
   db.revisionrequest = revisionrequest;

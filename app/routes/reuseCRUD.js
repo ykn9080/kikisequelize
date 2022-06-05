@@ -24,6 +24,7 @@ module.exports = (app) => {
   app.use("/api/submitchange", crud(db.submitchange));
   app.use("/api/onecheck", crud(db.onecheck));
   app.use("/api/dashboard", crud(db.dashboard));
+  app.use("/api/dashdata", crud(db.dashdata));
 
   ///app.use("/api/type", crud(db.tb_type));
   app.use("/api/couponhistoryuse", crud(db.couponhistoryuse));
