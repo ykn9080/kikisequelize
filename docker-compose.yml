@@ -20,13 +20,13 @@ services:
     # --기존 container db와 연결할 경우 external_links
     # external_links:
     #   - mariadb
-    image: diorcokorea/seqapp
-    container_name: seqapp
+    image: yknam/imcsequelize
+    container_name: imcsequelize
     build: ./.
     restart: unless-stopped
     env_file: ./.env
-    # networks:
-    #   - dentnet
+    networks:
+      - kong-net
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     environment:
@@ -44,7 +44,7 @@ services:
 #     maria-data:
 #         name: maria-data
 #     db:
-# networks:
-#     dentnet:
-#         driver: bridge
-#         name: dentnet
+networks:
+    kong-net:
+        driver: bridge
+        name: kong-net

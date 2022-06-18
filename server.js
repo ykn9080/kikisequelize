@@ -63,7 +63,7 @@ app.post("/dec", (req, res) => {
   });
 });
 //require("./app/routes/turorial.routes")(app);
-require("./app/routes")(app);
+// require("./app/routes")(app);
 require("./app/routes/reuseCRUD")(app);
 
 // set port, listen for requests
