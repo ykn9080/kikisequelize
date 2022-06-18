@@ -179,7 +179,7 @@ module.exports = (sequelize, Sequelize, db) => {
       type: Sequelize.STRING(100),
     },
     data: {
-      type: Sequelize.STRING(10000),
+      type: Sequelize.TEXT("long"),
     },
   });
   const dashdata = sequelize.define("dashdata", {
@@ -212,6 +212,7 @@ module.exports = (sequelize, Sequelize, db) => {
   db.submitchange = submitchange;
   db.onecheck = onecheck;
   db.dashboard = dashboard;
+  db.dashdata = dashdata;
 
   return db;
 };

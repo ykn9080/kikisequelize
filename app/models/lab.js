@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize, db) => {
-  const tb_account_dr = sequelize.define("tb_account_dr", {
-    account_dr_id: {
+  const tb_account_lab = sequelize.define("tb_account_lab", {
+    account_lab_id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true,
@@ -20,8 +20,19 @@ module.exports = (sequelize, Sequelize, db) => {
     parent_id: {
       type: Sequelize.INTEGER,
     },
+    email_notification: {
+      type: Sequelize.STRING(64),
+    },
+    is_submit_checked: {
+      type: Sequelize.INTEGER,
+    },
+    my_last_selection: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+    },
   });
-  const tb_doctor = sequelize.define("tb_doctor", {
+
+  const tb_lab = sequelize.define("tb_lab", {
     index: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
@@ -33,48 +44,51 @@ module.exports = (sequelize, Sequelize, db) => {
     modified_date: {
       type: Sequelize.DATE,
     },
-    account_dr_id: {
+    account_lab_id: {
       type: Sequelize.INTEGER,
     },
     name: {
       type: Sequelize.STRING(64),
     },
-    hospital_name: {
-      type: Sequelize.STRING(64),
-    },
     phone: {
-      type: Sequelize.STRING(64),
-    },
-    mobile: {
       type: Sequelize.STRING(64),
     },
     email: {
       type: Sequelize.STRING(64),
     },
-    address_id: {
+    country: {
       type: Sequelize.INTEGER,
     },
-    license_number: {
+    address1: {
+      type: Sequelize.STRING(64),
+    },
+    address2: {
+      type: Sequelize.STRING(64),
+    },
+    address3: {
+      type: Sequelize.STRING(64),
+    },
+    address4: {
+      type: Sequelize.STRING(64),
+    },
+    zip_code: {
       type: Sequelize.STRING(64),
     },
     setting: {
-      type: Sequelize.STRING(5000),
+      type: Sequelize.STRING(10000),
     },
-    clinic_setting: {
-      type: Sequelize.STRING(5000),
-    },
-    email_notification: {
+    logo: {
       type: Sequelize.STRING(255),
     },
-    is_submit_checked: {
-      type: Sequelize.INTEGER,
+    lat: {
+      type: Sequelize.STRING(50),
     },
-    is_mapping_checked: {
-      type: Sequelize.INTEGER,
+    lng: {
+      type: Sequelize.STRING(50),
     },
   });
 
-  db.tb_account_dr = tb_account_dr;
-  db.tb_doctor = tb_doctor;
+  db.tb_account_lab = tb_account_lab;
+  db.tb_lab = tb_lab;
   return db;
 };

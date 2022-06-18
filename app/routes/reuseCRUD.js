@@ -11,8 +11,10 @@ module.exports = (app) => {
 
   //for project router
   app.use("/api/tutorial", crud(db.tutorial));
-  app.use("/api/doctor", crud(db.doctor));
-  app.use("/api/lab", crud(db.lab));
+  app.use("/api/tb_doctor", crud(db.tb_doctor));
+  app.use("/api/tb_account_dr", crud(db.tb_account_dr));
+  app.use("/api/tb_lab", crud(db.tb_lab));
+  app.use("/api/tb_account_lab", crud(db.tb_account_lab));
   app.use("/api/service", crud(db.service));
   app.use("/api/servicehistory", crud(db.servicehistory));
   app.use("/api/serviceinfo", crud(db.serviceinfo));

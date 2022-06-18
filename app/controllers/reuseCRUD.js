@@ -1,4 +1,5 @@
 const db = require("../models");
+const _ = require("lodash");
 const express = require("express");
 const Tutorial = db.tutorials;
 const Op = db.Sequelize.Op;
@@ -90,7 +91,6 @@ module.exports = (Table) => {
     };
     return Object.keys(condition).map((k, i) => {
       let val1 = Object.values(condition)[i];
-
       const vals = val1.split("$");
       if (vals.length === 1) {
         return { [k]: vals };
@@ -101,7 +101,6 @@ module.exports = (Table) => {
       valarr.map((s, j) => {
         valarr.splice(j, 1, likeattach(op, dateParse(s)));
       });
-      console.log(JSON.stringify({ [k]: { [op]: valarr } }));
 
       return { [k]: { [op]: valarr } };
     });
@@ -117,8 +116,18 @@ module.exports = (Table) => {
       return date;
     }
   };
+  const queryClean = (query) => {
+    if (query) {
+      Object.keys(query).map((k, i) => {
+        if (typeof query[k] === "object") query[k] = Object.values(query)[i][0];
+      });
+      return query;
+    } else return query;
+  };
   // Retrieve all Tutorials from the database.
   const readMany = (req, res) => {
+    req.query = queryClean(req.query);
+    console.log(req.query);
     const order = req.query.order;
     const attributes = req.query.attributes;
     delete req.query.order;
@@ -128,7 +137,7 @@ module.exports = (Table) => {
 
     var condition = cnt > 0 ? req.query : null;
     if (condition) condition = makeCondition(condition);
-
+    console.log("condition", condition);
     let option = { where: condition };
     if (order) {
       var odr = order.split("^");
@@ -144,7 +153,6 @@ module.exports = (Table) => {
     //Table.sync({ force: false, alter: true }).then(() => {
     Table.findAll(option)
       .then((data) => {
-        //console.log("data", data);
         res.send(data);
       })
       .catch((err) => {
@@ -157,11 +165,8 @@ module.exports = (Table) => {
 
   // Find a single Tutorial with an id
   const readOne = (req, res) => {
-    console.log(req.params.id);
     let id = req.params.id;
     let name = req.query.name;
-
-    console.log("id:", id, "name", name, req.path);
 
     Table.findByPk(id)
       .then((data) => {
@@ -178,7 +183,6 @@ module.exports = (Table) => {
   const update = (req, res) => {
     let condition = req.params;
     if (Object.keys(req.query).length > 0) condition = req.query;
-    console.log(condition, req.body);
     Table.update(req.body, {
       where: condition,
     })
@@ -194,8 +198,9 @@ module.exports = (Table) => {
         }
       })
       .catch((err) => {
+        console.log(err.message);
         res.status(500).send({
-          message: "Error updating ",
+          message: err.message,
         });
       });
   };
