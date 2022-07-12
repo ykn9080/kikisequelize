@@ -2,5 +2,5 @@
 const query = require("../controllers/query");
 
 module.exports = (app) => {
-  app.use("/api/getQuery", query.getQuery);
+  //app.use("/api/getQuery", query.getQuery);
 };

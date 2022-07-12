@@ -40,7 +40,7 @@ app.use(express.urlencoded({ extended: true }));
 const db = require("./app/models");
 console.log("password", process.env.DB_PASSWORD);
 //db.sequelize.sync({ force: false, alter: true });
-db.sequelize.sync({ force: false, alter: true });
+db.sequelize.sync({ force: false, alter: false });
 // // drop the table if it already exists
 // db.sequelize.sync({ force: true }).then(() => {
 //   console.log("Drop and re-sync db.");
@@ -49,6 +49,7 @@ db.sequelize.sync({ force: false, alter: true });
 // simple route
 const crypto = require("./app/util/crypto");
 app.get("/healthcheck", (req, res) => res.send("Hello World!"));
+app.get("/", (req, res) => res.send("Hello World root!"));
 app.post("/enc", (req, res) => {
   console.log(req.body);
   res.json({
@@ -67,7 +68,7 @@ app.post("/dec", (req, res) => {
 require("./app/routes/reuseCRUD")(app);
 
 // set port, listen for requests
-const PORT = process.env.LOCAL_PORT || 8083;
+const PORT = process.env.LOCAL_PORT || 80;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

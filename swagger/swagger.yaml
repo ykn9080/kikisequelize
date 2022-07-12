@@ -5,46 +5,46 @@ info:
   description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
   version: 0.1.9
 servers:
-  - url: http://localhost:8484
+  - url: http://localhost:80
     # description: local test
 
 tags:
-  - name: tutorial
-    description: Sample database
-    externalDocs:
-      url: http://docs.my-api.com/pet-operations.htm
-  - name: type
-    description: Access to tb_type
-    externalDocs:
-      url: http://docs.my-api.com/store-orders.htm
-  - name: doctor
-    description: Doctor list
-  - name: couponHistory
-    description: coupon charge/use log
-  - name: procedure
-    description: Access to all procedures
-    externalDocs:
-      url: http://docs.my-api.com/store-orders.htm
+  # - name: notice
+  #   description: notice 게시판
+  #   externalDocs:
+  #     url: http://docs.my-api.com/pet-operations.htm
+  # - name: type
+  #   description: Access to tb_type
+  #   externalDocs:
+  #     url: http://docs.my-api.com/store-orders.htm
+  - name: notice
+    description: 게시판
+  # - name: couponHistory
+  #   description: coupon charge/use log
+  # - name: procedure
+  #   description: Access to all procedures
+  #   externalDocs:
+  #     url: http://docs.my-api.com/store-orders.htm
 paths:
-  /api/doctor:
+  /api/notice:
     get:
-      summary: doctor list.
+      summary: notice list.
       description:
       tags:
-        - doctor
+        - notice
       responses:
         "200": # status code
-          description: A JSON array of doctor info
+          description: A JSON array of notice info
           content:
             application/json:
               schema:
-                $ref: "./doctor.yaml#/components/schemas/Doctor"
+                $ref: "./notice.yaml#/components/schemas/Notice"
     post:
-      summary: Creates a new doctor.
+      summary: Creates a new notice.
       tags:
-        - doctor
+        - notice
       requestBody:
-        $ref: "./doctor.yaml#/components/requestBodies/DoctorBody"
+        $ref: "./notice.yaml#/components/requestBodies/NoticeBody"
       responses:
         "200": # status code
           description: OK
@@ -272,15 +272,18 @@ components:
         created_date:
           type: datetime
           example: 2022-01-01
-        modified_date:
+        updated_date:
           type: datetime
           example: 2022-01-01
-        login_id:
+        contents:
           type: string
           example: Jessica Johns
-        login_pw:
+        date:
+          type: datetime
+          example: 2022-01-01
           type: string
-          example: Jessica Johns
+        file:
+          type: 
         parent_id:
           type: integer
           example: 19

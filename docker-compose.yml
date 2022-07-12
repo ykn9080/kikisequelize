@@ -20,8 +20,8 @@ services:
     # --기존 container db와 연결할 경우 external_links
     # external_links:
     #   - mariadb
-    image: yknam/imcsequelize
-    container_name: imcsequelize
+    image: yknam/kikisequelize
+    container_name: kikisequelize
     build: ./.
     restart: unless-stopped
     env_file: ./.env
