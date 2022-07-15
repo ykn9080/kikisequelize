@@ -1,33 +1,11 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('bus', {
+  return sequelize.define('manage', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
-    },
-    number: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    status: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      defaultValue: "NORMAL"
-    },
-    bus_type: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      defaultValue: "GENERAL"
-    },
-    company_id: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
-      references: {
-        model: 'company',
-        key: 'id'
-      }
     },
     route_id: {
       type: DataTypes.BIGINT,
@@ -44,10 +22,26 @@ module.exports = function(sequelize, DataTypes) {
         model: 'user',
         key: 'id'
       }
+    },
+    business_place_id: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+      references: {
+        model: 'business_place',
+        key: 'id'
+      }
+    },
+    manager: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
     }
   }, {
     sequelize,
-    tableName: 'bus',
+    tableName: 'manage',
     timestamps: true,
     indexes: [
       {
@@ -59,24 +53,31 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "FK_company_TO_bus_1",
+        name: "FK_business_place_TO_manage_1",
         using: "BTREE",
         fields: [
-          { name: "company_id" },
+          { name: "business_place_id" },
         ]
       },
       {
-        name: "FK_route_TO_bus_1",
+        name: "FK_route_TO_manage_1",
         using: "BTREE",
         fields: [
           { name: "route_id" },
         ]
       },
       {
-        name: "FK_user_TO_bus_1",
+        name: "FK_user_TO_manage_1",
         using: "BTREE",
         fields: [
           { name: "manager_id" },
+        ]
+      },
+      {
+        name: "FK_user_TO_manage_2_idx",
+        using: "BTREE",
+        fields: [
+          { name: "manager" },
         ]
       },
     ]

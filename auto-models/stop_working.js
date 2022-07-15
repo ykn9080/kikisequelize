@@ -1,39 +1,35 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('company', {
+  return sequelize.define('stop_working', {
     id: {
       autoIncrement: true,
-      type: DataTypes.BIGINT,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    code: {
-      type: DataTypes.STRING(255),
+    start_date: {
+      type: DataTypes.DATEONLY,
       allowNull: true
     },
-    company_no: {
-      type: DataTypes.INTEGER,
+    end_date: {
+      type: DataTypes.DATEONLY,
       allowNull: true
     },
-    name: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    region: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    group_id: {
-      type: DataTypes.INTEGER,
+    driver_id: {
+      type: DataTypes.BIGINT,
       allowNull: true,
       references: {
-        model: 'company_group',
+        model: 'user',
         key: 'id'
       }
+    },
+    work_day: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'company',
+    tableName: 'stop_working',
     timestamps: false,
     indexes: [
       {
@@ -45,10 +41,10 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "group_id",
+        name: "driver_id",
         using: "BTREE",
         fields: [
-          { name: "group_id" },
+          { name: "driver_id" },
         ]
       },
     ]

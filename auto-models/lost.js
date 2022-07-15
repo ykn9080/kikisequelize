@@ -1,40 +1,52 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('company', {
+  return sequelize.define('lost', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
-    code: {
+    pick_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    pick_place: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    company_no: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    name: {
+    item: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    region: {
+    return_phone: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    group_id: {
-      type: DataTypes.INTEGER,
+    return_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    emp_confirm: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    store_place: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    picker_id: {
+      type: DataTypes.BIGINT,
       allowNull: true,
       references: {
-        model: 'company_group',
+        model: 'user',
         key: 'id'
       }
     }
   }, {
     sequelize,
-    tableName: 'company',
-    timestamps: false,
+    tableName: 'lost',
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",
@@ -45,10 +57,10 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "group_id",
+        name: "FK_user_TO_lost_1",
         using: "BTREE",
         fields: [
-          { name: "group_id" },
+          { name: "picker_id" },
         ]
       },
     ]

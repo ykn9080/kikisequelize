@@ -1,40 +1,42 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('company', {
+  return sequelize.define('notification', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
-    code: {
+    title: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    company_no: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    name: {
+    content: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    region: {
-      type: DataTypes.STRING(255),
-      allowNull: true
+    read: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: 0
     },
-    group_id: {
-      type: DataTypes.INTEGER,
+    keep: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: 0
+    },
+    user_id: {
+      type: DataTypes.BIGINT,
       allowNull: true,
       references: {
-        model: 'company_group',
+        model: 'user',
         key: 'id'
       }
     }
   }, {
     sequelize,
-    tableName: 'company',
-    timestamps: false,
+    tableName: 'notification',
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",
@@ -45,10 +47,18 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "group_id",
+        name: "notification_id_uindex",
+        unique: true,
         using: "BTREE",
         fields: [
-          { name: "group_id" },
+          { name: "id" },
+        ]
+      },
+      {
+        name: "notification_user_id_fk",
+        using: "BTREE",
+        fields: [
+          { name: "user_id" },
         ]
       },
     ]

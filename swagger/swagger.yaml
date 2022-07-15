@@ -38,7 +38,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "./notice.yaml#/components/schemas/Notice"
+                $ref: "#/components/schemas/Notice"
     post:
       summary: Creates a new notice.
       tags:
@@ -254,7 +254,48 @@ components:
           type: integer
           format: int64
           example: 4
-    Tutorial:
+    Notice:
+      type: object
+      properties:
+        contents:
+          type: string
+          example: This is body
+        created_date:
+          type: datetime
+          example: 2022-01-01
+        file:
+          type: file
+        title:
+          type: string
+          example: Simple notice!!
+        category:
+          type: string
+          example: COMPANY 
+        company_id:
+          type: int
+          example: 1
+        place_id:
+          type: int
+          example: 1
+        route_id:
+          type: int
+          example: 20
+        hit:
+          type: int
+          example: 1   
+        writer_id:
+          type: int
+          example: 1     
+        piclinkarray:
+          type: string
+          example: ["222/img1.jpg","222/img2.jpg"]
+        youtubearray:
+          type: string
+          example: ["https://www.youtube.com/watch?v=c64aupy8WhY"]
+        urgent:
+          type: boolean
+          example: false                  
+    Tutorial: 
       type: object
       properties:
         title:

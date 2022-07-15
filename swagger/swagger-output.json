@@ -1,0 +1,199 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "KIKIB API SERVER by node sequelizer",
+    "description": "node sequelizer로 만든 api server입니다.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+
+      "url":"http://localhost:8484"
+    }
+  ],
+  "paths": {
+    "/api/notice/": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "notice list.",
+        "description": null,
+        "tags": [
+          "notice"
+        ],
+        "responses": {
+          "200": {
+            "description": "A JSON array of notice info",
+            "content": {
+              "application/json": {
+                "schema": {
+                    "properties": {
+                      "contents": {
+                        "type": "string",
+                        "example": "This is body"
+                      },
+                      "created_date": {
+                        "type": "datetime",
+                        "example": "2022-01-01T00:00:00.000Z"
+                      },
+                      "file": {
+                        "type": "file"
+                      },
+                      "title": {
+                        "type": "string",
+                        "example": "Simple notice!!"
+                      },
+                      "category": {
+                        "type": "string",
+                        "example": "COMPANY"
+                      },
+                      "company_id": {
+                        "type": "int",
+                        "example": 1
+                      },
+                      "place_id": {
+                        "type": "int",
+                        "example": 1
+                      },
+                      "route_id": {
+                        "type": "int",
+                        "example": 20
+                      },
+                      "hit": {
+                        "type": "int",
+                        "example": 1
+                      },
+                      "writer_id": {
+                        "type": "int",
+                        "example": 1
+                      },
+                      "piclinkarray": {
+                        "type": "string",
+                        "example": [
+                          "222/img1.jpg",
+                          "222/img2.jpg"
+                        ]
+                      },
+                      "youtubearray": {
+                        "type": "string",
+                        "example": [
+                          "https://www.youtube.com/watch?v=c64aupy8WhY"
+                        ]
+                      },
+                      "urgent": {
+                        "type": "boolean",
+                        "example": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+      "post": {
+        "summary": "Creates a new notice.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": [
+          "notice"
+        ],
+        "requestBodies": {
+            "description": "Optional description in *Markdown*",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "contents": {
+                      "type": "string",
+                      "example": "This is body"
+                    },
+                    "created_date": {
+                      "type": "datetime",
+                      "example": "2022-01-01T00:00:00.000Z"
+                    },
+                    "file": {
+                      "type": "file"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Simple notice!!"
+                    },
+                    "category": {
+                      "type": "string",
+                      "example": "COMPANY"
+                    },
+                    "company_id": {
+                      "type": "int",
+                      "example": 1
+                    },
+                    "place_id": {
+                      "type": "int",
+                      "example": 1
+                    },
+                    "route_id": {
+                      "type": "int",
+                      "example": 20
+                    },
+                    "hit": {
+                      "type": "int",
+                      "example": 1
+                    },
+                    "writer_id": {
+                      "type": "int",
+                      "example": 1
+                    },
+                    "piclinkarray": {
+                      "type": "string",
+                      "example": [
+                        "222/img1.jpg",
+                        "222/img2.jpg"
+                      ]
+                    },
+                    "youtubearray": {
+                      "type": "string",
+                      "example": [
+                        "https://www.youtube.com/watch?v=c64aupy8WhY"
+                      ]
+                    },
+                    "urgent": {
+                      "type": "boolean",
+                      "example": false
+                    }
+                  }
+                }
+              }
+            
+            
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created"
+          }
+        }
+      }
+      }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

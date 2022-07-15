@@ -36,6 +36,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: true
     },
+    photo: {
+      type: DataTypes.BLOB,
+      allowNull: true
+    },
     role: {
       type: DataTypes.STRING(255),
       allowNull: true
@@ -80,18 +84,6 @@ module.exports = function(sequelize, DataTypes) {
     },
     work_standard: {
       type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    photo: {
-      type: DataTypes.BLOB,
-      allowNull: true
-    },
-    join_date: {
-      type: DataTypes.DATEONLY,
-      allowNull: true
-    },
-    retirement_date: {
-      type: DataTypes.DATEONLY,
       allowNull: true
     }
   }, {

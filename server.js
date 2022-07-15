@@ -3,7 +3,11 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-require("./swagger")(app);
+
+const swaggerUi=require("swagger-ui-express")
+const swaggerFile=require("./swagger/swagger-output.json")
+app.use("/doc",swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
 // const swaggerUi = require("swagger-ui-express");
 
 // const YAML = require("yamljs");
@@ -64,7 +68,7 @@ app.post("/dec", (req, res) => {
   });
 });
 //require("./app/routes/turorial.routes")(app);
-// require("./app/routes")(app);
+require("./app/routes")(app);
 require("./app/routes/reuseCRUD")(app);
 
 // set port, listen for requests

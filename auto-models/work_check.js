@@ -1,31 +1,25 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('bus', {
+  return sequelize.define('work_check', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
-    number: {
-      type: DataTypes.STRING(255),
+    start_date: {
+      type: DataTypes.DATEONLY,
       allowNull: true
     },
-    status: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      defaultValue: "NORMAL"
+    end_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
     },
-    bus_type: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      defaultValue: "GENERAL"
-    },
-    company_id: {
+    manager_id: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
-        model: 'company',
+        model: 'user',
         key: 'id'
       }
     },
@@ -36,18 +30,10 @@ module.exports = function(sequelize, DataTypes) {
         model: 'route',
         key: 'id'
       }
-    },
-    manager_id: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
-      references: {
-        model: 'user',
-        key: 'id'
-      }
     }
   }, {
     sequelize,
-    tableName: 'bus',
+    tableName: 'work_check',
     timestamps: true,
     indexes: [
       {
@@ -59,21 +45,14 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "FK_company_TO_bus_1",
-        using: "BTREE",
-        fields: [
-          { name: "company_id" },
-        ]
-      },
-      {
-        name: "FK_route_TO_bus_1",
+        name: "FK_route_TO_work_check_1",
         using: "BTREE",
         fields: [
           { name: "route_id" },
         ]
       },
       {
-        name: "FK_user_TO_bus_1",
+        name: "FK_user_TO_work_check_1",
         using: "BTREE",
         fields: [
           { name: "manager_id" },

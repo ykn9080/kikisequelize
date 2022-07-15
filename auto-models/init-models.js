@@ -1,36 +1,39 @@
 var DataTypes = require("sequelize").DataTypes;
-var _bus = require("./bus");
-var _business_place = require("./business_place");
-var _company = require("./company");
-var _day_off = require("./day_off");
-var _delete_user = require("./delete_user");
-var _dispatch = require("./dispatch");
-var _driving_issue = require("./driving_issue");
-var _edge_device = require("./edge_device");
-var _hibernate_sequence = require("./hibernate_sequence");
-var _holidays = require("./holidays");
-var _lost = require("./lost");
-var _manage = require("./manage");
+var _bus = require("../models/bus");
+var _business_place = require("../models/business_place");
+var _company = require("../models/company");
+var _company_group = require("../models/company_group");
+var _day_off = require("../models/day_off");
+var _delete_user = require("../models/delete_user");
+var _dispatch = require("../models/dispatch");
+var _driving_issue = require("../models/driving_issue");
+var _edge_device = require("../models/edge_device");
+var _hibernate_sequence = require("../models/hibernate_sequence");
+var _holidays = require("../models/holidays");
+var _lost = require("../models/lost");
+var _manage = require("../models/manage");
 var _notice = require("./notice");
-var _notification = require("./notification");
-var _replace_request = require("./replace_request");
-var _route = require("./route");
-var _route_driver = require("./route_driver");
-var _route_setting = require("./route_setting");
-var _schedule_request = require("./schedule_request");
-var _schedule_setting = require("./schedule_setting");
-var _stop_working = require("./stop_working");
-var _tutorial = require("./tutorial");
-var _user = require("./user");
-var _user_notice = require("./user_notice");
-var _work = require("./work");
-var _work_check = require("./work_check");
-var _work_request = require("./work_request");
+var _notification = require("../models/notification");
+var _notification_box = require("../models/notification_box");
+var _replace_request = require("../models/replace_request");
+var _route = require("../models/route");
+var _route_driver = require("../models/route_driver");
+var _route_setting = require("../models/route_setting");
+var _schedule_request = require("../models/schedule_request");
+var _schedule_setting = require("../models/schedule_setting");
+var _stop_working = require("../models/stop_working");
+var _tutorial = require("../models/tutorial");
+var _user = require("../models/user");
+var _user_notice = require("../models/user_notice");
+var _work = require("../models/work");
+var _work_check = require("../models/work_check");
+var _work_request = require("../models/work_request");
 
 function initModels(sequelize) {
   var bus = _bus(sequelize, DataTypes);
   var business_place = _business_place(sequelize, DataTypes);
   var company = _company(sequelize, DataTypes);
+  var company_group = _company_group(sequelize, DataTypes);
   var day_off = _day_off(sequelize, DataTypes);
   var delete_user = _delete_user(sequelize, DataTypes);
   var dispatch = _dispatch(sequelize, DataTypes);
@@ -42,6 +45,7 @@ function initModels(sequelize) {
   var manage = _manage(sequelize, DataTypes);
   var notice = _notice(sequelize, DataTypes);
   var notification = _notification(sequelize, DataTypes);
+  var notification_box = _notification_box(sequelize, DataTypes);
   var replace_request = _replace_request(sequelize, DataTypes);
   var route = _route(sequelize, DataTypes);
   var route_driver = _route_driver(sequelize, DataTypes);
@@ -78,6 +82,10 @@ function initModels(sequelize) {
   company.hasMany(route, { as: "routes", foreignKey: "company_id"});
   user.belongsTo(company, { as: "company", foreignKey: "company_id"});
   company.hasMany(user, { as: "users", foreignKey: "company_id"});
+  company.belongsTo(company_group, { as: "group", foreignKey: "group_id"});
+  company_group.hasMany(company, { as: "companies", foreignKey: "group_id"});
+  notice.belongsTo(company_group, { as: "group", foreignKey: "group_id"});
+  company_group.hasMany(notice, { as: "notices", foreignKey: "group_id"});
   user_notice.belongsTo(notice, { as: "notice", foreignKey: "notice_id"});
   notice.hasMany(user_notice, { as: "user_notices", foreignKey: "notice_id"});
   bus.belongsTo(route, { as: "route", foreignKey: "route_id"});
@@ -167,6 +175,7 @@ function initModels(sequelize) {
     bus,
     business_place,
     company,
+    company_group,
     day_off,
     delete_user,
     dispatch,
@@ -178,6 +187,7 @@ function initModels(sequelize) {
     manage,
     notice,
     notification,
+    notification_box,
     replace_request,
     route,
     route_driver,
@@ -192,7 +202,6 @@ function initModels(sequelize) {
     work_check,
     work_request,
   };
-
 }
 module.exports = initModels;
 module.exports.initModels = initModels;

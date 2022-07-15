@@ -1,41 +1,35 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('bus', {
+  return sequelize.define('route', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
-    number: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    status: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      defaultValue: "NORMAL"
-    },
-    bus_type: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      defaultValue: "GENERAL"
-    },
     company_id: {
       type: DataTypes.BIGINT,
-      allowNull: true,
+      allowNull: false,
       references: {
         model: 'company',
         key: 'id'
       }
     },
-    route_id: {
+    name: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    code: {
       type: DataTypes.BIGINT,
-      allowNull: true,
-      references: {
-        model: 'route',
-        key: 'id'
-      }
+      allowNull: true
+    },
+    avg_break: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    min_break: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     },
     manager_id: {
       type: DataTypes.BIGINT,
@@ -44,11 +38,23 @@ module.exports = function(sequelize, DataTypes) {
         model: 'user',
         key: 'id'
       }
+    },
+    operation_time: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    business_place_id: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+      references: {
+        model: 'business_place',
+        key: 'id'
+      }
     }
   }, {
     sequelize,
-    tableName: 'bus',
-    timestamps: true,
+    tableName: 'route',
+    timestamps: false,
     indexes: [
       {
         name: "PRIMARY",
@@ -59,24 +65,24 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "FK_company_TO_bus_1",
+        name: "FK_company_TO_route_1",
         using: "BTREE",
         fields: [
           { name: "company_id" },
         ]
       },
       {
-        name: "FK_route_TO_bus_1",
-        using: "BTREE",
-        fields: [
-          { name: "route_id" },
-        ]
-      },
-      {
-        name: "FK_user_TO_bus_1",
+        name: "FK_user_TO_route_1",
         using: "BTREE",
         fields: [
           { name: "manager_id" },
+        ]
+      },
+      {
+        name: "FK_business_place_TO_route_1_idx",
+        using: "BTREE",
+        fields: [
+          { name: "business_place_id" },
         ]
       },
     ]

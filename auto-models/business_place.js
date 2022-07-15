@@ -1,39 +1,23 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('company', {
+  return sequelize.define('business_place', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
-    code: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    company_no: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
     name: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    region: {
+    address: {
       type: DataTypes.STRING(255),
       allowNull: true
-    },
-    group_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'company_group',
-        key: 'id'
-      }
     }
   }, {
     sequelize,
-    tableName: 'company',
+    tableName: 'business_place',
     timestamps: false,
     indexes: [
       {
@@ -42,13 +26,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
-        ]
-      },
-      {
-        name: "group_id",
-        using: "BTREE",
-        fields: [
-          { name: "group_id" },
         ]
       },
     ]

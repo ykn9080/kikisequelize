@@ -1,31 +1,25 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('delete_user', {
+  return sequelize.define('holidays', {
     id: {
       autoIncrement: true,
-      type: DataTypes.BIGINT,
+      type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      comment: "Primary Key"
     },
     date: {
       type: DataTypes.DATEONLY,
-      allowNull: false
+      allowNull: true,
+      comment: "date"
     },
-    delete_driver_id: {
-      type: DataTypes.BIGINT,
-      allowNull: false
-    },
-    manager_id: {
-      type: DataTypes.BIGINT,
-      allowNull: false
-    },
-    status: {
-      type: DataTypes.STRING(255),
-      allowNull: false
+    name: {
+      type: DataTypes.STRING(20),
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'delete_user',
+    tableName: 'holidays',
     timestamps: false,
     indexes: [
       {

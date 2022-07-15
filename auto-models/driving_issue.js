@@ -1,25 +1,43 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('bus', {
+  return sequelize.define('driving_issue', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
-    number: {
+    img_url: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    status: {
-      type: DataTypes.STRING(255),
+    bus_id: {
+      type: DataTypes.BIGINT,
       allowNull: true,
-      defaultValue: "NORMAL"
+      references: {
+        model: 'bus',
+        key: 'id'
+      }
     },
-    bus_type: {
-      type: DataTypes.STRING(255),
+    driver_id: {
+      type: DataTypes.BIGINT,
       allowNull: true,
-      defaultValue: "GENERAL"
+      references: {
+        model: 'user',
+        key: 'id'
+      }
+    },
+    device_serial_num: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    category: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    detect_time: {
+      type: DataTypes.DATE,
+      allowNull: true
     },
     company_id: {
       type: DataTypes.BIGINT,
@@ -29,26 +47,26 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
-    route_id: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
-      references: {
-        model: 'route',
-        key: 'id'
-      }
+    use_time: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     },
-    manager_id: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
-      references: {
-        model: 'user',
-        key: 'id'
-      }
+    video_file_name: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    img: {
+      type: DataTypes.BLOB,
+      allowNull: true
+    },
+    message: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'bus',
-    timestamps: true,
+    tableName: 'driving_issue',
+    timestamps: false,
     indexes: [
       {
         name: "PRIMARY",
@@ -59,24 +77,24 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "FK_company_TO_bus_1",
+        name: "FK_company_TO_driving_issue_1",
         using: "BTREE",
         fields: [
           { name: "company_id" },
         ]
       },
       {
-        name: "FK_route_TO_bus_1",
+        name: "FKc1f1novo2le536sgukiqj5n7o",
         using: "BTREE",
         fields: [
-          { name: "route_id" },
+          { name: "bus_id" },
         ]
       },
       {
-        name: "FK_user_TO_bus_1",
+        name: "FKn27da0f21f07y6q9hggslhyx8",
         using: "BTREE",
         fields: [
-          { name: "manager_id" },
+          { name: "driver_id" },
         ]
       },
     ]

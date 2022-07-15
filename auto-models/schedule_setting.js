@@ -1,33 +1,11 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('bus', {
+  return sequelize.define('schedule_setting', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
-    },
-    number: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    status: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      defaultValue: "NORMAL"
-    },
-    bus_type: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      defaultValue: "GENERAL"
-    },
-    company_id: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
-      references: {
-        model: 'company',
-        key: 'id'
-      }
     },
     route_id: {
       type: DataTypes.BIGINT,
@@ -36,6 +14,30 @@ module.exports = function(sequelize, DataTypes) {
         model: 'route',
         key: 'id'
       }
+    },
+    date: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    work_creation_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    day_off_request_start: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    day_off_request_end: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    work_notice_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    schedule_check_term: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     },
     manager_id: {
       type: DataTypes.BIGINT,
@@ -47,7 +49,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'bus',
+    tableName: 'schedule_setting',
     timestamps: true,
     indexes: [
       {
@@ -59,21 +61,14 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "FK_company_TO_bus_1",
-        using: "BTREE",
-        fields: [
-          { name: "company_id" },
-        ]
-      },
-      {
-        name: "FK_route_TO_bus_1",
+        name: "FK_route_TO_schedule_setting_1",
         using: "BTREE",
         fields: [
           { name: "route_id" },
         ]
       },
       {
-        name: "FK_user_TO_bus_1",
+        name: "FK_user_TO_schedule_setting_1",
         using: "BTREE",
         fields: [
           { name: "manager_id" },

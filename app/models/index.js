@@ -16,7 +16,7 @@ console.log(dbConfig)
 //     idle: 10000,
 //   },
 // }
-const initModel=require("../../models/init-models.js")
+const initModel=require("../../auto-models/init-models")
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
@@ -52,31 +52,5 @@ const model=initModel(sequelize);
 Object.keys(model).map((k,i)=>{
   return db[k]=model[k];
 })
-// // db.bus = model.bus;
-// // db.business_place= model.business_place ;
-// // db.company= model.company ;
-// // db.day_off= model.day_off ;
-// // db.delete_user= model.delete_user ;
-// // db.dispatch= model.dispatch ;
-// // db.driving_issue= model. ;
-// // db.edge_device= model. ;
-// // db.hibernate_sequence= model. ;
-// // db.holidays= model. ;
-// // db.lost= model. ;
-// // db.manage= model. ;
-// db.notice= model.notice ;
-// // db.notification= model. ;
-// // db.replace_request= model. ;
-// // db.route= model. ;
-// // db.route_driver= model. ;
-// // db.route_setting= model. ;
-// // db.schedule_request= model. ;
-// // db.schedule_setting= model. ;
-// // db.stop_working= model. ;
-// db.tutorial= model.tutorial ;
-// db.user= model.user ;
-// // db.user_notice= model. ;
-// // db.work= model. ;
-// // db.work_check= model. ;
-// // db.work_request= model. ;
+
 module.exports = db;

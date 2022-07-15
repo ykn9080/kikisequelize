@@ -1,31 +1,32 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('delete_user', {
+  return sequelize.define('edge_device', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
-    date: {
-      type: DataTypes.DATEONLY,
+    lon: {
+      type: DataTypes.DECIMAL(11,7),
       allowNull: false
     },
-    delete_driver_id: {
-      type: DataTypes.BIGINT,
+    lat: {
+      type: DataTypes.DECIMAL(10,7),
       allowNull: false
     },
-    manager_id: {
-      type: DataTypes.BIGINT,
-      allowNull: false
+    time: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
     },
-    status: {
+    bus_name: {
       type: DataTypes.STRING(255),
       allowNull: false
     }
   }, {
     sequelize,
-    tableName: 'delete_user',
+    tableName: 'edge_device',
     timestamps: false,
     indexes: [
       {

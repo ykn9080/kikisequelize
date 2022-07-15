@@ -1,73 +1,69 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('notice', {
+  return sequelize.define('dispatch', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
-    contents: {
-      type: DataTypes.TEXT,
+    start_time: {
+      type: DataTypes.DATE,
       allowNull: true
     },
-    date: {
-      type: DataTypes.DATEONLY,
+    end_time: {
+      type: DataTypes.DATE,
       allowNull: true
     },
-    file: {
-      type: DataTypes.BLOB,
-      allowNull: true
-    },
-    title: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    category: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    company_id: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
-      references: {
-        model: 'company',
-        key: 'id'
-      }
-    },
-    place_id: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
-      references: {
-        model: 'business_place',
-        key: 'id'
-      }
-    },
-    route_id: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
-      references: {
-        model: 'route',
-        key: 'id'
-      }
-    },
-    hit: {
+    break_time: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      defaultValue: 0
+      allowNull: true
     },
-    writer_id: {
+    start_order: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    bus_round: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    actual_end_time: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    bus_id: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+      references: {
+        model: 'bus',
+        key: 'id'
+      }
+    },
+    driver_id: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
         model: 'user',
         key: 'id'
       }
+    },
+    request_id: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+      references: {
+        model: 'schedule_request',
+        key: 'id'
+      }
+    },
+    status: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
+      defaultValue: "true"
     }
   }, {
     sequelize,
-    tableName: 'notice',
-    timestamps: true,
+    tableName: 'dispatch',
+    timestamps: false,
     indexes: [
       {
         name: "PRIMARY",
@@ -78,31 +74,24 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "FK_company_TO_notice_1",
+        name: "FK_bus_TO_dispatch_1",
         using: "BTREE",
         fields: [
-          { name: "company_id" },
+          { name: "bus_id" },
         ]
       },
       {
-        name: "FK_user_TO_notice_1",
+        name: "FK_user_TO_dispatch_1",
         using: "BTREE",
         fields: [
-          { name: "writer_id" },
+          { name: "driver_id" },
         ]
       },
       {
-        name: "FK_business_place_TO_notice_1",
+        name: "FK_schedule_request_TO_dispatch_1",
         using: "BTREE",
         fields: [
-          { name: "place_id" },
-        ]
-      },
-      {
-        name: "FK_route_TO_notice_1",
-        using: "BTREE",
-        fields: [
-          { name: "route_id" },
+          { name: "request_id" },
         ]
       },
     ]

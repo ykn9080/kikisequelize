@@ -1,40 +1,41 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('company', {
+  return sequelize.define('notification_box', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
-    code: {
-      type: DataTypes.STRING(255),
+    user_id: {
+      type: DataTypes.BIGINT,
+      allowNull: false
+    },
+    dispatch_id: {
+      type: DataTypes.BIGINT,
       allowNull: true
     },
-    company_no: {
-      type: DataTypes.INTEGER,
+    work_id: {
+      type: DataTypes.BIGINT,
       allowNull: true
     },
-    name: {
-      type: DataTypes.STRING(255),
+    replace_request_id: {
+      type: DataTypes.BIGINT,
       allowNull: true
     },
-    region: {
-      type: DataTypes.STRING(255),
+    manager_id: {
+      type: DataTypes.BIGINT,
       allowNull: true
     },
-    group_id: {
-      type: DataTypes.INTEGER,
+    manager_confirm: {
+      type: DataTypes.BOOLEAN,
       allowNull: true,
-      references: {
-        model: 'company_group',
-        key: 'id'
-      }
+      defaultValue: 0
     }
   }, {
     sequelize,
-    tableName: 'company',
-    timestamps: false,
+    tableName: 'notification_box',
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",
@@ -42,13 +43,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "id" },
-        ]
-      },
-      {
-        name: "group_id",
-        using: "BTREE",
-        fields: [
-          { name: "group_id" },
         ]
       },
     ]

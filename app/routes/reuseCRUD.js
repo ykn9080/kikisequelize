@@ -7,16 +7,15 @@
 const crud = require("../controllers/reuseCRUD");
 
 module.exports = (app) => {
-  const db = require("../models");
+  const models = require("../models");
   //for project router
-  Object.keys(db).map((k,i)=>{
-    app.use(`/api/${k}`, crud(db[k]))
+  const removes=["tutorial"]
+  Object.keys(models).map((k,i)=>{
+    if(removes.indexOf(k)===-1)
+    app.use(`/api/${k}`, crud(models[k]))
   })
 
 
   
-  //const tb_account_dr = require("../models/tb_account_dr.model");
-  // app.use("/api/tutorial", crud(db.tutorial));
-  // app.use("/api/dashboard", crud(db.dashboard));
-  // app.use("/api/dashdata", crud(db.dashdata));
+ 
 };

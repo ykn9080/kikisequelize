@@ -1,3 +1,8 @@
+/**
+ * node ./app/orm-auto.js 실행시
+ * root dir에 model(현재 auto-model로 rename됨) 폴더 생성되고 model이 자동생성됨
+ */
+
 const SequelizeAuto = require('sequelize-auto');
 const dbConfig = require("./config/db.config1.js");
 console.log(dbConfig)

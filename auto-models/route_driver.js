@@ -1,31 +1,29 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('bus', {
+  return sequelize.define('route_driver', {
     id: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
-    number: {
+    shift: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    status: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      defaultValue: "NORMAL"
-    },
-    bus_type: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      defaultValue: "GENERAL"
-    },
-    company_id: {
+    bus_id: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
-        model: 'company',
+        model: 'bus',
+        key: 'id'
+      }
+    },
+    driver_id: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+      references: {
+        model: 'user',
         key: 'id'
       }
     },
@@ -37,6 +35,10 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
+    fixed_start_order: {
+      type: DataTypes.BIGINT,
+      allowNull: true
+    },
     manager_id: {
       type: DataTypes.BIGINT,
       allowNull: true,
@@ -47,7 +49,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     sequelize,
-    tableName: 'bus',
+    tableName: 'route_driver',
     timestamps: true,
     indexes: [
       {
@@ -59,24 +61,31 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "FK_company_TO_bus_1",
+        name: "FK_bus_TO_route_driver_1",
         using: "BTREE",
         fields: [
-          { name: "company_id" },
+          { name: "bus_id" },
         ]
       },
       {
-        name: "FK_route_TO_bus_1",
+        name: "FK_route_TO_route_driver_1",
         using: "BTREE",
         fields: [
           { name: "route_id" },
         ]
       },
       {
-        name: "FK_user_TO_bus_1",
+        name: "FK_user_TO_route_driver_1",
         using: "BTREE",
         fields: [
           { name: "manager_id" },
+        ]
+      },
+      {
+        name: "FK_user_TO_route_driver_2",
+        using: "BTREE",
+        fields: [
+          { name: "driver_id" },
         ]
       },
     ]
