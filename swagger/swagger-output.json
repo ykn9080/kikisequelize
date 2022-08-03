@@ -7,12 +7,12 @@
   },
   "servers": [
     {
-
       "url":"http://localhost:8484"
+
     }
   ],
   "paths": {
-    "/api/notice/": {
+  "/api/notice/": {
       "get": {
         "security": [
           {
@@ -92,108 +92,317 @@
                 }
               }
             }
+         ,
+
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           }
-        },
-      "post": {
-        "summary": "Creates a new notice.",
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "tags": [
-          "notice"
-        ],
-        "requestBodies": {
-            "description": "Optional description in *Markdown*",
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "contents": {
-                      "type": "string",
-                      "example": "This is body"
-                    },
-                    "created_date": {
-                      "type": "datetime",
-                      "example": "2022-01-01T00:00:00.000Z"
-                    },
-                    "file": {
-                      "type": "file"
-                    },
-                    "title": {
-                      "type": "string",
-                      "example": "Simple notice!!"
-                    },
-                    "category": {
-                      "type": "string",
-                      "example": "COMPANY"
-                    },
-                    "company_id": {
-                      "type": "int",
-                      "example": 1
-                    },
-                    "place_id": {
-                      "type": "int",
-                      "example": 1
-                    },
-                    "route_id": {
-                      "type": "int",
-                      "example": 20
-                    },
-                    "hit": {
-                      "type": "int",
-                      "example": 1
-                    },
-                    "writer_id": {
-                      "type": "int",
-                      "example": 1
-                    },
-                    "piclinkarray": {
-                      "type": "string",
-                      "example": [
-                        "222/img1.jpg",
-                        "222/img2.jpg"
-                      ]
-                    },
-                    "youtubearray": {
-                      "type": "string",
-                      "example": [
-                        "https://www.youtube.com/watch?v=c64aupy8WhY"
-                      ]
-                    },
-                    "urgent": {
-                      "type": "boolean",
-                      "example": false
-                    }
-                  }
-                }
-              }
-            
-            
-          }
-        },
+        }
+      
+    }
+
+  },
+  "/api/alert/": {
+      "get": {
+        
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "summary": "alert list.",
+          "description": "개인별 관련알림리스트(배차,휴무교환,연차,근무변경, dayoff)",
+          "tags": [
+            "alert"
+          ],
         "responses": {
           "200": {
-            "description": "Successfully created"
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         }
       }
+    
+  },
+  "/api/managerReplaceList": {
+    "post": {
+      "description": "매니저가 미승인한 휴무교환, 연차신청목록",
+      "tags":["replace_request"],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "403": {
+          "description": "Forbidden"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "routeId": {
+                  "example": "19"
+                },
+                "yearMonth": {
+                  "example": "2022-01"
+                }
+               
+              }
+            }
+          }
+        }
       }
+    }
+   
+  },
+  "/api/managerWorkByDateAndRoute": {
+    "post": {
+      "description": "관리자 일자/노선별 근무/휴무자 조회",
+      "tags":["work"],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "403": {
+          "description": "Forbidden"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "routeId": {
+                  "example": "19"
+                },
+                "date": {
+                  "example": "2022-01-07"
+                }
+               
+              }
+            }
+          }
+        }
+      }
+     
+    }
+  },
+  "/api/stopworking": {
+    "post": {
+      "description": "벌칙,병가 사유로 승무정지된 정보등록",
+      "tags":["stopworking"],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "403": {
+          "description": "Forbidden"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "startDate": {
+                  "example": "2022-04-01"
+                },
+                "endDate": {
+                  "example": "2022-04-01"
+                },
+                "driverId": {
+                  "example": "371"
+                },
+                "workDay": {
+                  "example": 12
+                },
+                "stopType": {
+                  "example": "panelty"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "get": {
+      "description": "승무정지 리스트보기",
+      "tags":["stopworking"],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/stopworking/{id}": {
+    "get": {
+      "description": "승무원별 stopworking정보조회",
+      "tags":["stopworking"],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":1
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    },
+    "put": {
+      "description": "",
+      "tags":["stopworking"],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "startDate": {
+                  "example": "2022-04-01"
+                },
+                "endDate": {
+                  "example": "2022-04-01"
+                },
+                "driverId": {
+                  "example": "371"
+                },
+                "workDay": {
+                  "example": 12
+                },
+                "stopType": {
+                  "example": "panelty"
+                }
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    },
+    "delete": {
+      "description": "",
+      "tags":["stopworking"],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {}
+    }
+  },
+  "/api/user/{id}": {
+    "get": {
+      "description": "승무원별정보 stopworking포함",
+      "tags":["user"],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":371
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    }
+  }
   },
   "components": {
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
         "scheme": "bearer",
+        "in": "header",
         "bearerFormat": "JWT"
       }
     }
-  },
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ]
+  }
 }

@@ -4,39 +4,62 @@ const express = require("express");
 const Tutorial = db.tutorials;
 const Op = db.Sequelize.Op;
 const _ = require("lodash");
+const { Route53RecoveryCluster } = require("aws-sdk");
 
 const toCamel=(data) =>{return _.mapKeys(data, (value, key) => _.camelCase(key));}
 
-module.exports = (Notice) => {
-// Create and Save a new Notice
-const create = (req, res) => {
-  // Validate request
-  if (!req.body.title) {
-    res.status(400).send({
-      message: "Content can not be empty!",
-    });
-    return;
-  }
+module.exports = (Alert) => {
+//custom query
+const useralert = (req, res) => {
+var query =
+"select a.*,name,user_id,role,isread,iskeep,read_at  from alert a join user_alert b on a.id=b.alert_id join user c on b.user_id=c.id" +
+" WHERE user_id=:userid";
+console.log("req.id12:",req.id)
+db.sequelize
+.query(query, {
+  replacements: {
+    userid: req.id,
+  },
+  type: db.sequelize.QueryTypes.SELECT,
+})
+.then((resp) => {
+  return res.status(200).send(resp);
+})
+.catch((err) => {
+  return res.json(err.message);
+});
+}
 
-  // Create a Notice
-  const tutorial = {
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false,
-  };
+  // Create and Save a new Alert
 
-  // Save Notice in the database
-  Notice.create(tutorial)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Notice.",
-      });
-    });
-};
+// const create = (req, res) => {
+//   // Validate request
+//   if (!req.body.title) {
+//     res.status(400).send({
+//       message: "Content can not be empty!",
+//     });
+//     return;
+//   }
+
+//   // Create a Alert
+//   const tutorial = {
+//     title: req.body.title,
+//     description: req.body.description,
+//     published: req.body.published ? req.body.published : false,
+//   };
+
+//   // Save Alert in the database
+//   Alert.create(tutorial)
+//     .then((data) => {
+//       res.send(data);
+//     })
+//     .catch((err) => {
+//       res.status(500).send({
+//         message:
+//           err.message || "Some error occurred while creating the Alert.",
+//       });
+//     });
+// };
 
 // Retrieve all Tutorials from the database.
 const findAll = (req, res) => {
@@ -96,7 +119,7 @@ const findAll = (req, res) => {
 
 
 
-  // Notice.findAll({ where: condition })
+  // Alert.findAll({ where: condition })
   //   .then((data) => {
   //     res.send(data);
   //   })
@@ -108,67 +131,67 @@ const findAll = (req, res) => {
   //   });
 };
 
-// Find a single Notice with an id
+// Find a single Alert with an id
 const findOne = (req, res) => {
   const id = req.params.id;
 
-  Notice.findByPk(id)
+  Alert.findByPk(id)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Notice with id=" + id,
+        message: "Error retrieving Alert with id=" + id,
       });
     });
 };
 
-// Update a Notice by the id in the request
+// Update a Alert by the id in the request
 const update = (req, res) => {
   const id = req.params.id;
 
-  Notice.update(req.body, {
+  Alert.update(req.body, {
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Notice was updated successfully.",
+          message: "Alert was updated successfully.",
         });
       } else {
         res.send({
-          message: `Cannot update Notice with id=${id}. Maybe Notice was not found or req.body is empty!`,
+          message: `Cannot update Alert with id=${id}. Maybe Alert was not found or req.body is empty!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Notice with id=" + id,
+        message: "Error updating Alert with id=" + id,
       });
     });
 };
 
-// Delete a Notice with the specified id in the request
+// Delete a Alert with the specified id in the request
 const remove = (req, res) => {
   const id = req.params.id;
 
-  Notice.destroy({
+  Alert.destroy({
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Notice was deleted successfully!",
+          message: "Alert was deleted successfully!",
         });
       } else {
         res.send({
-          message: `Cannot delete Notice with id=${id}. Maybe Notice was not found!`,
+          message: `Cannot delete Alert with id=${id}. Maybe Alert was not found!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Notice with id=" + id,
+        message: "Could not delete Alert with id=" + id,
       });
     });
 };
@@ -192,12 +215,13 @@ const remove = (req, res) => {
 
 let router = express.Router();
 
-router.post("/", create);
-router.get("/", findAll);
-router.get("/:id", findOne);
-router.put("/:id", update);
+//router.post("/", create);
+router.get("/",useralert)
+//router.get("/", findAll);
+// router.get("/:id", findOne);
+// router.put("/:id", update);
 //router.delete("/", deleteAll);
-router.delete("/:id", remove);
+//router.delete("/:id", remove);
 
 return router;
 }

@@ -39,22 +39,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BIGINT,
       allowNull: true
     },
-    manager_id: {
-      type: DataTypes.BIGINT,
-      allowNull: true,
-      references: {
-        model: 'user',
-        key: 'id'
-      }
-    },
-    change_status:{
-      type: DataTypes.STRING(100),
-      allowNull: true,
-    },    
-    will_change:{
-      type: DataTypes.DATE,
-      allowNull: true,
-    },    
     created_at:{
       type: DataTypes.DATE,
       allowNull:true
@@ -62,7 +46,17 @@ module.exports = function(sequelize, DataTypes) {
     updated_at:{
       type: DataTypes.DATE,
       allowNull:true
+    },
+    manager_id: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
     }
+       
+    
   }, {
     sequelize,
     tableName: 'route_driver',

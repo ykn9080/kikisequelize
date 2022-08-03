@@ -9,13 +9,35 @@ const crud = require("../controllers/reuseCRUD");
 module.exports = (app) => {
   const models = require("../models");
   //for project router
-  const removes=["tutorial"]
+  const removes=["tutorial","alert","user_alert","notice"]
   Object.keys(models).map((k,i)=>{
-    if(removes.indexOf(k)===-1)
-    app.use(`/api/${k}`, crud(models[k]))
+    if(removes.indexOf(k)===-1){
+
+    app.use(`/api/${k}`,modifyData(k), crud(models[k]))
+    }
   })
-
-
-  
  
 };
+
+
+const modifyData=(modelname)=>{
+  return function(req,res,next){
+    switch(modelname){
+      case "stopworking":
+        console.log("req.query:", req.query,"req.body:",  req.body)
+        //update
+        if(Object.keys(req.query).length>0){
+          req.body.updated_at=Date.now();
+        }
+        //create
+        else if(Object.keys(req.body).length>0){
+          req.body.created_at=Date.now();
+          req.body.updated_at=null;
+        }
+        break;
+    }
+    next();
+  }
+
+  
+}

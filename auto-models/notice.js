@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    company_id: {
+    companyId: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -35,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
-    place_id: {
+    placeId: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -43,7 +43,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
-    route_id: {
+    routeId: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -56,7 +56,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       defaultValue: 0
     },
-    writer_id: {
+    writerId: {
       type: DataTypes.BIGINT,
       allowNull: true,
       references: {
@@ -77,13 +77,21 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       defaultValue: 0
     },
-    group_id: {
+    groupId: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
         model: 'company_group',
         key: 'id'
       }
+    },
+    createdAt:{
+      type: DataTypes.DATE,
+      allowNull:true
+    },
+    updatedAt:{
+      type: DataTypes.DATE,
+      allowNull:true
     }
   }, {
     sequelize,

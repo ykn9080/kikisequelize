@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
   return sequelize.define('stop_working', {
     id: {
       autoIncrement: true,
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
@@ -26,7 +26,19 @@ module.exports = function(sequelize, DataTypes) {
     work_day: {
       type: DataTypes.INTEGER,
       allowNull: true
-    }
+    },
+    stop_type: {
+      type: DataTypes.STRING(45),
+      allowNull: true
+    },
+    created_at: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+    updated_at: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
   }, {
     sequelize,
     tableName: 'stop_working',

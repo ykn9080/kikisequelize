@@ -19,7 +19,7 @@ const verifyToken = (req, res, next) => {
     const decoded=jwt.decode(token,secret, algorithm="HS512")
 
     req.id = decoded.sub;
-    //console.log(req.id)
+    console.log("req.id", req.id)
   } catch (err) {
     return res.status(401).send("Invalid Token");
   }

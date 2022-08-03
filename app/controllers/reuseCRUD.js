@@ -3,6 +3,7 @@ const _ = require("lodash");
 const express = require("express");
 const Tutorial = db.tutorials;
 const Op = db.Sequelize.Op;
+const convert  = require("../middleware/CamelSnake");
 
 // Create and Save a new Tutorial
 module.exports = (Table) => {
@@ -24,7 +25,10 @@ module.exports = (Table) => {
 
     // Save Tutorial in the database
     // Table.sync({ force: false, alter: true }).then(() => {
-    Table.create(req.body)
+      const bd=convert.toSnake(req.body);
+    
+    Table.create(bd)
+    
       .then((data) => {
         res.send(data);
       })
@@ -149,11 +153,15 @@ module.exports = (Table) => {
       option.order = odr;
     }
     if (attributes) option.attributes = attributes.split("^");
-
+    option.raw=true;
     //Table.sync({ force: false, alter: true }).then(() => {
     Table.findAll(option)
       .then((data) => {
-        res.send(data);
+        let array=Object.values(data).map((k,i)=>{
+          return convert.toCamel(k);
+        })
+
+        return res.status(200).send(array);
       })
       .catch((err) => {
         res.status(500).send({
@@ -183,7 +191,9 @@ module.exports = (Table) => {
   const update = (req, res) => {
     let condition = req.params;
     if (Object.keys(req.query).length > 0) condition = req.query;
-    Table.update(req.body, {
+    console.log(condition, req.body)
+    const bd=convert.toSnake(req.body);
+    Table.update(bd, {
       where: condition,
     })
       .then((num) => {

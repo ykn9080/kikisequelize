@@ -3,10 +3,30 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-
+//require("./swagger")(app);
 const swaggerUi=require("swagger-ui-express")
-const swaggerFile=require("./swagger/swagger-output.json")
-app.use("/doc",swaggerUi.serve, swaggerUi.setup(swaggerFile));
+const swaggerDocument=require("./swagger/swagger-output.json")
+const token='eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzOTU4IiwiaXNzIjoia2lraUIiLCJpYXQiOjE2NTgwMjg4MDQsImV4cCI6MTY1ODYzMzYwNH0.aS5mMgD6vvm0WgBSkBKSLt7fvkkqolWkwq5m01GbJY3IiBx6BiVL7hB56ecO8O8lAJe8ZO7O2y8aECmCWA-gFA';
+const swaggerUiOptions = {
+  swaggerOptions: {
+    authAction: {
+      bearerAuth: {
+        name: "JWT",
+        schema: {
+          type: "http",
+          in: "header",
+          name: "Authorization",
+        },
+        value: `${token}`,
+      },
+    },
+  },
+  persistAuthorization: true,
+};
+
+app.use("/doc",swaggerUi.serve, swaggerUi.setup(swaggerDocument,swaggerUiOptions))
+
+
 
 // const swaggerUi = require("swagger-ui-express");
 
@@ -14,24 +34,21 @@ app.use("/doc",swaggerUi.serve, swaggerUi.setup(swaggerFile));
 // const swaggerDocument = YAML.load("./swagger/swagger.yaml");
 // global.encdata;
 // var options = {
-//   explorer: true,
-//   customCss: ".swagger-ui .topbar { display: none }",
+//   //explorer: true,
+//   //customCss: ".swagger-ui .topbar { display: none }",
 //   //customCssUrl: "/custom.css",
 //   swaggerOptions: {
 //     url: "http://petstore.swagger.io/v2/swagger.json",
-//     url: "/apidoc/swagger.yaml",
+//     url: "/doc/swagger-output.json",
 //     docExpansion: "none",
 //   },
 // };
-// app.get("/apidoc/swagger.yaml", (req, res) =>
+// app.get("/doc/swagger-output.json", (req, res) =>
 //   res.end(JSON.stringify(swaggerDocument, null, 3))
 // );
 
-// app.use("/apidoc", swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
+// app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 
-var corsOptions = {
-  origin: "http://localhost:8484",
-};
 
 app.use(cors());
 
@@ -42,9 +59,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
-console.log("password", process.env.DB_PASSWORD);
-//db.sequelize.sync({ force: false, alter: true });
-db.sequelize.sync({ force: false, alter: false });
+
+db.sequelize.sync({ force: false, alter: true });
 // // drop the table if it already exists
 // db.sequelize.sync({ force: true }).then(() => {
 //   console.log("Drop and re-sync db.");

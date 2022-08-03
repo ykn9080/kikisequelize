@@ -1,6 +1,7 @@
 const db = require("../models");
 const crypto = require("../util/crypto");
 const moment = require("moment");
+const convert  = require("../middleware/CamelSnake");
 
 exports.findLast = (req, res) => {
   db.sequelize
@@ -11,6 +12,7 @@ exports.findLast = (req, res) => {
       return res.status(400).send(rtn[0][0]);
     });
 };
+
 
 exports.couponuse = (req, res) => {
   const intime = new Date();
@@ -289,17 +291,42 @@ exports.couponisfree = (req, res) => {
       return res.json(val);
     });
 };
-// exports.lastInsert = (req, res) => {
-//   console.log(req.body);
-//   db.sequelize
-//     .query("CALL findlastinsert()", {
-//       mapToModel: false,
-//       type: db.sequelize.QueryTypes.SELECT,
-//     })
-//     .then(function (resp) {
-//       return res.status(200).send(resp);
-//     })
-//     .catch((err) => {
-//       return res.json(err.message);
-//     });
-// };
+
+exports.managerLeaveUncheck = (req, res) => {
+  console.log(req.body);
+  let replacement = {
+    route_id: req.body.route_id,
+    yearmonth: req.body.yearmonth
+  };
+
+
+  db.sequelize
+    .query("CALL request_leave(:route_id, :yearmonth)", {
+      replacements: replacement,
+      type: db.sequelize.QueryTypes.SELECT,
+    })
+    .then(function (resp) {
+      let rtn = resp[0];
+      if (!rtn) {
+        const val = {
+          response: "no data",
+          result: false,
+        };
+
+        return res.status(400).send(val);
+      }
+      let array=Object.values(rtn).map((k,i)=>{
+        return convert.toCamel(k);
+      })
+
+      // const val = {
+      //   data: array,
+      
+      // };
+
+      return res.status(200).send(array);
+    })
+    .catch((err) => {
+      return res.json(err.message);
+    });
+};
