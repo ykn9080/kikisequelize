@@ -3,41 +3,38 @@ const _ = require("lodash");
 const express = require("express");
 const Tutorial = db.tutorials;
 const Op = db.Sequelize.Op;
-const convert  = require("../middleware/CamelSnake");
+const convert = require("../middleware/CamelSnake");
 
 // Create and Save a new Tutorial
 module.exports = (Table) => {
   const create = (req, res) => {
-    // // Validate request
-    // if (!req.body.title) {
-    //   res.status(400).send({
-    //     message: "Content can not be empty!",
-    //   });
-    //   return;
-    // }
-
-    // // Create a Tutorial
-    // const tutorial = {
-    //   title: req.body.title,
-    //   description: req.body.description,
-    //   published: req.body.published ? req.body.published : false,
-    // };
-
-    // Save Tutorial in the database
-    // Table.sync({ force: false, alter: true }).then(() => {
-      const bd=convert.toSnake(req.body);
-    
-    Table.create(bd)
-    
-      .then((data) => {
-        res.send(data);
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message: err.message || "Some error occurred while creating.",
+    if (req.body.data && req.body.data.length > 0) {
+      /** bulk insert일 경우, data에 key를 제외한 필드전송
+       * data= [
+          { stop_type: "ttt1" },
+          { stop_type: "ttt1" },
+        ]
+       */
+      const data = convert.toSnakeObjArray(req.body.data);
+      Table.bulkCreate(data)
+        .then(function (response) {
+          res.send(response);
+        })
+        .catch(function (error) {
+          res.send(error);
         });
-      });
-    //});
+    } else {
+      const bd = convert.toSnake(req.body);
+      Table.create(bd)
+        .then((data) => {
+          res.send(data);
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message: err.message || "Some error occurred while creating.",
+          });
+        });
+    }
   };
   const makeCondition = (condition) => {
     const makeOp = (opp) => {
@@ -153,13 +150,13 @@ module.exports = (Table) => {
       option.order = odr;
     }
     if (attributes) option.attributes = attributes.split("^");
-    option.raw=true;
+    option.raw = true;
     //Table.sync({ force: false, alter: true }).then(() => {
     Table.findAll(option)
       .then((data) => {
-        let array=Object.values(data).map((k,i)=>{
+        let array = Object.values(data).map((k, i) => {
           return convert.toCamel(k);
-        })
+        });
 
         return res.status(200).send(array);
       })
@@ -191,28 +188,49 @@ module.exports = (Table) => {
   const update = (req, res) => {
     let condition = req.params;
     if (Object.keys(req.query).length > 0) condition = req.query;
-    console.log(condition, req.body)
-    const bd=convert.toSnake(req.body);
-    Table.update(bd, {
-      where: condition,
-    })
-      .then((num) => {
-        if (num == 1) {
-          res.send({
-            message: "Updated successfully.",
-          });
-        } else {
-          res.send({
-            message: `Cannot update Maybe it was not found or req.body is empty!`,
-          });
-        }
+
+    if (condition.id === "bulk") {
+      /** bulk update일 경우, data에 key와 바꿀 필드와 값을 넘김
+       * data= [
+          { id: 30, stop_type: "ttt1" },
+          { id: 31, stop_type: "ttt1" },
+        ],
+        onduplicate= ["stop_type"]
+       */
+      const data = convert.toSnakeObjArray(req.body.data);
+      const onduplicate = convert.toSnakeArray(req.body.duplicate);
+      Table.bulkCreate(data, {
+        updateOnDuplicate: onduplicate,
       })
-      .catch((err) => {
-        console.log(err.message);
-        res.status(500).send({
-          message: err.message,
+        .then(function (response) {
+          res.send(response);
+        })
+        .catch(function (error) {
+          res.send(error);
         });
-      });
+    } else {
+      const bd = convert.toSnake(req.body);
+      Table.update(bd, {
+        where: condition,
+      })
+        .then((num) => {
+          if (num == 1) {
+            res.send({
+              message: "Updated successfully.",
+            });
+          } else {
+            res.send({
+              message: `Cannot update Maybe it was not found or req.body is empty!`,
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err.message);
+          res.status(500).send({
+            message: err.message,
+          });
+        });
+    }
   };
 
   // Delete a Tutorial with the specified id in the request

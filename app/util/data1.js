@@ -8,9 +8,11 @@ const data=(req,res,next)=>{
             "driver_id": 275,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:59",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "김대수"
         },
         {
@@ -20,9 +22,11 @@ const data=(req,res,next)=>{
             "driver_id": 1066,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:11",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "김동관"
         },
         {
@@ -32,9 +36,11 @@ const data=(req,res,next)=>{
             "driver_id": 120,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:04",
-            "updated_at": "2022-03-30 09:04:54",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "김창기"
         },
         {
@@ -44,9 +50,11 @@ const data=(req,res,next)=>{
             "driver_id": 1065,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:47",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "김창범"
         },
         {
@@ -56,9 +64,11 @@ const data=(req,res,next)=>{
             "driver_id": 272,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:22",
-            "updated_at": "2022-03-07 16:25:22",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "문태원"
         },
         {
@@ -68,9 +78,11 @@ const data=(req,res,next)=>{
             "driver_id": 269,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:07",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "박문우"
         },
         {
@@ -80,9 +92,11 @@ const data=(req,res,next)=>{
             "driver_id": 286,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:17",
-            "updated_at": "2022-03-07 16:25:17",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "박준용"
         },
         {
@@ -92,9 +106,11 @@ const data=(req,res,next)=>{
             "driver_id": 284,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:24",
-            "updated_at": "2022-03-07 16:25:24",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "엄기봉"
         },
         {
@@ -104,9 +120,11 @@ const data=(req,res,next)=>{
             "driver_id": 273,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:57",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "여현구"
         },
         {
@@ -116,9 +134,11 @@ const data=(req,res,next)=>{
             "driver_id": 283,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:10",
-            "updated_at": "2022-03-07 16:25:10",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "원창신"
         },
         {
@@ -128,9 +148,11 @@ const data=(req,res,next)=>{
             "driver_id": 274,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:00",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "유찬현"
         },
         {
@@ -140,9 +162,11 @@ const data=(req,res,next)=>{
             "driver_id": 280,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:20",
-            "updated_at": "2022-04-26 09:37:06",
-            "manager_id": "1175",
+            "manager_id": 1175,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "윤홍식"
         },
         {
@@ -152,9 +176,11 @@ const data=(req,res,next)=>{
             "driver_id": 277,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:12",
-            "updated_at": "2022-03-07 16:25:12",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "이명수2"
         },
         {
@@ -164,9 +190,11 @@ const data=(req,res,next)=>{
             "driver_id": 278,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:52",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "이성실1"
         },
         {
@@ -176,9 +204,11 @@ const data=(req,res,next)=>{
             "driver_id": 270,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:18",
-            "updated_at": "2022-03-07 16:25:18",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "정기찬"
         },
         {
@@ -188,9 +218,11 @@ const data=(req,res,next)=>{
             "driver_id": 281,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:53",
-            "updated_at": "2022-03-07 16:24:53",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "정승대"
         },
         {
@@ -200,9 +232,11 @@ const data=(req,res,next)=>{
             "driver_id": 1067,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:48",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "정점용"
         },
         {
@@ -212,9 +246,11 @@ const data=(req,res,next)=>{
             "driver_id": 282,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:21",
-            "updated_at": "2022-03-07 16:25:21",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "조용구"
         },
         {
@@ -224,9 +260,11 @@ const data=(req,res,next)=>{
             "driver_id": 279,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:16",
-            "updated_at": "2022-04-26 09:36:08",
-            "manager_id": "1175",
+            "manager_id": 1175,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "최남묵"
         },
         {
@@ -236,9 +274,11 @@ const data=(req,res,next)=>{
             "driver_id": 1146,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:13",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "한문규"
         },
         {
@@ -248,9 +288,11 @@ const data=(req,res,next)=>{
             "driver_id": 285,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:23",
-            "updated_at": "2022-03-07 16:25:23",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "황광찬"
         },
         {
@@ -260,9 +302,11 @@ const data=(req,res,next)=>{
             "driver_id": 268,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:15",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "황정철"
         },
         {
@@ -272,9 +316,11 @@ const data=(req,res,next)=>{
             "driver_id": 783,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:01",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "강능환"
         },
         {
@@ -284,9 +330,11 @@ const data=(req,res,next)=>{
             "driver_id": 793,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:25",
-            "updated_at": "2022-03-07 16:25:06",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "경순동"
         },
         {
@@ -296,9 +344,11 @@ const data=(req,res,next)=>{
             "driver_id": 773,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:51",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "김용식"
         },
         {
@@ -308,9 +358,11 @@ const data=(req,res,next)=>{
             "driver_id": 781,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:25",
-            "updated_at": "2022-06-11 09:54:26",
-            "manager_id": "5",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김정필"
         },
         {
@@ -320,9 +372,11 @@ const data=(req,res,next)=>{
             "driver_id": 784,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:49",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "문학기"
         },
         {
@@ -332,9 +386,11 @@ const data=(req,res,next)=>{
             "driver_id": 788,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:50",
-            "updated_at": "2022-06-11 10:11:22",
-            "manager_id": "5",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "박천남"
         },
         {
@@ -344,9 +400,11 @@ const data=(req,res,next)=>{
             "driver_id": 776,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:08",
-            "updated_at": "2022-06-11 09:57:58",
-            "manager_id": "5",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "배승근"
         },
         {
@@ -356,9 +414,11 @@ const data=(req,res,next)=>{
             "driver_id": 778,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:18",
-            "updated_at": "2022-03-07 16:25:18",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "배호근"
         },
         {
@@ -368,9 +428,11 @@ const data=(req,res,next)=>{
             "driver_id": 791,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:56",
-            "updated_at": "2022-06-11 09:53:06",
-            "manager_id": "5",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "서용진"
         },
         {
@@ -380,9 +442,11 @@ const data=(req,res,next)=>{
             "driver_id": 780,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:46",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "유금산"
         },
         {
@@ -392,9 +456,11 @@ const data=(req,res,next)=>{
             "driver_id": 789,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:03",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "유기종"
         },
         {
@@ -404,9 +470,11 @@ const data=(req,res,next)=>{
             "driver_id": 787,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:02",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "윤정원"
         },
         {
@@ -416,9 +484,11 @@ const data=(req,res,next)=>{
             "driver_id": 774,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:55",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "이강필"
         },
         {
@@ -428,9 +498,11 @@ const data=(req,res,next)=>{
             "driver_id": 1123,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:12",
-            "updated_at": "2022-03-07 16:25:12",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "이달우"
         },
         {
@@ -440,9 +512,11 @@ const data=(req,res,next)=>{
             "driver_id": 779,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:25",
-            "updated_at": "2022-06-11 09:55:00",
-            "manager_id": "5",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이정수2"
         },
         {
@@ -452,9 +526,11 @@ const data=(req,res,next)=>{
             "driver_id": 785,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:54",
-            "updated_at": "2022-03-30 09:04:54",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "이진희1"
         },
         {
@@ -464,9 +540,11 @@ const data=(req,res,next)=>{
             "driver_id": 1121,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:00",
-            "updated_at": "2022-03-07 16:25:00",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "장성희"
         },
         {
@@ -476,9 +554,11 @@ const data=(req,res,next)=>{
             "driver_id": 1122,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:09",
-            "updated_at": "2022-03-07 16:25:09",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "전영민"
         },
         {
@@ -488,9 +568,11 @@ const data=(req,res,next)=>{
             "driver_id": 786,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:54",
-            "updated_at": "2022-06-11 10:12:02",
-            "manager_id": "5",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "조남철"
         },
         {
@@ -500,9 +582,11 @@ const data=(req,res,next)=>{
             "driver_id": 777,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:25",
-            "updated_at": "2022-03-07 16:25:14",
-            "manager_id": null,
+            "manager_id": 1066,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "최경식"
         },
         {
@@ -512,9 +596,11 @@ const data=(req,res,next)=>{
             "driver_id": 1120,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:25:06",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "최상욱"
         },
         {
@@ -524,9 +610,11 @@ const data=(req,res,next)=>{
             "driver_id": 782,
             "route_id": 5,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:48",
-            "updated_at": "2022-03-30 09:30:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "최상일"
         },
         {
@@ -536,9 +624,11 @@ const data=(req,res,next)=>{
             "driver_id": 2977,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:18",
-            "updated_at": "2022-04-08 14:03:18",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김기준1"
         },
         {
@@ -548,9 +638,11 @@ const data=(req,res,next)=>{
             "driver_id": 2984,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:19",
-            "updated_at": "2022-04-08 14:03:19",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김인준1"
         },
         {
@@ -560,9 +652,11 @@ const data=(req,res,next)=>{
             "driver_id": 2978,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:19",
-            "updated_at": "2022-04-08 14:03:19",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "박은식"
         },
         {
@@ -572,9 +666,11 @@ const data=(req,res,next)=>{
             "driver_id": 2989,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:20",
-            "updated_at": "2022-04-08 14:03:20",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "송준희"
         },
         {
@@ -584,9 +680,11 @@ const data=(req,res,next)=>{
             "driver_id": 2969,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:17",
-            "updated_at": "2022-04-08 14:03:17",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "양신모"
         },
         {
@@ -596,9 +694,11 @@ const data=(req,res,next)=>{
             "driver_id": 2986,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:20",
-            "updated_at": "2022-04-08 14:03:20",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "임종성2"
         },
         {
@@ -608,9 +708,11 @@ const data=(req,res,next)=>{
             "driver_id": 2982,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:19",
-            "updated_at": "2022-04-08 14:03:19",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "최성기"
         },
         {
@@ -620,9 +722,11 @@ const data=(req,res,next)=>{
             "driver_id": 2981,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:19",
-            "updated_at": "2022-04-08 14:03:19",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "최승혁"
         },
         {
@@ -632,9 +736,11 @@ const data=(req,res,next)=>{
             "driver_id": 2976,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:18",
-            "updated_at": "2022-04-08 14:03:18",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "최영목"
         },
         {
@@ -644,9 +750,11 @@ const data=(req,res,next)=>{
             "driver_id": 2971,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:18",
-            "updated_at": "2022-04-08 14:03:18",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "최원영"
         },
         {
@@ -656,9 +764,11 @@ const data=(req,res,next)=>{
             "driver_id": 2975,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:18",
-            "updated_at": "2022-04-08 14:03:18",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "한정훈"
         },
         {
@@ -668,9 +778,11 @@ const data=(req,res,next)=>{
             "driver_id": 2983,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:19",
-            "updated_at": "2022-04-08 14:03:19",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "곽상근"
         },
         {
@@ -680,9 +792,11 @@ const data=(req,res,next)=>{
             "driver_id": 2974,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:18",
-            "updated_at": "2022-04-08 14:03:18",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김동희"
         },
         {
@@ -692,9 +806,11 @@ const data=(req,res,next)=>{
             "driver_id": 2988,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:20",
-            "updated_at": "2022-04-08 14:03:20",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김선천"
         },
         {
@@ -704,9 +820,11 @@ const data=(req,res,next)=>{
             "driver_id": 2972,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:18",
-            "updated_at": "2022-04-08 14:03:18",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김성배1"
         },
         {
@@ -716,9 +834,11 @@ const data=(req,res,next)=>{
             "driver_id": 2973,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:18",
-            "updated_at": "2022-04-08 14:03:18",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김재환"
         },
         {
@@ -728,9 +848,11 @@ const data=(req,res,next)=>{
             "driver_id": 2968,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:17",
-            "updated_at": "2022-04-08 14:03:17",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "양창희"
         },
         {
@@ -740,9 +862,11 @@ const data=(req,res,next)=>{
             "driver_id": 2970,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:18",
-            "updated_at": "2022-04-08 14:03:18",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "유형열"
         },
         {
@@ -752,9 +876,11 @@ const data=(req,res,next)=>{
             "driver_id": 2980,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:19",
-            "updated_at": "2022-04-08 14:03:19",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "윤경일"
         },
         {
@@ -764,9 +890,11 @@ const data=(req,res,next)=>{
             "driver_id": 2979,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:19",
-            "updated_at": "2022-04-08 14:03:19",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "윤덕규"
         },
         {
@@ -776,9 +904,11 @@ const data=(req,res,next)=>{
             "driver_id": 2987,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:20",
-            "updated_at": "2022-04-08 14:03:20",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "이성국"
         },
         {
@@ -788,9 +918,11 @@ const data=(req,res,next)=>{
             "driver_id": 2985,
             "route_id": 6,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:19",
-            "updated_at": "2022-04-08 14:03:19",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "정광훈1"
         },
         {
@@ -800,9 +932,11 @@ const data=(req,res,next)=>{
             "driver_id": 342,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "곽종섭"
         },
         {
@@ -812,9 +946,11 @@ const data=(req,res,next)=>{
             "driver_id": 341,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김공영"
         },
         {
@@ -824,9 +960,11 @@ const data=(req,res,next)=>{
             "driver_id": 2990,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:20",
-            "updated_at": "2022-04-25 14:17:55",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김민성"
         },
         {
@@ -836,9 +974,11 @@ const data=(req,res,next)=>{
             "driver_id": 334,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김상희"
         },
         {
@@ -848,9 +988,11 @@ const data=(req,res,next)=>{
             "driver_id": 1167,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김원태"
         },
         {
@@ -860,9 +1002,11 @@ const data=(req,res,next)=>{
             "driver_id": 1076,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김현수"
         },
         {
@@ -872,9 +1016,11 @@ const data=(req,res,next)=>{
             "driver_id": 323,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "노국호"
         },
         {
@@ -884,9 +1030,11 @@ const data=(req,res,next)=>{
             "driver_id": 324,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "노옥현"
         },
         {
@@ -896,9 +1044,11 @@ const data=(req,res,next)=>{
             "driver_id": 331,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "박범식"
         },
         {
@@ -908,9 +1058,11 @@ const data=(req,res,next)=>{
             "driver_id": 333,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "박의진"
         },
         {
@@ -920,9 +1072,11 @@ const data=(req,res,next)=>{
             "driver_id": 1077,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "박일선"
         },
         {
@@ -932,9 +1086,11 @@ const data=(req,res,next)=>{
             "driver_id": 325,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "반진철"
         },
         {
@@ -944,9 +1100,11 @@ const data=(req,res,next)=>{
             "driver_id": 336,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "서구현"
         },
         {
@@ -956,9 +1114,11 @@ const data=(req,res,next)=>{
             "driver_id": 327,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "손성만"
         },
         {
@@ -968,9 +1128,11 @@ const data=(req,res,next)=>{
             "driver_id": 340,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "안천수"
         },
         {
@@ -980,9 +1142,11 @@ const data=(req,res,next)=>{
             "driver_id": 338,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "유종원"
         },
         {
@@ -992,9 +1156,11 @@ const data=(req,res,next)=>{
             "driver_id": 1075,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-04-25 10:08:46",
-            "manager_id": "2295",
+            "manager_id": 2295,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "윤승상"
         },
         {
@@ -1004,9 +1170,11 @@ const data=(req,res,next)=>{
             "driver_id": 337,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이우성"
         },
         {
@@ -1016,9 +1184,11 @@ const data=(req,res,next)=>{
             "driver_id": 326,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이원균"
         },
         {
@@ -1028,9 +1198,11 @@ const data=(req,res,next)=>{
             "driver_id": 332,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이호남"
         },
         {
@@ -1040,9 +1212,11 @@ const data=(req,res,next)=>{
             "driver_id": 335,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-24 17:27:23",
-            "manager_id": "20",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "장하승"
         },
         {
@@ -1052,9 +1226,11 @@ const data=(req,res,next)=>{
             "driver_id": 339,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "조현제"
         },
         {
@@ -1064,9 +1240,11 @@ const data=(req,res,next)=>{
             "driver_id": 329,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "한형수"
         },
         {
@@ -1076,9 +1254,11 @@ const data=(req,res,next)=>{
             "driver_id": 1129,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "강석조"
         },
         {
@@ -1088,9 +1268,11 @@ const data=(req,res,next)=>{
             "driver_id": 841,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김대현2"
         },
         {
@@ -1100,9 +1282,11 @@ const data=(req,res,next)=>{
             "driver_id": 847,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-05-30 07:17:38",
-            "manager_id": "2295",
+            "manager_id": 2295,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김성래"
         },
         {
@@ -1112,9 +1296,11 @@ const data=(req,res,next)=>{
             "driver_id": 837,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김신"
         },
         {
@@ -1124,9 +1310,11 @@ const data=(req,res,next)=>{
             "driver_id": 842,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김영신"
         },
         {
@@ -1136,9 +1324,11 @@ const data=(req,res,next)=>{
             "driver_id": 844,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김원채"
         },
         {
@@ -1148,9 +1338,11 @@ const data=(req,res,next)=>{
             "driver_id": 854,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "백명수"
         },
         {
@@ -1160,9 +1352,11 @@ const data=(req,res,next)=>{
             "driver_id": 852,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "유창원"
         },
         {
@@ -1172,9 +1366,11 @@ const data=(req,res,next)=>{
             "driver_id": 1130,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이선우2"
         },
         {
@@ -1184,9 +1380,11 @@ const data=(req,res,next)=>{
             "driver_id": 834,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이일선"
         },
         {
@@ -1196,9 +1394,11 @@ const data=(req,res,next)=>{
             "driver_id": 850,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이춘희"
         },
         {
@@ -1208,9 +1408,11 @@ const data=(req,res,next)=>{
             "driver_id": 846,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "임홍빈"
         },
         {
@@ -1220,9 +1422,11 @@ const data=(req,res,next)=>{
             "driver_id": 845,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-04-14 10:47:48",
-            "manager_id": "20",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "장덕기"
         },
         {
@@ -1232,9 +1436,11 @@ const data=(req,res,next)=>{
             "driver_id": 840,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "전흥수"
         },
         {
@@ -1244,9 +1450,11 @@ const data=(req,res,next)=>{
             "driver_id": 855,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "정현식"
         },
         {
@@ -1256,9 +1464,11 @@ const data=(req,res,next)=>{
             "driver_id": 849,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "주승범"
         },
         {
@@ -1268,9 +1478,11 @@ const data=(req,res,next)=>{
             "driver_id": 836,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "지영주"
         },
         {
@@ -1280,9 +1492,11 @@ const data=(req,res,next)=>{
             "driver_id": 853,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "최생수"
         },
         {
@@ -1292,9 +1506,11 @@ const data=(req,res,next)=>{
             "driver_id": 843,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "최석희"
         },
         {
@@ -1304,9 +1520,11 @@ const data=(req,res,next)=>{
             "driver_id": 851,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "한경희"
         },
         {
@@ -1316,9 +1534,11 @@ const data=(req,res,next)=>{
             "driver_id": 835,
             "route_id": 9,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:30",
-            "updated_at": "2022-03-15 16:09:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "황택범"
         },
         {
@@ -1328,9 +1548,11 @@ const data=(req,res,next)=>{
             "driver_id": 356,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-03-04 10:12:54",
-            "updated_at": "2022-03-04 10:12:54",
-            "manager_id": "5",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-04",
+            "updated_at": null,
             "name": "김화공"
         },
         {
@@ -1340,9 +1562,11 @@ const data=(req,res,next)=>{
             "driver_id": 354,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "선흥열"
         },
         {
@@ -1352,9 +1576,11 @@ const data=(req,res,next)=>{
             "driver_id": 352,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "손경권"
         },
         {
@@ -1364,9 +1590,11 @@ const data=(req,res,next)=>{
             "driver_id": 103,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "손기석"
         },
         {
@@ -1376,9 +1604,11 @@ const data=(req,res,next)=>{
             "driver_id": 358,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이병석"
         },
         {
@@ -1388,9 +1618,11 @@ const data=(req,res,next)=>{
             "driver_id": 355,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이상원"
         },
         {
@@ -1400,9 +1632,11 @@ const data=(req,res,next)=>{
             "driver_id": 353,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "정현묵"
         },
         {
@@ -1412,9 +1646,11 @@ const data=(req,res,next)=>{
             "driver_id": 359,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "차충석"
         },
         {
@@ -1424,9 +1660,11 @@ const data=(req,res,next)=>{
             "driver_id": 360,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "최상배"
         },
         {
@@ -1436,9 +1674,11 @@ const data=(req,res,next)=>{
             "driver_id": 867,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "강혜란"
         },
         {
@@ -1448,9 +1688,11 @@ const data=(req,res,next)=>{
             "driver_id": 868,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김동언"
         },
         {
@@ -1460,9 +1702,11 @@ const data=(req,res,next)=>{
             "driver_id": 357,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김성철2"
         },
         {
@@ -1472,9 +1716,11 @@ const data=(req,res,next)=>{
             "driver_id": 866,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "남희영"
         },
         {
@@ -1484,9 +1730,11 @@ const data=(req,res,next)=>{
             "driver_id": 1153,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이금직"
         },
         {
@@ -1496,9 +1744,11 @@ const data=(req,res,next)=>{
             "driver_id": 871,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이종배"
         },
         {
@@ -1508,9 +1758,11 @@ const data=(req,res,next)=>{
             "driver_id": 865,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이태준"
         },
         {
@@ -1520,9 +1772,11 @@ const data=(req,res,next)=>{
             "driver_id": 1132,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "정현순"
         },
         {
@@ -1532,9 +1786,11 @@ const data=(req,res,next)=>{
             "driver_id": 870,
             "route_id": 10,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "최현정"
         },
         {
@@ -1544,9 +1800,11 @@ const data=(req,res,next)=>{
             "driver_id": 424,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:53",
-            "updated_at": "2022-05-13 15:34:48",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "강석대"
         },
         {
@@ -1556,9 +1814,11 @@ const data=(req,res,next)=>{
             "driver_id": 426,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:52",
-            "updated_at": "2022-05-13 15:34:48",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "김규홍"
         },
         {
@@ -1568,9 +1828,11 @@ const data=(req,res,next)=>{
             "driver_id": 422,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:54",
-            "updated_at": "2022-05-13 15:34:48",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "김정민"
         },
         {
@@ -1580,9 +1842,11 @@ const data=(req,res,next)=>{
             "driver_id": 728,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:57",
-            "updated_at": "2022-05-13 15:34:48",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "송영태"
         },
         {
@@ -1592,9 +1856,11 @@ const data=(req,res,next)=>{
             "driver_id": 430,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:55",
-            "updated_at": "2022-05-13 15:34:48",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "양승천"
         },
         {
@@ -1604,9 +1870,11 @@ const data=(req,res,next)=>{
             "driver_id": 423,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:53",
-            "updated_at": "2022-05-13 15:34:48",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "염창훈"
         },
         {
@@ -1616,9 +1884,11 @@ const data=(req,res,next)=>{
             "driver_id": 434,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:56",
-            "updated_at": "2022-05-13 15:34:48",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "이양훈"
         },
         {
@@ -1628,9 +1898,11 @@ const data=(req,res,next)=>{
             "driver_id": 428,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:54",
-            "updated_at": "2022-05-13 15:34:48",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "이창선"
         },
         {
@@ -1640,9 +1912,11 @@ const data=(req,res,next)=>{
             "driver_id": 425,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-13 17:17:54",
-            "updated_at": "2022-05-13 17:17:54",
-            "manager_id": "20",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-13",
+            "updated_at": null,
             "name": "이태원"
         },
         {
@@ -1652,9 +1926,11 @@ const data=(req,res,next)=>{
             "driver_id": 429,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:53",
-            "updated_at": "2022-06-25 21:42:03",
-            "manager_id": "2304",
+            "manager_id": 2304,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "이현우2"
         },
         {
@@ -1664,9 +1940,11 @@ const data=(req,res,next)=>{
             "driver_id": 1086,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:56",
-            "updated_at": "2022-05-13 15:34:48",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "최현석"
         },
         {
@@ -1676,9 +1954,11 @@ const data=(req,res,next)=>{
             "driver_id": 715,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:57",
-            "updated_at": "2022-06-25 21:45:44",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "강경철"
         },
         {
@@ -1688,9 +1968,11 @@ const data=(req,res,next)=>{
             "driver_id": 2203,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:53",
-            "updated_at": "2022-05-13 15:34:53",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "김중오"
         },
         {
@@ -1700,9 +1982,11 @@ const data=(req,res,next)=>{
             "driver_id": 944,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:55",
-            "updated_at": "2022-05-25 14:09:44",
-            "manager_id": "2304",
+            "manager_id": 2304,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "김태회"
         },
         {
@@ -1712,9 +1996,11 @@ const data=(req,res,next)=>{
             "driver_id": 941,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:53",
-            "updated_at": "2022-05-13 15:34:53",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "남정길"
         },
         {
@@ -1724,9 +2010,11 @@ const data=(req,res,next)=>{
             "driver_id": 1024,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:56",
-            "updated_at": "2022-05-25 14:15:53",
-            "manager_id": "2304",
+            "manager_id": 2304,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "백정훈"
         },
         {
@@ -1736,9 +2024,11 @@ const data=(req,res,next)=>{
             "driver_id": 938,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:54",
-            "updated_at": "2022-05-13 15:34:53",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "소존영"
         },
         {
@@ -1748,9 +2038,11 @@ const data=(req,res,next)=>{
             "driver_id": 719,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:57",
-            "updated_at": "2022-06-15 15:44:57",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "손희정"
         },
         {
@@ -1760,9 +2052,11 @@ const data=(req,res,next)=>{
             "driver_id": 214,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:58",
-            "updated_at": "2022-06-25 21:16:29",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "안수방"
         },
         {
@@ -1772,9 +2066,11 @@ const data=(req,res,next)=>{
             "driver_id": 231,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:57",
-            "updated_at": "2022-05-13 15:34:53",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "이근호"
         },
         {
@@ -1784,9 +2080,11 @@ const data=(req,res,next)=>{
             "driver_id": 945,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:55",
-            "updated_at": "2022-05-13 15:34:53",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "이수행"
         },
         {
@@ -1796,9 +2094,11 @@ const data=(req,res,next)=>{
             "driver_id": 935,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:55",
-            "updated_at": "2022-05-13 15:34:53",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "이재근"
         },
         {
@@ -1808,9 +2108,11 @@ const data=(req,res,next)=>{
             "driver_id": 936,
             "route_id": 13,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 12:57:55",
-            "updated_at": "2022-05-25 14:14:22",
-            "manager_id": "2304",
+            "manager_id": 2304,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "최재영"
         },
         {
@@ -1820,9 +2122,11 @@ const data=(req,res,next)=>{
             "driver_id": 3829,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:51",
-            "updated_at": "2022-04-29 17:24:51",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "강무규"
         },
         {
@@ -1832,9 +2136,11 @@ const data=(req,res,next)=>{
             "driver_id": 3806,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:41",
-            "updated_at": "2022-04-29 17:24:41",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "강성룡"
         },
         {
@@ -1844,9 +2150,11 @@ const data=(req,res,next)=>{
             "driver_id": 3815,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:46",
-            "updated_at": "2022-04-29 17:24:46",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "곽윤선"
         },
         {
@@ -1856,9 +2164,11 @@ const data=(req,res,next)=>{
             "driver_id": 3811,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:44",
-            "updated_at": "2022-04-29 17:24:44",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "김명규"
         },
         {
@@ -1868,9 +2178,11 @@ const data=(req,res,next)=>{
             "driver_id": 3825,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:50",
-            "updated_at": "2022-04-29 17:24:50",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "김부길"
         },
         {
@@ -1880,9 +2192,11 @@ const data=(req,res,next)=>{
             "driver_id": 3817,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:47",
-            "updated_at": "2022-04-29 17:24:47",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "김주현"
         },
         {
@@ -1892,9 +2206,11 @@ const data=(req,res,next)=>{
             "driver_id": 3796,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:37",
-            "updated_at": "2022-04-29 17:24:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "김창순"
         },
         {
@@ -1904,9 +2220,11 @@ const data=(req,res,next)=>{
             "driver_id": 3813,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:45",
-            "updated_at": "2022-04-29 17:24:45",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "남기도"
         },
         {
@@ -1916,9 +2234,11 @@ const data=(req,res,next)=>{
             "driver_id": 3802,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:39",
-            "updated_at": "2022-04-29 17:24:39",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "박만복"
         },
         {
@@ -1928,9 +2248,11 @@ const data=(req,res,next)=>{
             "driver_id": 3786,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:34",
-            "updated_at": "2022-04-29 17:24:34",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "박승일"
         },
         {
@@ -1940,9 +2262,11 @@ const data=(req,res,next)=>{
             "driver_id": 3800,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:38",
-            "updated_at": "2022-04-29 17:24:38",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "박태철"
         },
         {
@@ -1952,9 +2276,11 @@ const data=(req,res,next)=>{
             "driver_id": 3837,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:55",
-            "updated_at": "2022-04-29 17:24:55",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "소재구"
         },
         {
@@ -1964,9 +2290,11 @@ const data=(req,res,next)=>{
             "driver_id": 3794,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:36",
-            "updated_at": "2022-04-29 17:24:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "송성우"
         },
         {
@@ -1976,9 +2304,11 @@ const data=(req,res,next)=>{
             "driver_id": 3833,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:53",
-            "updated_at": "2022-04-29 17:24:53",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "신정수"
         },
         {
@@ -1988,9 +2318,11 @@ const data=(req,res,next)=>{
             "driver_id": 3819,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:48",
-            "updated_at": "2022-04-29 17:24:48",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "양희환"
         },
         {
@@ -2000,9 +2332,11 @@ const data=(req,res,next)=>{
             "driver_id": 3839,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:56",
-            "updated_at": "2022-04-29 17:24:56",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "오인섭"
         },
         {
@@ -2012,9 +2346,11 @@ const data=(req,res,next)=>{
             "driver_id": 3804,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:40",
-            "updated_at": "2022-04-29 17:24:40",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "원영태"
         },
         {
@@ -2024,9 +2360,11 @@ const data=(req,res,next)=>{
             "driver_id": 3788,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:34",
-            "updated_at": "2022-04-29 17:24:34",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "윤진홍"
         },
         {
@@ -2036,9 +2374,11 @@ const data=(req,res,next)=>{
             "driver_id": 3835,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:54",
-            "updated_at": "2022-04-29 17:24:54",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "이광수"
         },
         {
@@ -2048,9 +2388,11 @@ const data=(req,res,next)=>{
             "driver_id": 3790,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:35",
-            "updated_at": "2022-04-29 17:24:35",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "이병갑"
         },
         {
@@ -2060,9 +2402,11 @@ const data=(req,res,next)=>{
             "driver_id": 3831,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:52",
-            "updated_at": "2022-04-29 17:24:52",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "이세용"
         },
         {
@@ -2072,9 +2416,11 @@ const data=(req,res,next)=>{
             "driver_id": 3792,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:36",
-            "updated_at": "2022-04-29 17:24:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "이재영"
         },
         {
@@ -2084,9 +2430,11 @@ const data=(req,res,next)=>{
             "driver_id": 3827,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:51",
-            "updated_at": "2022-04-29 17:24:51",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "이형복"
         },
         {
@@ -2096,9 +2444,11 @@ const data=(req,res,next)=>{
             "driver_id": 3821,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:49",
-            "updated_at": "2022-04-29 17:24:49",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "정상현"
         },
         {
@@ -2108,9 +2458,11 @@ const data=(req,res,next)=>{
             "driver_id": 3809,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:43",
-            "updated_at": "2022-04-29 17:24:43",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "정은수"
         },
         {
@@ -2120,9 +2472,11 @@ const data=(req,res,next)=>{
             "driver_id": 3823,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:49",
-            "updated_at": "2022-04-29 17:24:49",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "최병인"
         },
         {
@@ -2132,9 +2486,11 @@ const data=(req,res,next)=>{
             "driver_id": 3798,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:37",
-            "updated_at": "2022-04-29 17:24:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "황도연"
         },
         {
@@ -2144,9 +2500,11 @@ const data=(req,res,next)=>{
             "driver_id": 3834,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:53",
-            "updated_at": "2022-04-29 17:24:53",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "강영상"
         },
         {
@@ -2156,9 +2514,11 @@ const data=(req,res,next)=>{
             "driver_id": 3797,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:37",
-            "updated_at": "2022-04-29 17:24:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "강영필"
         },
         {
@@ -2168,9 +2528,11 @@ const data=(req,res,next)=>{
             "driver_id": 3830,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:51",
-            "updated_at": "2022-04-29 17:24:51",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "기순길"
         },
         {
@@ -2180,9 +2542,11 @@ const data=(req,res,next)=>{
             "driver_id": 3803,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:40",
-            "updated_at": "2022-04-29 17:24:40",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "김대기"
         },
         {
@@ -2192,9 +2556,11 @@ const data=(req,res,next)=>{
             "driver_id": 3816,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:46",
-            "updated_at": "2022-04-29 17:24:46",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "김민정"
         },
         {
@@ -2204,9 +2570,11 @@ const data=(req,res,next)=>{
             "driver_id": 3832,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:52",
-            "updated_at": "2022-04-29 17:24:52",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "김용석1"
         },
         {
@@ -2216,9 +2584,11 @@ const data=(req,res,next)=>{
             "driver_id": 3789,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:35",
-            "updated_at": "2022-04-29 17:24:35",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "김용석3"
         },
         {
@@ -2228,9 +2598,11 @@ const data=(req,res,next)=>{
             "driver_id": 3824,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:49",
-            "updated_at": "2022-04-29 17:24:49",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "김종봉"
         },
         {
@@ -2240,9 +2612,11 @@ const data=(req,res,next)=>{
             "driver_id": 3836,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:54",
-            "updated_at": "2022-04-29 17:24:54",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "김주동"
         },
         {
@@ -2252,9 +2626,11 @@ const data=(req,res,next)=>{
             "driver_id": 3822,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:49",
-            "updated_at": "2022-04-29 17:24:49",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "김현대"
         },
         {
@@ -2264,9 +2640,11 @@ const data=(req,res,next)=>{
             "driver_id": 3801,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:39",
-            "updated_at": "2022-04-29 17:24:39",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "박상화"
         },
         {
@@ -2276,9 +2654,11 @@ const data=(req,res,next)=>{
             "driver_id": 3818,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:47",
-            "updated_at": "2022-04-29 17:24:47",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "선진선"
         },
         {
@@ -2288,9 +2668,11 @@ const data=(req,res,next)=>{
             "driver_id": 3807,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:42",
-            "updated_at": "2022-04-29 17:24:42",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "신봉균"
         },
         {
@@ -2300,9 +2682,11 @@ const data=(req,res,next)=>{
             "driver_id": 3805,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:41",
-            "updated_at": "2022-04-29 17:24:41",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "엄태우"
         },
         {
@@ -2312,9 +2696,11 @@ const data=(req,res,next)=>{
             "driver_id": 3808,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:42",
-            "updated_at": "2022-04-29 17:24:42",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "유재국"
         },
         {
@@ -2324,9 +2710,11 @@ const data=(req,res,next)=>{
             "driver_id": 3795,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:36",
-            "updated_at": "2022-04-29 17:24:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "윤흥성"
         },
         {
@@ -2336,9 +2724,11 @@ const data=(req,res,next)=>{
             "driver_id": 3793,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:36",
-            "updated_at": "2022-04-29 17:24:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "이규일"
         },
         {
@@ -2348,9 +2738,11 @@ const data=(req,res,next)=>{
             "driver_id": 3787,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:34",
-            "updated_at": "2022-04-29 17:24:34",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "이영섭"
         },
         {
@@ -2360,9 +2752,11 @@ const data=(req,res,next)=>{
             "driver_id": 3820,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:48",
-            "updated_at": "2022-04-29 17:24:48",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "이일오"
         },
         {
@@ -2372,9 +2766,11 @@ const data=(req,res,next)=>{
             "driver_id": 3828,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:51",
-            "updated_at": "2022-04-29 17:24:51",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "이재준"
         },
         {
@@ -2384,9 +2780,11 @@ const data=(req,res,next)=>{
             "driver_id": 3814,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:45",
-            "updated_at": "2022-04-29 17:24:45",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "이중호"
         },
         {
@@ -2396,9 +2794,11 @@ const data=(req,res,next)=>{
             "driver_id": 3791,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:35",
-            "updated_at": "2022-04-29 17:24:35",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "이해운"
         },
         {
@@ -2408,9 +2808,11 @@ const data=(req,res,next)=>{
             "driver_id": 3826,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:50",
-            "updated_at": "2022-04-29 17:24:50",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "이호"
         },
         {
@@ -2420,9 +2822,11 @@ const data=(req,res,next)=>{
             "driver_id": 3812,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:44",
-            "updated_at": "2022-04-29 17:24:44",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "장병읍"
         },
         {
@@ -2432,9 +2836,11 @@ const data=(req,res,next)=>{
             "driver_id": 3838,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:55",
-            "updated_at": "2022-04-29 17:24:55",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "정지환"
         },
         {
@@ -2444,9 +2850,11 @@ const data=(req,res,next)=>{
             "driver_id": 3799,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:38",
-            "updated_at": "2022-04-29 17:24:38",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "정필훈"
         },
         {
@@ -2456,9 +2864,11 @@ const data=(req,res,next)=>{
             "driver_id": 3810,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:43",
-            "updated_at": "2022-04-29 17:24:43",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "조월환"
         },
         {
@@ -2468,9 +2878,11 @@ const data=(req,res,next)=>{
             "driver_id": 3840,
             "route_id": 16,
             "fixed_start_order": null,
-            "created_at": "2022-04-29 17:24:56",
-            "updated_at": "2022-04-29 17:24:56",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-29",
+            "updated_at": null,
             "name": "차승희"
         },
         {
@@ -2480,9 +2892,11 @@ const data=(req,res,next)=>{
             "driver_id": 1044,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:35",
-            "updated_at": "2022-03-07 16:24:30",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김동오"
         },
         {
@@ -2492,9 +2906,11 @@ const data=(req,res,next)=>{
             "driver_id": 112,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:35",
-            "updated_at": "2022-03-07 16:24:35",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김상인"
         },
         {
@@ -2504,9 +2920,11 @@ const data=(req,res,next)=>{
             "driver_id": 111,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:35",
-            "updated_at": "2022-03-07 16:24:26",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김수철"
         },
         {
@@ -2516,9 +2934,11 @@ const data=(req,res,next)=>{
             "driver_id": 110,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:25",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김승욱"
         },
         {
@@ -2528,9 +2948,11 @@ const data=(req,res,next)=>{
             "driver_id": 118,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:20",
-            "updated_at": "2022-03-07 16:24:20",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "김정수"
         },
         {
@@ -2540,9 +2962,11 @@ const data=(req,res,next)=>{
             "driver_id": 113,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "문선호"
         },
         {
@@ -2552,9 +2976,11 @@ const data=(req,res,next)=>{
             "driver_id": 107,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:28",
-            "updated_at": "2022-03-07 16:24:28",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "박성일1"
         },
         {
@@ -2564,9 +2990,11 @@ const data=(req,res,next)=>{
             "driver_id": 109,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:21",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "박성현"
         },
         {
@@ -2576,9 +3004,11 @@ const data=(req,res,next)=>{
             "driver_id": 116,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:42",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "박일규"
         },
         {
@@ -2588,9 +3018,11 @@ const data=(req,res,next)=>{
             "driver_id": 115,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "박재명"
         },
         {
@@ -2600,9 +3032,11 @@ const data=(req,res,next)=>{
             "driver_id": 105,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:23",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "윤병노"
         },
         {
@@ -2612,9 +3046,11 @@ const data=(req,res,next)=>{
             "driver_id": 104,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:35",
-            "updated_at": "2022-03-07 16:24:31",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이민수"
         },
         {
@@ -2624,9 +3060,11 @@ const data=(req,res,next)=>{
             "driver_id": 108,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:22",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이종태1"
         },
         {
@@ -2636,9 +3074,11 @@ const data=(req,res,next)=>{
             "driver_id": 114,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:35",
-            "updated_at": "2022-03-07 16:24:33",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이준기"
         },
         {
@@ -2648,9 +3088,11 @@ const data=(req,res,next)=>{
             "driver_id": 117,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:34",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "조형규"
         },
         {
@@ -2660,9 +3102,11 @@ const data=(req,res,next)=>{
             "driver_id": 618,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:44",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김국선"
         },
         {
@@ -2672,9 +3116,11 @@ const data=(req,res,next)=>{
             "driver_id": 619,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:42",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김성길"
         },
         {
@@ -2684,9 +3130,11 @@ const data=(req,res,next)=>{
             "driver_id": 1102,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:39",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김성식"
         },
         {
@@ -2696,9 +3144,11 @@ const data=(req,res,next)=>{
             "driver_id": 608,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:35",
-            "updated_at": "2022-03-07 16:24:19",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김영호"
         },
         {
@@ -2708,9 +3158,11 @@ const data=(req,res,next)=>{
             "driver_id": 610,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:35",
-            "updated_at": "2022-05-03 12:20:18",
-            "manager_id": "2225",
+            "manager_id": 2225,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "김정호2"
         },
         {
@@ -2720,9 +3172,11 @@ const data=(req,res,next)=>{
             "driver_id": 614,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:35",
-            "updated_at": "2022-03-07 16:24:29",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "박영"
         },
         {
@@ -2732,9 +3186,11 @@ const data=(req,res,next)=>{
             "driver_id": 611,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:23",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "박용기"
         },
         {
@@ -2744,9 +3200,11 @@ const data=(req,res,next)=>{
             "driver_id": 616,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:41",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "박희만"
         },
         {
@@ -2756,9 +3214,11 @@ const data=(req,res,next)=>{
             "driver_id": 607,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:35",
-            "updated_at": "2022-03-07 16:24:18",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "신현호"
         },
         {
@@ -2768,9 +3228,11 @@ const data=(req,res,next)=>{
             "driver_id": 620,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:40",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "오태진"
         },
         {
@@ -2780,9 +3242,11 @@ const data=(req,res,next)=>{
             "driver_id": 621,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:35",
-            "updated_at": "2022-03-07 16:24:43",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이정영"
         },
         {
@@ -2792,9 +3256,11 @@ const data=(req,res,next)=>{
             "driver_id": 615,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:35",
-            "updated_at": "2022-03-07 16:24:38",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "조병진"
         },
         {
@@ -2804,9 +3270,11 @@ const data=(req,res,next)=>{
             "driver_id": 617,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-03-07 16:24:17",
-            "updated_at": "2022-03-07 16:24:17",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-03-07",
+            "updated_at": null,
             "name": "조행권"
         },
         {
@@ -2816,9 +3284,11 @@ const data=(req,res,next)=>{
             "driver_id": 609,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:24",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "채승완"
         },
         {
@@ -2828,9 +3298,11 @@ const data=(req,res,next)=>{
             "driver_id": 622,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:35",
-            "updated_at": "2022-05-03 12:19:35",
-            "manager_id": "2225",
+            "manager_id": 2225,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "황갑상"
         },
         {
@@ -2840,9 +3312,11 @@ const data=(req,res,next)=>{
             "driver_id": 612,
             "route_id": 18,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-07 16:24:27",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "황경호"
         },
         {
@@ -2852,9 +3326,11 @@ const data=(req,res,next)=>{
             "driver_id": 365,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-01-07 08:36:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "강희만"
         },
         {
@@ -2864,9 +3340,11 @@ const data=(req,res,next)=>{
             "driver_id": 361,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "곽도영"
         },
         {
@@ -2876,9 +3354,11 @@ const data=(req,res,next)=>{
             "driver_id": 1080,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김만중"
         },
         {
@@ -2888,9 +3368,11 @@ const data=(req,res,next)=>{
             "driver_id": 872,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-05-03 12:21:31",
-            "manager_id": "2225",
+            "manager_id": 2225,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김선녀"
         },
         {
@@ -2900,9 +3382,11 @@ const data=(req,res,next)=>{
             "driver_id": 374,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-01-07 08:36:59",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김은희"
         },
         {
@@ -2912,9 +3396,11 @@ const data=(req,res,next)=>{
             "driver_id": 364,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김학인"
         },
         {
@@ -2924,9 +3410,11 @@ const data=(req,res,next)=>{
             "driver_id": 369,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-22 17:24:56",
-            "manager_id": "2221",
+            "manager_id": 2221,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김홍철"
         },
         {
@@ -2936,9 +3424,11 @@ const data=(req,res,next)=>{
             "driver_id": 376,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김회권"
         },
         {
@@ -2948,9 +3438,11 @@ const data=(req,res,next)=>{
             "driver_id": 373,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "박영숙"
         },
         {
@@ -2960,9 +3452,11 @@ const data=(req,res,next)=>{
             "driver_id": 363,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-24 14:49:59",
-            "manager_id": "5",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "성경일"
         },
         {
@@ -2972,9 +3466,11 @@ const data=(req,res,next)=>{
             "driver_id": 367,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2021-12-02 17:42:10",
-            "updated_at": "2021-12-02 17:42:10",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2021-12-02",
+            "updated_at": null,
             "name": "윤여방"
         },
         {
@@ -2984,9 +3480,11 @@ const data=(req,res,next)=>{
             "driver_id": 372,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이동은"
         },
         {
@@ -2996,9 +3494,11 @@ const data=(req,res,next)=>{
             "driver_id": 377,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-05-03 12:21:03",
-            "manager_id": "2225",
+            "manager_id": 2225,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이무근"
         },
         {
@@ -3008,9 +3508,11 @@ const data=(req,res,next)=>{
             "driver_id": 366,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이봉수"
         },
         {
@@ -3020,9 +3522,11 @@ const data=(req,res,next)=>{
             "driver_id": 370,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-22 17:25:48",
-            "manager_id": "2221",
+            "manager_id": 2221,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이정태"
         },
         {
@@ -3032,9 +3536,11 @@ const data=(req,res,next)=>{
             "driver_id": 1147,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-01-13 16:35:16",
-            "manager_id": "5",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "장태원"
         },
         {
@@ -3044,9 +3550,11 @@ const data=(req,res,next)=>{
             "driver_id": 1148,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "조성민"
         },
         {
@@ -3056,9 +3564,11 @@ const data=(req,res,next)=>{
             "driver_id": 368,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-23 14:11:35",
-            "manager_id": "2221",
+            "manager_id": 2221,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "주미숙"
         },
         {
@@ -3068,9 +3578,11 @@ const data=(req,res,next)=>{
             "driver_id": 362,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "한연구"
         },
         {
@@ -3080,9 +3592,11 @@ const data=(req,res,next)=>{
             "driver_id": 886,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:37",
-            "updated_at": "2022-02-11 17:39:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김경환1"
         },
         {
@@ -3092,9 +3606,11 @@ const data=(req,res,next)=>{
             "driver_id": 874,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김민우"
         },
         {
@@ -3104,9 +3620,11 @@ const data=(req,res,next)=>{
             "driver_id": 876,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2021-12-10 15:27:15",
-            "updated_at": "2021-12-10 15:27:15",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2021-12-10",
+            "updated_at": null,
             "name": "김숙희"
         },
         {
@@ -3116,9 +3634,11 @@ const data=(req,res,next)=>{
             "driver_id": 875,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김양환"
         },
         {
@@ -3128,9 +3648,11 @@ const data=(req,res,next)=>{
             "driver_id": 882,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-24 11:15:26",
-            "manager_id": "5",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김정훈2"
         },
         {
@@ -3140,9 +3662,11 @@ const data=(req,res,next)=>{
             "driver_id": 1135,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김진선"
         },
         {
@@ -3152,9 +3676,11 @@ const data=(req,res,next)=>{
             "driver_id": 879,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-01-18 14:08:03",
-            "manager_id": "5",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김진영"
         },
         {
@@ -3164,9 +3690,11 @@ const data=(req,res,next)=>{
             "driver_id": 888,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "박종섭"
         },
         {
@@ -3176,9 +3704,11 @@ const data=(req,res,next)=>{
             "driver_id": 885,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-02 12:09:54",
-            "manager_id": "2225",
+            "manager_id": 2225,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "박창수"
         },
         {
@@ -3188,9 +3718,11 @@ const data=(req,res,next)=>{
             "driver_id": 1133,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "송재현"
         },
         {
@@ -3200,9 +3732,11 @@ const data=(req,res,next)=>{
             "driver_id": 883,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "송제묵"
         },
         {
@@ -3212,9 +3746,11 @@ const data=(req,res,next)=>{
             "driver_id": 889,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "신용구"
         },
         {
@@ -3224,9 +3760,11 @@ const data=(req,res,next)=>{
             "driver_id": 887,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "안진숙"
         },
         {
@@ -3236,9 +3774,11 @@ const data=(req,res,next)=>{
             "driver_id": 881,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-24 11:08:04",
-            "manager_id": "20",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이길영1"
         },
         {
@@ -3248,9 +3788,11 @@ const data=(req,res,next)=>{
             "driver_id": 884,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이상민"
         },
         {
@@ -3260,9 +3802,11 @@ const data=(req,res,next)=>{
             "driver_id": 371,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2021-12-09 11:03:47",
-            "updated_at": "2022-03-24 14:51:50",
-            "manager_id": "5",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2021-12-09",
+            "updated_at": null,
             "name": "이찬노"
         },
         {
@@ -3272,9 +3816,11 @@ const data=(req,res,next)=>{
             "driver_id": 880,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-24 11:15:26",
-            "manager_id": "20",
+            "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "임종성1"
         },
         {
@@ -3284,9 +3830,11 @@ const data=(req,res,next)=>{
             "driver_id": 877,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "정경애"
         },
         {
@@ -3296,9 +3844,11 @@ const data=(req,res,next)=>{
             "driver_id": 878,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-02-11 17:39:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "최성철2"
         },
         {
@@ -3308,9 +3858,11 @@ const data=(req,res,next)=>{
             "driver_id": 873,
             "route_id": 19,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:36",
-            "updated_at": "2022-03-24 11:15:37",
-            "manager_id": "2221",
+            "manager_id": 2221,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "허선회"
         },
         {
@@ -3320,9 +3872,11 @@ const data=(req,res,next)=>{
             "driver_id": 1058,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:32",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "공흥식"
         },
         {
@@ -3332,9 +3886,11 @@ const data=(req,res,next)=>{
             "driver_id": 244,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:22",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김차호"
         },
         {
@@ -3344,9 +3900,11 @@ const data=(req,res,next)=>{
             "driver_id": 240,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:35",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "박강주"
         },
         {
@@ -3356,9 +3914,11 @@ const data=(req,res,next)=>{
             "driver_id": 747,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:20",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "신효석"
         },
         {
@@ -3368,9 +3928,11 @@ const data=(req,res,next)=>{
             "driver_id": 1059,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:36",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "안영득"
         },
         {
@@ -3380,9 +3942,11 @@ const data=(req,res,next)=>{
             "driver_id": 237,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:38",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "양순만"
         },
         {
@@ -3392,9 +3956,11 @@ const data=(req,res,next)=>{
             "driver_id": 239,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:34",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "오진환"
         },
         {
@@ -3404,9 +3970,11 @@ const data=(req,res,next)=>{
             "driver_id": 238,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:21",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "유영철"
         },
         {
@@ -3416,9 +3984,11 @@ const data=(req,res,next)=>{
             "driver_id": 241,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:30",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "은민철"
         },
         {
@@ -3428,9 +3998,11 @@ const data=(req,res,next)=>{
             "driver_id": 247,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:17",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이용구"
         },
         {
@@ -3440,9 +4012,11 @@ const data=(req,res,next)=>{
             "driver_id": 246,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:23",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이종관"
         },
         {
@@ -3452,9 +4026,11 @@ const data=(req,res,next)=>{
             "driver_id": 242,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:19",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이채원"
         },
         {
@@ -3464,9 +4040,11 @@ const data=(req,res,next)=>{
             "driver_id": 245,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:22",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "주구남"
         },
         {
@@ -3476,9 +4054,11 @@ const data=(req,res,next)=>{
             "driver_id": 743,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:27",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김강복"
         },
         {
@@ -3488,9 +4068,11 @@ const data=(req,res,next)=>{
             "driver_id": 2202,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:25",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김동은"
         },
         {
@@ -3500,9 +4082,11 @@ const data=(req,res,next)=>{
             "driver_id": 1115,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:29",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김봉용"
         },
         {
@@ -3512,9 +4096,11 @@ const data=(req,res,next)=>{
             "driver_id": 745,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:34",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "김창경"
         },
         {
@@ -3524,9 +4110,11 @@ const data=(req,res,next)=>{
             "driver_id": 748,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:26",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "백남철"
         },
         {
@@ -3536,9 +4124,11 @@ const data=(req,res,next)=>{
             "driver_id": 742,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:28",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "송기철"
         },
         {
@@ -3548,9 +4138,11 @@ const data=(req,res,next)=>{
             "driver_id": 1116,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:24",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "안상봉"
         },
         {
@@ -3560,9 +4152,11 @@ const data=(req,res,next)=>{
             "driver_id": 746,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:37",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "윤병국"
         },
         {
@@ -3572,9 +4166,11 @@ const data=(req,res,next)=>{
             "driver_id": 749,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:18",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이병완"
         },
         {
@@ -3584,9 +4180,11 @@ const data=(req,res,next)=>{
             "driver_id": 744,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:33",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "이홍구"
         },
         {
@@ -3596,9 +4194,11 @@ const data=(req,res,next)=>{
             "driver_id": 751,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:28",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "임숙희"
         },
         {
@@ -3608,9 +4208,11 @@ const data=(req,res,next)=>{
             "driver_id": 750,
             "route_id": 21,
             "fixed_start_order": null,
-            "created_at": "2022-02-11 17:39:33",
-            "updated_at": "2022-03-07 16:23:31",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-02-11",
+            "updated_at": null,
             "name": "정정운"
         },
         {
@@ -3620,9 +4222,11 @@ const data=(req,res,next)=>{
             "driver_id": 3264,
             "route_id": 29,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 10:08:35",
-            "updated_at": "2022-05-02 10:08:35",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "박세두"
         },
         {
@@ -3632,9 +4236,11 @@ const data=(req,res,next)=>{
             "driver_id": 3898,
             "route_id": 29,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 10:08:33",
-            "updated_at": "2022-05-02 10:08:33",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "위재춘"
         },
         {
@@ -3644,9 +4250,11 @@ const data=(req,res,next)=>{
             "driver_id": 3899,
             "route_id": 29,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 10:08:33",
-            "updated_at": "2022-05-02 10:08:33",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "조동현"
         },
         {
@@ -3656,9 +4264,11 @@ const data=(req,res,next)=>{
             "driver_id": 3902,
             "route_id": 29,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 10:08:35",
-            "updated_at": "2022-05-02 10:08:35",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "김도열"
         },
         {
@@ -3668,9 +4278,11 @@ const data=(req,res,next)=>{
             "driver_id": 3901,
             "route_id": 29,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 10:08:34",
-            "updated_at": "2022-05-02 10:08:34",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "김동인"
         },
         {
@@ -3680,9 +4292,11 @@ const data=(req,res,next)=>{
             "driver_id": 3900,
             "route_id": 29,
             "fixed_start_order": null,
-            "created_at": "2022-05-02 10:08:34",
-            "updated_at": "2022-05-02 10:08:34",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-05-02",
+            "updated_at": null,
             "name": "김정웅"
         },
         {
@@ -3692,9 +4306,11 @@ const data=(req,res,next)=>{
             "driver_id": 3003,
             "route_id": 31,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:22",
-            "updated_at": "2022-04-08 14:03:22",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "고광신"
         },
         {
@@ -3704,9 +4320,11 @@ const data=(req,res,next)=>{
             "driver_id": 3006,
             "route_id": 31,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:22",
-            "updated_at": "2022-04-08 14:03:22",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "고재영"
         },
         {
@@ -3716,9 +4334,11 @@ const data=(req,res,next)=>{
             "driver_id": 3008,
             "route_id": 31,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:22",
-            "updated_at": "2022-04-08 14:03:22",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김광일"
         },
         {
@@ -3728,9 +4348,11 @@ const data=(req,res,next)=>{
             "driver_id": 3004,
             "route_id": 31,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:22",
-            "updated_at": "2022-04-08 14:03:22",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김태순"
         },
         {
@@ -3740,9 +4362,11 @@ const data=(req,res,next)=>{
             "driver_id": 3002,
             "route_id": 31,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:22",
-            "updated_at": "2022-04-08 14:03:22",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김현중2"
         },
         {
@@ -3752,9 +4376,11 @@ const data=(req,res,next)=>{
             "driver_id": 3009,
             "route_id": 31,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:23",
-            "updated_at": "2022-04-08 14:03:23",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김형연"
         },
         {
@@ -3764,9 +4390,11 @@ const data=(req,res,next)=>{
             "driver_id": 3005,
             "route_id": 31,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:22",
-            "updated_at": "2022-04-08 14:03:22",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김혜영"
         },
         {
@@ -3776,9 +4404,11 @@ const data=(req,res,next)=>{
             "driver_id": 3007,
             "route_id": 31,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:22",
-            "updated_at": "2022-04-08 14:03:22",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "박세진"
         },
         {
@@ -3788,9 +4418,11 @@ const data=(req,res,next)=>{
             "driver_id": 3010,
             "route_id": 31,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:23",
-            "updated_at": "2022-04-08 14:03:23",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "장해나"
         },
         {
@@ -3800,9 +4432,11 @@ const data=(req,res,next)=>{
             "driver_id": 2867,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:05",
-            "updated_at": "2022-04-08 14:03:05",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김균상"
         },
         {
@@ -3812,9 +4446,11 @@ const data=(req,res,next)=>{
             "driver_id": 2868,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:05",
-            "updated_at": "2022-04-08 14:03:05",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김복규"
         },
         {
@@ -3824,9 +4460,11 @@ const data=(req,res,next)=>{
             "driver_id": 2859,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:04",
-            "updated_at": "2022-04-08 14:03:04",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김상도"
         },
         {
@@ -3836,9 +4474,11 @@ const data=(req,res,next)=>{
             "driver_id": 2860,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:04",
-            "updated_at": "2022-04-08 14:03:04",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김형군"
         },
         {
@@ -3848,9 +4488,11 @@ const data=(req,res,next)=>{
             "driver_id": 2854,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:03",
-            "updated_at": "2022-04-08 14:03:03",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "송향화"
         },
         {
@@ -3860,9 +4502,11 @@ const data=(req,res,next)=>{
             "driver_id": 2861,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:04",
-            "updated_at": "2022-04-08 14:03:04",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "윤인호"
         },
         {
@@ -3872,9 +4516,11 @@ const data=(req,res,next)=>{
             "driver_id": 2864,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:04",
-            "updated_at": "2022-04-08 14:03:04",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "이금용"
         },
         {
@@ -3884,9 +4530,11 @@ const data=(req,res,next)=>{
             "driver_id": 2858,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:03",
-            "updated_at": "2022-05-17 23:18:52",
-            "manager_id": "2295",
+            "manager_id": 2295,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "이성욱2"
         },
         {
@@ -3896,9 +4544,11 @@ const data=(req,res,next)=>{
             "driver_id": 2857,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:03",
-            "updated_at": "2022-04-08 14:03:03",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "한철규"
         },
         {
@@ -3908,9 +4558,11 @@ const data=(req,res,next)=>{
             "driver_id": 2865,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:04",
-            "updated_at": "2022-04-08 14:03:04",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "황정택"
         },
         {
@@ -3920,9 +4572,11 @@ const data=(req,res,next)=>{
             "driver_id": 2862,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:04",
-            "updated_at": "2022-04-08 14:03:04",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "길병화"
         },
         {
@@ -3932,9 +4586,11 @@ const data=(req,res,next)=>{
             "driver_id": 2851,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:03",
-            "updated_at": "2022-04-08 14:03:03",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김재필"
         },
         {
@@ -3944,9 +4600,11 @@ const data=(req,res,next)=>{
             "driver_id": 2869,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:05",
-            "updated_at": "2022-04-08 14:03:05",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김종석"
         },
         {
@@ -3956,9 +4614,11 @@ const data=(req,res,next)=>{
             "driver_id": 2852,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:03",
-            "updated_at": "2022-04-08 14:03:03",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "박진준"
         },
         {
@@ -3968,9 +4628,11 @@ const data=(req,res,next)=>{
             "driver_id": 2866,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:04",
-            "updated_at": "2022-04-08 14:03:04",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "이광섭"
         },
         {
@@ -3980,9 +4642,11 @@ const data=(req,res,next)=>{
             "driver_id": 2863,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:04",
-            "updated_at": "2022-04-08 14:03:04",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "이훈일"
         },
         {
@@ -3992,9 +4656,11 @@ const data=(req,res,next)=>{
             "driver_id": 2870,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:05",
-            "updated_at": "2022-05-25 08:58:13",
-            "manager_id": "2295",
+            "manager_id": 2295,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "조용원"
         },
         {
@@ -4004,9 +4670,11 @@ const data=(req,res,next)=>{
             "driver_id": 2853,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:03",
-            "updated_at": "2022-04-08 14:03:03",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "최용호"
         },
         {
@@ -4016,9 +4684,11 @@ const data=(req,res,next)=>{
             "driver_id": 2856,
             "route_id": 34,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:03",
-            "updated_at": "2022-04-08 14:03:03",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "하동욱"
         },
         {
@@ -4028,9 +4698,11 @@ const data=(req,res,next)=>{
             "driver_id": 2992,
             "route_id": 65,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:20",
-            "updated_at": "2022-04-08 14:03:20",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "강형주"
         },
         {
@@ -4040,9 +4712,11 @@ const data=(req,res,next)=>{
             "driver_id": 3001,
             "route_id": 65,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:22",
-            "updated_at": "2022-04-08 14:03:22",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "권희수"
         },
         {
@@ -4052,9 +4726,11 @@ const data=(req,res,next)=>{
             "driver_id": 2994,
             "route_id": 65,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:21",
-            "updated_at": "2022-04-08 14:03:21",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김명일"
         },
         {
@@ -4064,9 +4740,11 @@ const data=(req,res,next)=>{
             "driver_id": 2998,
             "route_id": 65,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:21",
-            "updated_at": "2022-04-08 14:03:21",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김종남"
         },
         {
@@ -4076,9 +4754,11 @@ const data=(req,res,next)=>{
             "driver_id": 2996,
             "route_id": 65,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:21",
-            "updated_at": "2022-04-08 14:03:21",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "이승호"
         },
         {
@@ -4088,9 +4768,11 @@ const data=(req,res,next)=>{
             "driver_id": 2999,
             "route_id": 65,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:21",
-            "updated_at": "2022-04-08 14:03:21",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "김용배"
         },
         {
@@ -4100,9 +4782,11 @@ const data=(req,res,next)=>{
             "driver_id": 2995,
             "route_id": 65,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:21",
-            "updated_at": "2022-04-08 14:03:21",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "박수호"
         },
         {
@@ -4112,9 +4796,11 @@ const data=(req,res,next)=>{
             "driver_id": 2997,
             "route_id": 65,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:21",
-            "updated_at": "2022-04-08 14:03:21",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "오익균"
         },
         {
@@ -4124,9 +4810,11 @@ const data=(req,res,next)=>{
             "driver_id": 3000,
             "route_id": 65,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:21",
-            "updated_at": "2022-04-08 14:03:21",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "윤우상"
         },
         {
@@ -4136,9 +4824,11 @@ const data=(req,res,next)=>{
             "driver_id": 2993,
             "route_id": 65,
             "fixed_start_order": null,
-            "created_at": "2022-04-08 14:03:21",
-            "updated_at": "2022-04-08 14:03:21",
             "manager_id": null,
+            "will_change": null,
+            "change_status": "NORMAL",
+            "created_at": "2022-04-08",
+            "updated_at": null,
             "name": "천영식"
         }
     ]

@@ -3,7 +3,7 @@ const RouteDriver = db.route_driver;
 
 exports.fixedupdate = (req, res) => {
     req.dt.map((k,i)=>{
-        db.route_driver1.update({fixed_start_order:k.fixed_start_order }, {
+        db.route_driver.update({fixed_start_order:k.fixed_start_order }, {
             //db.route_driver1.update({fixed_start_order:k.fixed_start_order,created_at:k.created_at }, {
             where: { id: k.id },
           });

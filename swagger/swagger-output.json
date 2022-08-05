@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url":"http://localhost:8484"
+      "url":"http://192.168.0.22:8484"
 
     }
   ],
@@ -208,7 +208,7 @@
                   "example": "19"
                 },
                 "date": {
-                  "example": "2022-01-07"
+                  "example": "2021-11-01"
                 }
                
               }
@@ -390,6 +390,86 @@
         },
         "500": {
           "description": "Internal Server Error"
+        }
+      }
+    }
+  },
+  "/api/work/bulk": {
+    "put": {
+      "description": "",
+      "tags":["work"],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "403": {
+          "description": "Forbidden"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                "example": [{"id":61596, "status":"LEAVE_CHECK"},{"id":61597, "status":"WORK_CHECK"}]
+                },
+                "duplicate": {
+                  "example": ["status"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/api/routedriver/bulk": {
+    "put": {
+      "description": "route,shift내의 fixed start order 일괄변경",
+      "tags":["routeDriver"],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "403": {
+          "description": "Forbidden"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                "example": [{"id":3644,"fixedStartOrder":1},{"id":3647,"fixedStartOrder":0},{"id":4287,"fixedStartOrder":2}]
+                },
+                "duplicate": {
+                  "example": ["fixedStartOrder"]
+                }
+              }
+            }
+          }
         }
       }
     }

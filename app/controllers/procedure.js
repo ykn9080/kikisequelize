@@ -292,13 +292,13 @@ exports.couponisfree = (req, res) => {
     });
 };
 
-exports.managerLeaveUncheck = (req, res) => {
-  console.log(req.body);
+exports.managerReplacelist = (req, res) => {
+  
   let replacement = {
-    route_id: req.body.route_id,
-    yearmonth: req.body.yearmonth
+    route_id: req.body.routeId,
+    yearmonth: req.body.yearMonth
   };
-
+  console.log(req.body,replacement);
 
   db.sequelize
     .query("CALL request_leave(:route_id, :yearmonth)", {
@@ -306,27 +306,70 @@ exports.managerLeaveUncheck = (req, res) => {
       type: db.sequelize.QueryTypes.SELECT,
     })
     .then(function (resp) {
-      let rtn = resp[0];
-      if (!rtn) {
-        const val = {
-          response: "no data",
-          result: false,
-        };
-
-        return res.status(400).send(val);
-      }
-      let array=Object.values(rtn).map((k,i)=>{
-        return convert.toCamel(k);
-      })
-
-      // const val = {
-      //   data: array,
-      
-      // };
-
-      return res.status(200).send(array);
+      commonReturn(resp,res);
     })
     .catch((err) => {
       return res.json(err.message);
     });
 };
+
+exports.getWorkbyManager = (req, res) => {
+  let replacement = {
+    route_id: req.body.routeId,
+    date: req.body.date
+  };
+
+  db.sequelize
+  .query("CALL workbymanager(:route_id, :date)", {
+    replacements: replacement,
+    type: db.sequelize.QueryTypes.SELECT,
+  })
+    .then((resp) => {
+      commonReturn(resp,res);
+    })
+    .catch((err) => {
+      return res.json(err.message);
+    });
+};
+
+
+exports.userDetail = (req, res) => {
+  let replacement = {
+    driver_id: parseInt(req.path.replace("/",""))
+  };
+
+  db.sequelize
+  .query("CALL user_detail(:driver_id)", {
+    replacements: replacement,
+    type: db.sequelize.QueryTypes.SELECT,
+  })
+    .then((resp) => {
+      commonReturn(resp,res);
+    })
+    .catch((err) => {
+      return res.json(err.message);
+    });
+};
+
+const commonReturn=(resp,res)=>{
+  let rtn = resp[0];
+  if (!rtn) {
+    const val = {
+      response: "no data",
+      result: false,
+    };
+
+    return res.status(400).send(val);
+  }
+  let array=Object.values(resp[0]).map((k,i)=>{
+    return convert.toCamel(k);
+  })
+
+  const rtn1={
+    status:200,
+    message:"success",
+    object: array
+  }
+  
+  return res.status(200).send(rtn1);
+}

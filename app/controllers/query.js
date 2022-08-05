@@ -79,71 +79,7 @@ exports.getUserAlert = (req, res) => {
       return res.json(err.message);
     });
 };
-exports.getWorkbyManager = (req, res) => {
-  var query ="select * from work  where route_id = :routeId and date = :date"
 
-  db.sequelize
-    .query(query, {
-      replacements: {
-        routeId: parseInt(req.body.routeId),
-        date: req.body.date
-      },
-      type: db.sequelize.QueryTypes.SELECT,
-    })
-    .then((resp) => {
-      if (!resp) {
-        const val = {
-          response: "no data",
-          result: false,
-        };
-
-        return res.status(400).send(val);
-      }
-      let array=Object.values(resp).map((k,i)=>{
-        return convert.toCamel(k);
-      })
-
-      return res.status(200).send(array);
-    })
-    .catch((err) => {
-      return res.json(err.message);
-    });
-};
-exports.getUserWithStopWorking = (req, res) => {
-  var query ="select * from user  where id = :userId"
-console.log("req.path", req.path)
-  db.sequelize
-    .query(query, {
-      replacements: {
-        userId: parseInt(req.path.replace("/",""))
-      },
-      type: db.sequelize.QueryTypes.SELECT,
-    })
-    .then((resp) => {
-      if (!resp) {
-        const val = {
-          response: "no data",
-          result: false,
-        };
-
-        return res.status(400).send(val);
-      }
-     
-      let array=Object.values(resp).map((k,i)=>{
-        return convert.toCamel(k);
-      })
-      const rtn={
-        status:200,
-        message:"user list return 성공",
-        object: array
-      }
-      f
-      return res.status(200).send(rtn);
-    })
-    .catch((err) => {
-      return res.json(err.message);
-    });
-};
 
 exports.fixedupdate = (req, res) => {
   req.dt.map((k,i)=>{

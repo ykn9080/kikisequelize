@@ -14,7 +14,7 @@ var DataTypes = require("sequelize").DataTypes;
 // var _manage = require("../models/manage");
 var _notice = require("./notice");
 var _alert = require("./alert");
-var _user_alert=require("./user_alert");
+var _user_alert = require("./user_alert");
 // var _notification = require("../models/notification");
 // var _notification_box = require("../models/notification_box");
 // var _replace_request = require("../models/replace_request");
@@ -24,14 +24,13 @@ var _route_driver1 = require("../auto-models/route_driver1");
 // var _route_setting = require("../models/route_setting");
 // var _schedule_request = require("../models/schedule_request");
 // var _schedule_setting = require("../models/schedule_setting");
- var _stop_working = require("../auto-models/stop_working");
-// var _tutorial = require("../models/tutorial");
+var _stop_working = require("../auto-models/stop_working");
+var _tutorial = require("../auto-models/tutorial");
 // var _user = require("../models/user");
 // var _user_notice = require("../models/user_notice");
-// var _work = require("../models/work");
+var _work = require("../models/work");
 // var _work_check = require("../models/work_check");
 // var _work_request = require("../models/work_request");
-
 
 function initModels(sequelize) {
   // var bus = _bus(sequelize, DataTypes);
@@ -54,16 +53,15 @@ function initModels(sequelize) {
   // var notification_box = _notification_box(sequelize, DataTypes);
   // var replace_request = _replace_request(sequelize, DataTypes);
   // var route = _route(sequelize, DataTypes);
-  var route_driver = _route_driver(sequelize, DataTypes);
-  var route_driver1 = _route_driver1(sequelize, DataTypes);
+  var routeDriver = _route_driver(sequelize, DataTypes);
   // var route_setting = _route_setting(sequelize, DataTypes);
   // var schedule_request = _schedule_request(sequelize, DataTypes);
   // var schedule_setting = _schedule_setting(sequelize, DataTypes);
   var stopworking = _stop_working(sequelize, DataTypes);
-  // var tutorial = _tutorial(sequelize, DataTypes);
+  var tutorial = _tutorial(sequelize, DataTypes);
   // var user = _user(sequelize, DataTypes);
   // var user_notice = _user_notice(sequelize, DataTypes);
-  // var work = _work(sequelize, DataTypes);
+  var work = _work(sequelize, DataTypes);
   // var work_check = _work_check(sequelize, DataTypes);
   // var work_request = _work_request(sequelize, DataTypes);
 
@@ -177,7 +175,6 @@ function initModels(sequelize) {
   // work.hasMany(replace_request, { as: "res_driver_leave_replace_requests", foreignKey: "res_driver_leave_id"});
   // replace_request.belongsTo(work, { as: "res_driver_work", foreignKey: "res_driver_work_id"});
   // work.hasMany(replace_request, { as: "res_driver_work_replace_requests", foreignKey: "res_driver_work_id"});
-  
 
   return {
     // bus,
@@ -193,23 +190,22 @@ function initModels(sequelize) {
     // holidays,
     // lost,
     // manage,
-      //notice,
-      //alert,
-      //user_alert,
+    notice,
+    alert,
+    user_alert,
     // notification,
     // notification_box,
     // replace_request,
     // route,
-    //route_driver,
-    route_driver1,
+    routeDriver,
     // route_setting,
     // schedule_request,
     // schedule_setting,
-      //stopworking,
-    // tutorial,
+    stopworking,
+    tutorial,
     // user,
     // user_notice,
-    // work,
+    work,
     // work_check,
     // work_request,
   };
