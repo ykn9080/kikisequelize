@@ -1,6 +1,4 @@
-const db = require("../models");
-const route_driver=db.route_driver;
-const convert  = require("../middleware/CamelSnake");
+const reqres = require("./requestResponse");
 /**
 {
     "query":
@@ -9,99 +7,50 @@ const convert  = require("../middleware/CamelSnake");
 }
  */
 exports.getQuery = (req, res) => {
-  db.sequelize
-    .query(req.body.query, {
-      replacements: req.body.replacements,
-      type: db.sequelize.QueryTypes.SELECT,
-    })
-    .then((resp) => {
-      return res.status(200).send(resp);
-    })
-    .catch((err) => {
-      return res.json(err.message);
-    });
+  reqres.commonQueryBody(req.body.query, req.body.replacements, res);
 };
-exports.getPatientInfo = (req, res) => {
+exports.getRestbyDriverAndYearmonth = (req, res) => {
   var query =
-    "SELECT a.* FROM tb_patient a LEFT JOIN tb_service b ON a.patient_id = b.patient_id" +
-    " WHERE b.service_id=:service_id";
-  db.sequelize
-    .query(query, {
-      replacements: {
-        service_id: parseInt(req.body.service_id),
-      },
-      type: db.sequelize.QueryTypes.SELECT,
-    })
-    .then((resp) => {
-      return res.status(200).send(resp);
-    })
-    .catch((err) => {
-      return res.json(err.message);
-    });
+    "SELECT * FROM rest" +
+    " WHERE driver_id=:driverId and DATE_FORMAT(date,'%Y-%m')= :yearMonth";
+  const replacement = reqres.replacementPathReturn(req, ["yearMonth"]);
+  replacement.driverId = req.id;
+  reqres.commonQueryBody(query, replacement, res);
 };
-
-
-exports.getPatientInfo = (req, res) => {
+exports.getRestbyManagerAndYearmonth = (req, res) => {
+  let replacement = reqres.replacementPathReturn(req, ["yearMonth", "routeId"]);
+  replacement.managerId = req.id;
   var query =
-    "SELECT a.* FROM tb_patient a LEFT JOIN tb_service b ON a.patient_id = b.patient_id" +
-    " WHERE b.service_id=:service_id";
-  db.sequelize
-    .query(query, {
-      replacements: {
-        service_id: parseInt(req.body.service_id),
-      },
-      type: db.sequelize.QueryTypes.SELECT,
-    })
-    .then((resp) => {
-      return res.status(200).send(resp);
-    })
-    .catch((err) => {
-      return res.json(err.message);
-    });
+    "select a.*,c.business_place_id branch_id,e.name route_name, d.name driver_name from rest a " +
+    "join route_driver b on a.driver_id=b.driver_id and a.route_id=b.route_id " +
+    "join route e on a.route_id=e.id " +
+    "join manage c on c.route_id=a.route_id join user d on a.driver_id=d.id " +
+    "where c.manager_id=:managerId and  DATE_FORMAT(a.date,'%Y-%m')=:yearMonth";
+  if (replacement.routeId != -1)
+    query += " and a.route_id=" + replacement.routeId;
+  reqres.commonQueryBody(query, replacement, res);
 };
-
-
-exports.getUserAlert = (req, res) => {
+/**
+ * work get 대신실행됨(modifyData에서 intercept)
+ * @param {*} req
+ * @param {*} res
+ */
+exports.getWorkAddShift = (req, res) => {
   var query =
-    "SELECT a.* FROM tb_patient a LEFT JOIN tb_service b ON a.patient_id = b.patient_id" +
-    " WHERE b.service_id=:service_id";
-  db.sequelize
-    .query(query, {
-      replacements: {
-        service_id: parseInt(req.body.service_id),
-      },
-      type: db.sequelize.QueryTypes.SELECT,
-    })
-    .then((resp) => {
-      return res.status(200).send(resp);
-    })
-    .catch((err) => {
-      return res.json(err.message);
-    });
+    "select a.*,b.shift from work a " +
+    "join route_driver b on a.driver_id=b.driver_id and a.route_id=b.route_id " +
+    "where status like 'work%' and a.route_id=:routeId and a.date=:date";
+  reqres.commonQueryBody(query, req.query, res);
 };
 
-
-exports.fixedupdate = (req, res) => {
-  req.dt.map((k,i)=>{
-      db.route_driver.update({fixed_start_order:k.fixed_start_order,created_at:k.created_at }, {
-          where: { id: k.id },
-        });
-  });
- res.send(req.dt);
-      // .then((num) => {
-      //   if (num == 1) {
-      //     res.send({
-      //       message: "Tutorial was updated successfully.",
-      //     });
-      //   } else {
-      //     res.send({
-      //       message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`,
-      //     });
-      //   }
-      // })
-      // .catch((err) => {
-      //   res.status(500).send({
-      //     message: "Error updating Tutorial with id=" + id,
-      //   });
-      // });
-}
+// exports.fixedupdate = (req, res) => {
+//   req.dt.map((k, i) => {
+//     db.route_driver.update(
+//       { fixed_start_order: k.fixed_start_order, created_at: k.created_at },
+//       {
+//         where: { id: k.id },
+//       }
+//     );
+//   });
+//   res.send(req.dt);
+// };

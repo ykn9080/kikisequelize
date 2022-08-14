@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url":"http://192.168.0.22:8484"
+      "url":"http://kikibus.iptime.org:8484"
 
     }
   ],
@@ -138,6 +138,11 @@
   "/api/managerReplaceList": {
     "post": {
       "description": "매니저가 미승인한 휴무교환, 연차신청목록",
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
       "tags":["replace_request"],
       "responses": {
         "200": {
@@ -369,6 +374,223 @@
       "responses": {}
     }
   },
+  "/api/bus/bulk": {
+    "post": {
+      "description": "bus 정보 일괄변경",
+      "tags":["bus"],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "403": {
+          "description": "Forbidden"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                "example": [ {"number":  "경가999바9999",
+                "status": "NORMAL",
+                "busType":  "GENERAL",
+                "companyId": 1,
+                "routeId":  100,
+                "managerId": 2221,"isrun":1},{"number":  "경가999바9991",
+                  "status": "NORMAL",
+                  "busType":  "GENERAL",
+                  "companyId": 1,
+                  "routeId":  101,
+                  "managerId": 2221}]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/api/bus": {
+    "post": {
+      "description": "버스 정보등록",
+      "tags":["bus"],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "403": {
+          "description": "Forbidden"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "number": {
+                  "example": "경가999바9999"
+                },
+                "status": {
+                  "example": "NORMAL"
+                },
+                "busType": {
+                  "example": "GENERAL"
+                },
+                "companyId": {
+                  "example": 1
+                },
+                "routeId": {
+                  "example": 100
+                },
+                "managerId": {
+                  "example": 2221
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "get": {
+      "description": "BUS 리스트보기(?isrun=1&companyId=1&routeId=6)",
+      "tags":["bus"],
+      "parameters": [
+        {
+          "name": "isrun",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "integer"
+          },
+          "example":1
+        },
+        {
+          "name": "companyId",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "integer"
+          },
+          "example":1
+        },
+        {
+          "name": "routeId",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "integer"
+          },
+          "example":6
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/bus/{id}": {
+    "get": {
+      "description": "BUS별 정보조회",
+      "tags":["bus"],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":6
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    },
+    "put": {
+      "description": "",
+      "tags":["bus"],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "isrun": {
+                  "example": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    },
+    "delete": {
+      "description": "",
+      "tags":["bus"],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {}
+    }
+  },
   "/api/user/{id}": {
     "get": {
       "description": "승무원별정보 stopworking포함",
@@ -390,6 +612,46 @@
         },
         "500": {
           "description": "Internal Server Error"
+        }
+      }
+    }
+  },
+  "/api/routedriver/bulk": {
+    "put": {
+      "description": "route,shift내의 fixed start order 일괄변경",
+      "tags":["routeDriver"],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "403": {
+          "description": "Forbidden"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                "example": [{"id":3644,"fixedStartOrder":1},{"id":3647,"fixedStartOrder":0},{"id":4287,"fixedStartOrder":2}]
+                },
+                "duplicate": {
+                  "example": ["fixedStartOrder"]
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -434,10 +696,188 @@
       }
     }
   },
-  "/api/routedriver/bulk": {
-    "put": {
-      "description": "route,shift내의 fixed start order 일괄변경",
-      "tags":["routeDriver"],
+  "/api/work": {
+   
+    "get": {
+      "description": "work with shift(?isrun=1&companyId=1&routeId=6)",
+      "tags":["work"],
+      "parameters": [
+        {
+          "name": "routeId",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "integer"
+          },
+          "example":19
+        },
+        {
+          "name": "date",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example":"2022-08-21"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/leavedatebydriver/{routeId}/{Shift}": {
+    "get": {
+      "description": "노선&조별 당월의 일별 휴무상태리스트",
+      "tags":["work"],
+      "parameters": [
+        {
+          "name": "routeId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":21
+        },
+        {
+          "name": "Shift",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":"A"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/findshiftthismonth/{routeId}/{date}": {
+    "get": {
+      "description": "노선별 해당월의 시작조찾기",
+      "tags":["work"],
+      "parameters": [
+        {
+          "name": "routeId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":21
+        },
+        {
+          "name": "date",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":"2022-06-23"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/rest/driver/{yearMonth}": {
+    "get": {
+      "description": "월별 승무원별 휴무신청리스트",
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "tags":["rest"],
+      "parameters": [
+
+        {
+          "name": "yearMonth",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":"2022-04"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/rest/manager/{yearMonth}/{routeId}": {
+    "get": {
+      "description": "관리자의 노선(들)의 월별 승무원별 휴무신청리스트",
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "tags":["rest"],
+      "parameters": [
+        {
+          "name": "yearMonth",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":"2022-04"
+        },
+        {
+          "name": "routeId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":-1
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/rest": {
+    "post": {
+      "description": "휴무 신청정보 입력",
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "tags":["rest"],
       "responses": {
         "200": {
           "description": "OK"
@@ -461,19 +901,400 @@
             "schema": {
               "type": "object",
               "properties": {
-                "data": {
-                "example": [{"id":3644,"fixedStartOrder":1},{"id":3647,"fixedStartOrder":0},{"id":4287,"fixedStartOrder":2}]
+                "driverId": {
+                  "example": "371"
                 },
-                "duplicate": {
-                  "example": ["fixedStartOrder"]
+                "routeId": {
+                  "example": "19"
+                },
+                "date": {
+                  "example": "2022-04-01"
+                }
+             }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/api/rest/{id}": {
+    "put": {
+      "description": "",
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "tags":["rest"],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "example": "2022-04-01"
+                }              
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    },
+    "delete": {
+      "description": "",
+      "tags":["rest"],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {}
+    }
+  },
+  "/api/scheduleperiodfind/{routeId}/{yearMonth}": {
+    "get": {
+      "description": "노선별 당월의 휴무신청기간찾기",
+      "tags":["schedule_setting"],
+      "parameters": [
+        {
+          "name": "routeId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":19
+        },
+        {
+          "name": "yearMonth",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":"2022-03"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/dailybusnumworknumyearmonth/{routeId}/{yearMonth}": {
+    "get": {
+      "description": "노선별 해당월의 가동대수/근무인원(routeId=-1이면 매니저관리 전노선)",
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "tags":["route_setting","work"],
+      "parameters": [
+        {
+          "name": "routeId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":19
+        },
+        {
+          "name": "yearMonth",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":"2022-03"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/logresult":{
+    "post": {
+      "description": "sample swagger file출력",
+      "tags":["swagger"],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "apiname"
+                },
+                "security": {
+                  "example": "false"
+                },
+                "attributes": {
+                  "example": ["pros1","props2"]
+                }
+             }
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/cronschedule": {
+    "post": {
+      "description": "버스,승무원의 변경예정내역을 등록함.",
+      "tags":["cronSchedule"],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "403": {
+          "description": "Forbidden"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "busId": {
+                  "type": "integer"
+                },
+                "driverId": {
+                  "type": "integer"
+                },
+                "changeDate": {
+                  "type": "string"
+                },
+                "routeId": {
+                  "type": "integer"
+                },
+                "shift": {
+                  "type": "string"
+                },
+                "driverBusId": {
+                  "type": "integer"
+                }
+              }
+            },
+            "examples": {
+              "Bus": {
+                "value": {
+                  "BusId": 10,
+                  "changeDate": "2022-08-13",
+                  "routeId": 19
+                }
+              },
+              "Dirver": {
+                "value": {
+                  "driverId": 11,
+                  "changeDate": "2022-08-13",
+                  "routeId": 19,
+                  "shift":"A",
+                  "driverBusId": 11
                 }
               }
             }
           }
         }
       }
+    },
+
+    "get": {
+      "description": "버스/승무원 변경예약 리스트보기",
+      "tags":["cronSchedule"],
+      "parameters": [
+        {
+          "name": "busId",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example":"$not null"
+        },
+        {
+          "name": "driverId",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example":"$not null"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/cronschedule/{id}": {
+    "get": {
+      "description": "버스/승무원별 변경예약 내역조회",
+      "tags":["cronSchedule"],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":1
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    },
+    "put": {
+      "description": "버스/승무원별 변경예약 내용 변경",
+      "tags":["cronSchedule"],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "busId": {
+                  "type": "integer"
+                },
+                "driverId": {
+                  "type": "integer"
+                },
+                "changeDate": {
+                  "type": "string"
+                },
+                "routeId": {
+                  "type": "integer"
+                },
+                "shift": {
+                  "type": "string"
+                },
+                "driverBusId": {
+                  "type": "integer"
+                }
+              }
+            },
+            "examples": {
+              "Bus": {
+                "value": {
+                  "BusId": 10,
+                  "changeDate": "2022-08-13",
+                  "routeId": 19
+                }
+              },
+              "Dirver": {
+                "value": {
+                  "driverId": 11,
+                  "changeDate": "2022-08-13",
+                  "routeId": 19,
+                  "shift":"A",
+                  "driverBusId": 11
+                }
+              }
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    },
+    "delete": {
+      "description": "",
+      "tags":["cronSchedule"],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {}
     }
   }
+
   },
   "components": {
     "securitySchemes": {

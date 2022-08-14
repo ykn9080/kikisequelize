@@ -4,6 +4,7 @@ const express = require("express");
 const Tutorial = db.tutorials;
 const Op = db.Sequelize.Op;
 const convert = require("../middleware/CamelSnake");
+const proc = require("./procedure");
 
 // Create and Save a new Tutorial
 module.exports = (Table) => {
@@ -18,7 +19,15 @@ module.exports = (Table) => {
       const data = convert.toSnakeObjArray(req.body.data);
       Table.bulkCreate(data)
         .then(function (response) {
-          res.send(response);
+          let array = Object.values(response).map((k, i) => {
+            return convert.toCamel(k);
+          });
+
+          res.send({
+            status: 200,
+            message: "success",
+            object: array,
+          });
         })
         .catch(function (error) {
           res.send(error);
@@ -27,7 +36,13 @@ module.exports = (Table) => {
       const bd = convert.toSnake(req.body);
       Table.create(bd)
         .then((data) => {
-          res.send(data);
+          let newdata = convert.toCamel(data.get({ plain: true }));
+          afterCreateEvent(Table, newdata, res);
+          res.send({
+            status: 200,
+            message: "save success",
+            object: data,
+          });
         })
         .catch((err) => {
           res.status(500).send({
@@ -83,6 +98,10 @@ module.exports = (Table) => {
     // created_date=2020-01-01$>=
     // service_id=36$like
     // service_id=365,374$in
+    // others($후의 조건): >,<=,<, not in, not between,is null, is not null
+    // order=name^date(name, date orderby)
+    // order=name-desc^date-asc(name은 desc, date는 asc orderby)
+    // attribute=id^name (id와 name만)
     //--------------------------------------------
     const likeattach = (op, txt) => {
       if (op === Op.like) {
@@ -128,7 +147,7 @@ module.exports = (Table) => {
   // Retrieve all Tutorials from the database.
   const readMany = (req, res) => {
     req.query = queryClean(req.query);
-    console.log(req.query);
+    req.query = convert.toSnake(req.query);
     const order = req.query.order;
     const attributes = req.query.attributes;
     delete req.query.order;
@@ -138,7 +157,6 @@ module.exports = (Table) => {
 
     var condition = cnt > 0 ? req.query : null;
     if (condition) condition = makeCondition(condition);
-    console.log("condition", condition);
     let option = { where: condition };
     if (order) {
       var odr = order.split("^");
@@ -203,7 +221,11 @@ module.exports = (Table) => {
         updateOnDuplicate: onduplicate,
       })
         .then(function (response) {
-          res.send(response);
+          res.send({
+            status: 200,
+            message: "success",
+            object: response,
+          });
         })
         .catch(function (error) {
           res.send(error);
@@ -291,6 +313,18 @@ module.exports = (Table) => {
   //     });
   // };
 
+  const afterCreateEvent = (Table, data, res) => {
+    if (Table === db["stopworking"]) {
+      const replacement = {
+        driverId: data.driverId,
+        referId: data.id,
+      };
+      proc.commonQueryBody(
+        "alert_create(:driverId,null,'stop_working', :referId)",
+        replacement
+      );
+    }
+  };
   // ======
   // Routes
   // ======

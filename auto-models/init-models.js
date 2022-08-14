@@ -1,8 +1,9 @@
 var DataTypes = require("sequelize").DataTypes;
-// var _bus = require("../models/bus");
+var _bus = require("../auto-models/bus");
 // var _business_place = require("../models/business_place");
 // var _company = require("../models/company");
 // var _company_group = require("../models/company_group");
+var _cron_schedule = require("../auto-models/cron_schedule");
 // var _day_off = require("../models/day_off");
 // var _delete_user = require("../models/delete_user");
 // var _dispatch = require("../models/dispatch");
@@ -17,7 +18,8 @@ var _alert = require("./alert");
 var _user_alert = require("./user_alert");
 // var _notification = require("../models/notification");
 // var _notification_box = require("../models/notification_box");
-// var _replace_request = require("../models/replace_request");
+var _replace_request = require("../models/replace_request");
+var _rest = require("../auto-models/rest");
 // var _route = require("../models/route");
 var _route_driver = require("../auto-models/route_driver");
 var _route_driver1 = require("../auto-models/route_driver1");
@@ -33,10 +35,11 @@ var _work = require("../models/work");
 // var _work_request = require("../models/work_request");
 
 function initModels(sequelize) {
-  // var bus = _bus(sequelize, DataTypes);
+  var bus = _bus(sequelize, DataTypes);
   // var business_place = _business_place(sequelize, DataTypes);
   // var company = _company(sequelize, DataTypes);
   // var company_group = _company_group(sequelize, DataTypes);
+  var cronSchedule = _cron_schedule(sequelize, DataTypes);
   // var day_off = _day_off(sequelize, DataTypes);
   // var delete_user = _delete_user(sequelize, DataTypes);
   // var dispatch = _dispatch(sequelize, DataTypes);
@@ -51,7 +54,8 @@ function initModels(sequelize) {
   var user_alert = _user_alert(sequelize, DataTypes);
   // var notification = _notification(sequelize, DataTypes);
   // var notification_box = _notification_box(sequelize, DataTypes);
-  // var replace_request = _replace_request(sequelize, DataTypes);
+  var replaceRequest = _replace_request(sequelize, DataTypes);
+  var rest = _rest(sequelize, DataTypes);
   // var route = _route(sequelize, DataTypes);
   var routeDriver = _route_driver(sequelize, DataTypes);
   // var route_setting = _route_setting(sequelize, DataTypes);
@@ -177,10 +181,11 @@ function initModels(sequelize) {
   // work.hasMany(replace_request, { as: "res_driver_work_replace_requests", foreignKey: "res_driver_work_id"});
 
   return {
-    // bus,
+    bus,
     // business_place,
     // company,
     // company_group,
+    cronSchedule,
     // day_off,
     // delete_user,
     // dispatch,
@@ -195,7 +200,8 @@ function initModels(sequelize) {
     user_alert,
     // notification,
     // notification_box,
-    // replace_request,
+    replaceRequest,
+    rest,
     // route,
     routeDriver,
     // route_setting,

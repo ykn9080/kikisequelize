@@ -1,12 +1,14 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+require("./app/util/cron"); //cron job설정
 
 const app = express();
 //require("./swagger")(app);
-const swaggerUi=require("swagger-ui-express")
-const swaggerDocument=require("./swagger/swagger-output.json")
-const token='eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzOTU4IiwiaXNzIjoia2lraUIiLCJpYXQiOjE2NTgwMjg4MDQsImV4cCI6MTY1ODYzMzYwNH0.aS5mMgD6vvm0WgBSkBKSLt7fvkkqolWkwq5m01GbJY3IiBx6BiVL7hB56ecO8O8lAJe8ZO7O2y8aECmCWA-gFA';
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger/swagger-output.json");
+const token =
+  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzOTU4IiwiaXNzIjoia2lraUIiLCJpYXQiOjE2NTgwMjg4MDQsImV4cCI6MTY1ODYzMzYwNH0.aS5mMgD6vvm0WgBSkBKSLt7fvkkqolWkwq5m01GbJY3IiBx6BiVL7hB56ecO8O8lAJe8ZO7O2y8aECmCWA-gFA";
 const swaggerUiOptions = {
   swaggerOptions: {
     authAction: {
@@ -24,9 +26,11 @@ const swaggerUiOptions = {
   persistAuthorization: true,
 };
 
-app.use("/doc",swaggerUi.serve, swaggerUi.setup(swaggerDocument,swaggerUiOptions))
-
-
+app.use(
+  "/doc",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, swaggerUiOptions)
+);
 
 // const swaggerUi = require("swagger-ui-express");
 
@@ -48,7 +52,6 @@ app.use("/doc",swaggerUi.serve, swaggerUi.setup(swaggerDocument,swaggerUiOptions
 // );
 
 // app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
-
 
 app.use(cors());
 

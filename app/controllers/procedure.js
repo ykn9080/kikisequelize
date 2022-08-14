@@ -1,375 +1,71 @@
-const db = require("../models");
-const crypto = require("../util/crypto");
-const moment = require("moment");
-const convert  = require("../middleware/CamelSnake");
-
-exports.findLast = (req, res) => {
-  db.sequelize
-    .query("select   LAST_INSERT_ID()", {
-      mapToModel: false, // pass true here if you have any mapped fields
-    })
-    .then((rtn) => {
-      return res.status(400).send(rtn[0][0]);
-    });
-};
-
-
-exports.couponuse = (req, res) => {
-  const intime = new Date();
-  console.log(req.body);
-  var query =
-    "CALL couponuse(:account_id, :islab, :service_id,:number_of_deductions)";
-
-  let decr = JSON.parse(crypto.decrypt(req.body.request));
-  console.log(decr.isfree);
-  if (decr.isfree && decr.isfree === true) {
-    query =
-      "CALL couponuse_free(:account_id, :islab, :service_id,:number_of_deductions)";
-  }
-
-  let replacement = {
-    account_id: parseInt(decr.account_id),
-    islab: (decr.islab === true) | (decr.islab === "true") ? 1 : 0,
-    service_id: !isNaN(parseInt(decr.service_id))
-      ? parseInt(decr.service_id)
-      : null,
-    isfree: (decr.isfree === true) | (decr.isfree === "true") ? 1 : 0,
-    number_of_deductions: parseInt(decr.number_of_deductions),
-  };
-
-  db.sequelize
-    .query(query, {
-      replacements: replacement,
-      type: db.sequelize.QueryTypes.SELECT,
-    })
-    .then((resp) => {
-      console.log(resp);
-      let rtn = resp[0]["0"];
-      if (!rtn.msg) {
-        let makertn = {
-          magic_code: decr.magic_code,
-          salt: Math.floor(Math.random() * 10000000000),
-          number_of_coupons: rtn.number_of_coupons,
-        };
-        console.log("decr.isfree", decr.isfree);
-        if ((decr.isfree === true) | (decr.isfree === "true")) {
-          delete makertn.number_of_coupons;
-          makertn.cumulative_usage_count = rtn.number_of_coupons;
-        }
-        let encrytedrtn = crypto.encrypt(JSON.stringify(makertn));
-        const val = {
-          response: encrytedrtn,
-          result: false,
-          reason: rtn.errmsg,
-          result_code: rtn.result_code,
-        };
-        console.log(val);
-        return res.status(400).send(val);
-      }
-      rtn.magic_code = decr.magic_code;
-      rtn.salt = Math.floor(Math.random() * 10000000000);
-
-      var ms = moment(new Date(), "DD/MM/YYYY HH:mm:ss.SSS").diff(
-        moment(intime, "DD/MM/YYYY HH:mm:ss.SSS")
-      );
-      var d = moment.duration(ms);
-      var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss.SSS");
-      console.log(rtn);
-      if ((decr.isfree === true) | (decr.isfree === "true")) {
-        rtn.cumulative_usage_count = rtn.number_of_coupons;
-        delete rtn.number_of_coupons;
-      }
-      let encrytedrtn = crypto.encrypt(JSON.stringify(rtn));
-      if (decr.plain) encrytedrtn = rtn;
-      const val = {
-        response: encrytedrtn,
-        reason: "",
-        result: true,
-        result_code: 0,
-        intime: intime,
-        outtime: new Date(),
-        length: s,
-      };
-
-      return res.status(200).send(val);
-    })
-    .catch((err) => {
-      console.log("err", err.message);
-      const val = {
-        response: "",
-        result: false,
-        reason: err.message,
-        result_code: 10,
-      };
-      return res.status(200).json(val);
-    });
-};
-exports.couponcount = (req, res) => {
-  console.log("body", req.body);
-  const intime = new Date();
-  let decr = JSON.parse(crypto.decrypt(req.body.request));
-
-  console.log("decr", decr);
-
-  var query = "CALL couponcount(:account_id, :islab)";
-  db.sequelize
-    .query(query, {
-      replacements: {
-        account_id: parseInt(decr.account_id),
-        islab: (decr.islab === true) | (decr.islab === "true") ? 1 : 0,
-      },
-      type: db.sequelize.QueryTypes.SELECT,
-    })
-    .then((resp) => {
-      let rtn = resp[0]["0"];
-      console.log(rtn);
-
-      if (rtn.number_of_coupons) {
-        const val = {
-          response: "",
-          result: false,
-          reason: rtn.errmsg,
-          result_code: rtn.result_code,
-        };
-        console.log(val);
-        return res.status(400).send(val);
-      }
-      rtn.magic_code = decr.magic_code;
-      rtn.salt = Math.floor(Math.random() * 10000000000);
-      console.log(rtn);
-
-      let encrytedrtn = crypto.encrypt(JSON.stringify(rtn));
-      if (decr.plain) encrytedrtn = rtn;
-      var ms = moment(new Date(), "DD/MM/YYYY HH:mm:ss.SSS").diff(
-        moment(intime, "DD/MM/YYYY HH:mm:ss.SSS")
-      );
-      var d = moment.duration(ms);
-      var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss.SSS");
-
-      const val = {
-        response: encrytedrtn,
-        reason: "",
-        result: true,
-        result_code: 0,
-        intime: intime,
-        outtime: new Date(),
-        length: s,
-      };
-
-      return res.status(200).send(val);
-    })
-    .catch((err) => {
-      const val = {
-        response: "",
-        result: false,
-        reason: err.message,
-        result_code: 10,
-      };
-      return res.json(val);
-    });
-};
-
-exports.couponbuy = (req, res) => {
-  console.log("body", req.body);
-  const intime = new Date();
-  let decr = JSON.parse(crypto.decrypt(req.body.request));
-
-  console.log("decr", decr);
-
-  var query = "CALL couponbuy(:account_id, :islab, :coupontype)";
-  db.sequelize
-    .query(query, {
-      replacements: {
-        account_id: parseInt(decr.account_id),
-        islab: (decr.islab === true) | (decr.islab === "true") ? 1 : 0,
-        coupontype: parseInt(decr.coupontype),
-      },
-      type: db.sequelize.QueryTypes.SELECT,
-    })
-    .then((resp) => {
-      let rtn = resp[0]["0"];
-      console.log(rtn);
-
-      if (!rtn.number_of_coupons) {
-        const val = {
-          response: "",
-          result: false,
-          reason: rtn.errmsg,
-          result_code: rtn.result_code,
-        };
-        console.log(val);
-        return res.status(400).send(val);
-      }
-      rtn.magic_code = decr.magic_code;
-      rtn.salt = Math.floor(Math.random() * 10000000000);
-      console.log(rtn);
-
-      let encrytedrtn = crypto.encrypt(JSON.stringify(rtn));
-      if (decr.plain) encrytedrtn = rtn;
-      var ms = moment(new Date(), "DD/MM/YYYY HH:mm:ss.SSS").diff(
-        moment(intime, "DD/MM/YYYY HH:mm:ss.SSS")
-      );
-      var d = moment.duration(ms);
-      var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss.SSS");
-
-      const val = {
-        response: encrytedrtn,
-        reason: "",
-        result: true,
-        result_code: 0,
-        intime: intime,
-        outtime: new Date(),
-        length: s,
-      };
-
-      return res.status(200).send(val);
-    })
-    .catch((err) => {
-      const val = {
-        response: "",
-        result: false,
-        reason: err.message,
-        result_code: 10,
-      };
-      return res.json(val);
-    });
-};
-
-exports.couponisfree = (req, res) => {
-  const intime = new Date();
-  console.log(req.body);
-  var query = "select isfree from couponfree where id=1";
-  let decr = JSON.parse(crypto.decrypt(req.body.request));
-  db.sequelize
-    .query(query, {
-      type: db.sequelize.QueryTypes.SELECT,
-    })
-    .then((resp) => {
-      console.log("res:p", resp);
-      let rtn = resp[0];
-      if (rtn.isfree==="undefined") {
-        const val = {
-          response: "",
-          result: false,
-          reason: rtn.errmsg,
-          result_code: rtn.result_code,
-        };
-        console.log(val);
-        return res.status(400).send(val);
-      }
-      rtn.magic_code = decr.magic_code;
-      rtn.salt = Math.floor(Math.random() * 10000000000);
-      rtn.isfree = rtn.isfree === 1 ? true : false;
-      let encrytedrtn = crypto.encrypt(JSON.stringify(rtn));
-
-      var ms = moment(new Date(), "DD/MM/YYYY HH:mm:ss.SSS").diff(
-        moment(intime, "DD/MM/YYYY HH:mm:ss.SSS")
-      );
-      var d = moment.duration(ms);
-      var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss.SSS");
-
-      const val = {
-        response: encrytedrtn,
-        reason: "",
-        result: true,
-        result_code: 0,
-        intime: intime,
-        outtime: new Date(),
-        length: s,
-      };
-
-      return res.status(200).send(val);
-    })
-    .catch((err) => {
-      console.log("err", err.message);
-      const val = {
-        response: "",
-        result: false,
-        reason: err.message,
-        result_code: 10,
-      };
-      return res.json(val);
-    });
-};
+const reqres = require("./requestResponse");
 
 exports.managerReplacelist = (req, res) => {
-  
   let replacement = {
-    route_id: req.body.routeId,
-    yearmonth: req.body.yearMonth
+    managerId: req.id,
+    routeId: req.body.routeId,
+    yearmonth: req.body.yearMonth,
   };
-  console.log(req.body,replacement);
 
-  db.sequelize
-    .query("CALL request_leave(:route_id, :yearmonth)", {
-      replacements: replacement,
-      type: db.sequelize.QueryTypes.SELECT,
-    })
-    .then(function (resp) {
-      commonReturn(resp,res);
-    })
-    .catch((err) => {
-      return res.json(err.message);
-    });
+  reqres.commonQueryBody(
+    " request_leave(:managerId, :routeId, :yearmonth)",
+    replacement,
+    res
+  );
 };
 
 exports.getWorkbyManager = (req, res) => {
   let replacement = {
-    route_id: req.body.routeId,
-    date: req.body.date
+    routeId: req.body.routeId,
+    date: req.body.date,
   };
-
-  db.sequelize
-  .query("CALL workbymanager(:route_id, :date)", {
-    replacements: replacement,
-    type: db.sequelize.QueryTypes.SELECT,
-  })
-    .then((resp) => {
-      commonReturn(resp,res);
-    })
-    .catch((err) => {
-      return res.json(err.message);
-    });
+  reqres.commonQueryBody("workbymanager(:routeId, :date)", replacement, res);
 };
-
 
 exports.userDetail = (req, res) => {
-  let replacement = {
-    driver_id: parseInt(req.path.replace("/",""))
-  };
-
-  db.sequelize
-  .query("CALL user_detail(:driver_id)", {
-    replacements: replacement,
-    type: db.sequelize.QueryTypes.SELECT,
-  })
-    .then((resp) => {
-      commonReturn(resp,res);
-    })
-    .catch((err) => {
-      return res.json(err.message);
-    });
+  const replacement = reqres.replacementPathReturn(req, ["driverId"]);
+  reqres.commonQueryBody(" user_detail(:driverId)", replacement, res);
 };
 
-const commonReturn=(resp,res)=>{
-  let rtn = resp[0];
-  if (!rtn) {
-    const val = {
-      response: "no data",
-      result: false,
-    };
+exports.findShiftThisMonth = (req, res) => {
+  const replacement = reqres.replacementPathReturn(req, ["routeId", "indate"]);
+  reqres.commonQueryBody(
+    "find_shift_this_month(:routeId, :indate)",
+    replacement,
+    res
+  );
+};
+exports.leaveDateByDriver = (req, res) => {
+  const replacement = reqres.replacementPathReturn(req, ["routeId", "Shift"]);
+  reqres.commonQueryBody(
+    "leave_date_by_driver(:routeId, :Shift)",
+    replacement,
+    res
+  );
+};
+exports.dailyBusnumWorknumYearMonth = (req, res, next) => {
+  let replacement = reqres.replacementPathReturn(req, ["routeId", "yearMonth"]);
+  replacement.managerId = req.id;
+  reqres.commonQueryBody(
+    "daily_busnum_worknum_yearMonth(:managerId, :routeId, :yearMonth)",
+    replacement,
+    res,
+    next
+  );
+};
+exports.schedulePeriodFind = (req, res) => {
+  const replacement = reqres.replacementPathReturn(req, [
+    "routeId",
+    "yearMonth",
+  ]);
+  reqres.commonQueryBody(
+    "schedule_period_find(:routeId, :yearMonth)",
+    replacement,
+    res
+  );
+};
 
-    return res.status(400).send(val);
-  }
-  let array=Object.values(resp[0]).map((k,i)=>{
-    return convert.toCamel(k);
-  })
-
-  const rtn1={
-    status:200,
-    message:"success",
-    object: array
-  }
-  
-  return res.status(200).send(rtn1);
-}
+exports.simpleTest = (req, res) => {
+  let replacement = {};
+  reqres.commonQueryBody("simple_test()", replacement, res);
+};

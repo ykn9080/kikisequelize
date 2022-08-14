@@ -12,6 +12,7 @@ exports.toCamel = (data) => {
 exports.toSnake = (data) => {
   return _.mapKeys(data, (value, key) => _.snakeCase(key));
 };
+
 /**
  *
  * @param {*} data =[{id:2, stopType:"good"},{id:3, stopType:"bad"}]
