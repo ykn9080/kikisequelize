@@ -13,12 +13,12 @@ exports.getRestbyDriverAndYearmonth = (req, res) => {
   var query =
     "SELECT * FROM rest" +
     " WHERE driver_id=:driverId and DATE_FORMAT(date,'%Y-%m')= :yearMonth";
-  const replacement = reqres.replacementPathReturn(req, ["yearMonth"]);
+  const replacement = req.params;
   replacement.driverId = req.id;
   reqres.commonQueryBody(query, replacement, res);
 };
 exports.getRestbyManagerAndYearmonth = (req, res) => {
-  let replacement = reqres.replacementPathReturn(req, ["yearMonth", "routeId"]);
+  let replacement = req.params;
   replacement.managerId = req.id;
   var query =
     "select a.*,c.business_place_id branch_id,e.name route_name, d.name driver_name from rest a " +
@@ -41,6 +41,10 @@ exports.getWorkAddShift = (req, res) => {
     "join route_driver b on a.driver_id=b.driver_id and a.route_id=b.route_id " +
     "where status like 'work%' and a.route_id=:routeId and a.date=:date";
   reqres.commonQueryBody(query, req.query, res);
+};
+exports.cronJobSetting = (req, res, next) => {
+  var query = "select * from cron_timer where isactive=1";
+  reqres.commonQueryBody(query, null, res);
 };
 
 // exports.fixedupdate = (req, res) => {

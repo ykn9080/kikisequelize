@@ -23,44 +23,36 @@ exports.getWorkbyManager = (req, res) => {
 };
 
 exports.userDetail = (req, res) => {
-  const replacement = reqres.replacementPathReturn(req, ["driverId"]);
-  reqres.commonQueryBody(" user_detail(:driverId)", replacement, res);
+  reqres.commonQueryBody(" user_detail(:id)", req.params, res);
 };
 
 exports.findShiftThisMonth = (req, res) => {
-  const replacement = reqres.replacementPathReturn(req, ["routeId", "indate"]);
   reqres.commonQueryBody(
-    "find_shift_this_month(:routeId, :indate)",
-    replacement,
+    "find_shift_this_month(:routeId, :date)",
+    req.params,
     res
   );
 };
 exports.leaveDateByDriver = (req, res) => {
-  const replacement = reqres.replacementPathReturn(req, ["routeId", "Shift"]);
   reqres.commonQueryBody(
-    "leave_date_by_driver(:routeId, :Shift)",
-    replacement,
+    "leave_date_by_driver(:routeId, :shift)",
+    req.params,
     res
   );
 };
-exports.dailyBusnumWorknumYearMonth = (req, res, next) => {
-  let replacement = reqres.replacementPathReturn(req, ["routeId", "yearMonth"]);
+exports.dailyBusnumWorknumYearMonth = (req, res) => {
+  let replacement = req.params;
   replacement.managerId = req.id;
   reqres.commonQueryBody(
     "daily_busnum_worknum_yearMonth(:managerId, :routeId, :yearMonth)",
     replacement,
-    res,
-    next
+    res
   );
 };
 exports.schedulePeriodFind = (req, res) => {
-  const replacement = reqres.replacementPathReturn(req, [
-    "routeId",
-    "yearMonth",
-  ]);
   reqres.commonQueryBody(
     "schedule_period_find(:routeId, :yearMonth)",
-    replacement,
+    req.params,
     res
   );
 };

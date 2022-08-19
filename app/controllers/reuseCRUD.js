@@ -16,6 +16,7 @@ module.exports = (Table) => {
           { stop_type: "ttt1" },
         ]
        */
+
       const data = convert.toSnakeObjArray(req.body.data);
       Table.bulkCreate(data)
         .then(function (response) {

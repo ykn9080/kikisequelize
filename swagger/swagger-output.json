@@ -479,6 +479,7 @@
       "parameters": [
         {
           "name": "isrun",
+          "description": "1:운행중, 0:폐차",
           "in": "query",
           "required": false,
           "schema": {
@@ -515,6 +516,7 @@
       }
     }
   },
+
   "/api/bus/{id}": {
     "get": {
       "description": "BUS별 정보조회",
@@ -656,9 +658,34 @@
       }
     }
   },
+  "/api/buslocation/{routeId}": {
+    "get": {
+      "description": "실시간 BUS정류장 도착 정보조회",
+      "tags":["routeStation"],
+      "parameters": [
+        {
+          "name": "routeId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":1
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    }
+  },
   "/api/work/bulk": {
     "put": {
-      "description": "",
+      "description": "복수의 승무원work status를 한꺼번에 변경",
       "tags":["work"],
       "responses": {
         "200": {
@@ -1064,8 +1091,14 @@
                 "security": {
                   "example": "false"
                 },
+                "multiexample":{
+                  "example": "false"
+                },
                 "attributes": {
                   "example": ["pros1","props2"]
+                },
+                "include":{
+                  "example":["get","getAll","post","put","delete"]
                 }
              }
             }
@@ -1293,8 +1326,293 @@
       ],
       "responses": {}
     }
+  },
+  "/api/cronTimer": {
+    "post": {
+      "description": "",
+      "tags": [
+        "cronTimer"
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "403": {
+          "description": "Forbidden"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "pattern": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "action": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "string"
+                }
+              }},
+              "examples": {
+                "매일2:00am": {
+                  "value": {
+                    "title": "",
+                    "pattern": "0 2 * * * *",
+                    "message": "",
+                    "action": "() => {const replacement = {param1:'a',param2:'b'}; reqres.noResponseBody(storedprocedurename(:param1,:param2), replacement, 'INSERT', next);}",
+                    "isActive": "0"
+                  }
+                },
+                "매월1일 2:00am": {
+                  "value": {
+                    "title": "",
+                    "pattern": "0 2 1 * *",
+                    "message": "",
+                    "action": "",
+                    "isActive": ""
+                  }
+                },
+                "매월3째주 화요일 2:00am": {
+                  "value": {
+                    "title": "",
+                    "pattern": "00 02 15-21 * 2",
+                    "message": "",
+                    "action": "",
+                    "isActive": ""
+                  }
+                }
+              }
+            
+          }
+        }
+      }
+    },
+    "get": {
+      "description": "",
+      "tags": [
+        "cronTimer"
+      ],
+      "parameters": [
+        {
+          "name": "title",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "pattern",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "message",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "action",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "isActive",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/cronTimer/{id}": {
+    "get": {
+      "description": "",
+      "tags": [
+        "cronTimer"
+      ],
+      "parameters": [
+        {
+          "name": "title",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "pattern",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "message",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "action",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "isActive",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    },
+    "put": {
+      "description": "",
+      "tags": [
+        "cronTimer"
+      ],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "pattern": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "action": {
+                  "type": "string"
+                },
+                "isActive": {
+                  "type": "string"
+                }
+              }
+            },
+              "examples": {
+                "일정교체": {
+                  "value": {
+                    "pattern": "0 2 * * *",
+                    "isActive": 1
+                  }
+                },
+                "서비스중지": {
+                  "value": {
+                    "isActive": 0
+                  }
+                }
+              }
+            }
+          }
+        
+      },
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    },
+    "delete": {
+      "description": "",
+      "tags": [
+        "cronTimer"
+      ],
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {}
+    }
   }
-
+  
   },
   "components": {
     "securitySchemes": {

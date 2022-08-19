@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 require("./app/util/cron"); //cron job설정
-
+//require("./app/util/xmlParser");
 const app = express();
 //require("./swagger")(app);
 const swaggerUi = require("swagger-ui-express");

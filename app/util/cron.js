@@ -1,4 +1,5 @@
 const cronJob = require("cron").CronJob;
+const db = require("../models");
 var fs = require("fs");
 const reqres = require("../controllers/requestResponse");
 const path = "./app/util/cronhistory.txt";
@@ -22,13 +23,19 @@ const jobs = [
   //   },
   // },
 ];
-
-// jobs.forEach((job) => {
-//   new cronJob(job.pattern, () => {
-//     console.log(job.message);
-//     job.action();
-//   }).start();
-// });
+var query = "select * from cron_timer where isactive=1";
+var option = { type: db.sequelize.QueryTypes.SELECT };
+db.sequelize.query(query, option).then((resp) => {
+  //console.log(resp);
+  // if(resp.length>0){
+  // resp.forEach((job) => {
+  //   new cronJob(job.pattern, () => {
+  //     console.log(job.message);
+  //     eval(job.action)();
+  //   }).start();
+  // });
+  //}
+});
 
 const next = (queryname, result) => {
   console.log("callback called!!!" + queryname + " result: " + result);

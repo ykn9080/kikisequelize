@@ -20,8 +20,9 @@ var _user_alert = require("./user_alert");
 // var _notification_box = require("../models/notification_box");
 var _replace_request = require("../models/replace_request");
 var _rest = require("../auto-models/rest");
-// var _route = require("../models/route");
+var _route = require("../auto-models/route");
 var _route_driver = require("../auto-models/route_driver");
+var _route_station = require("../auto-models/route_station");
 var _route_driver1 = require("../auto-models/route_driver1");
 // var _route_setting = require("../models/route_setting");
 // var _schedule_request = require("../models/schedule_request");
@@ -56,8 +57,9 @@ function initModels(sequelize) {
   // var notification_box = _notification_box(sequelize, DataTypes);
   var replaceRequest = _replace_request(sequelize, DataTypes);
   var rest = _rest(sequelize, DataTypes);
-  // var route = _route(sequelize, DataTypes);
+  var route = _route(sequelize, DataTypes);
   var routeDriver = _route_driver(sequelize, DataTypes);
+  var routeStation = _route_station(sequelize, DataTypes);
   // var route_setting = _route_setting(sequelize, DataTypes);
   // var schedule_request = _schedule_request(sequelize, DataTypes);
   // var schedule_setting = _schedule_setting(sequelize, DataTypes);
@@ -202,8 +204,9 @@ function initModels(sequelize) {
     // notification_box,
     replaceRequest,
     rest,
-    // route,
+    route,
     routeDriver,
+    routeStation,
     // route_setting,
     // schedule_request,
     // schedule_setting,

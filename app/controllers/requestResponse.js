@@ -36,16 +36,15 @@ const noResponseBody = async (queryOrProc, replacement, querytype, next) => {
   } catch (e) {
     next(queryOrProc, "failed");
   }
-  // .then((resp) => {
-  //   console.log("success happened");
-  //   next();
-  // })
-  // .catch((err) => {
-  //   console.log("err happened");
-  //   next();
-  // });
 };
-const commonQueryBody = (queryOrProc, replacement, res, next) => {
+/**
+ * query, storedprocedure 이름과 변수를 받아, 쿼리를 실행함.
+ * @param {*} queryOrProc : query문이나 store procedure문
+ * @param {*} replacement : 변수를 받아서
+ * @param {*} res
+ * @param {*} next
+ */
+const commonQueryBody = (queryOrProc, replacement, res) => {
   let option = {
     replacements: replacement,
     type: db.sequelize.QueryTypes.SELECT,
@@ -54,7 +53,8 @@ const commonQueryBody = (queryOrProc, replacement, res, next) => {
     queryOrProc = "CALL " + queryOrProc;
     option.plain = true;
   }
-  console.log("queryOrProc, option:", queryOrProc, option, typeof res);
+  // console.log("queryOrProc, option:", queryOrProc, option, typeof res);
+
   db.sequelize
     .query(queryOrProc, option)
     .then((resp) => {
@@ -62,12 +62,9 @@ const commonQueryBody = (queryOrProc, replacement, res, next) => {
         if (!Array.isArray(resp)) resp = Object.values(resp);
         commonReturn(resp, res);
       }
-      next();
     })
     .catch((err) => {
       if (res) return res.json(err.message);
-      console.log("failed....");
-      next();
     });
 };
 
