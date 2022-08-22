@@ -57,6 +57,20 @@ exports.schedulePeriodFind = (req, res) => {
   );
 };
 
+exports.leaveSummaryByDriver = (req, res) => {
+  let replacement = req.params;
+  replacement.managerId = req.id;
+  reqres.commonQueryBody(
+    "leave_summary_by_driver(:managerId,:routeId, :date)",
+    replacement,
+    res
+  );
+};
+exports.dispatchList = (req, res) => {
+  console.log(req.params);
+  reqres.commonQueryBody("dispatch_list(:routeId, :date)", req.params, res);
+};
+
 exports.simpleTest = (req, res) => {
   let replacement = {};
   reqres.commonQueryBody("simple_test()", replacement, res);
