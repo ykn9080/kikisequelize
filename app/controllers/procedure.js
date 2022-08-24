@@ -35,7 +35,7 @@ exports.findShiftThisMonth = (req, res) => {
 };
 exports.leaveDateByDriver = (req, res) => {
   reqres.commonQueryBody(
-    "leave_date_by_driver(:routeId, :shift)",
+    "leave_date_by_driver(:routeId, :shift, :yearMonth)",
     req.params,
     res
   );
@@ -68,9 +68,17 @@ exports.leaveSummaryByDriver = (req, res) => {
 };
 exports.dispatchList = (req, res) => {
   console.log(req.params);
-  reqres.commonQueryBody("dispatch_list(:routeId, :date)", req.params, res);
+  reqres.commonQueryBody("dispatch_list(:routeId, :datetime)", req.params, res);
 };
-
+exports.routeListByManager = (req, res) => {
+  let replacement = req.params;
+  replacement.managerId = req.id;
+  reqres.commonQueryBody(
+    "route_list_by_manager(:managerId,:placeId, :datetime)",
+    replacement,
+    res
+  );
+};
 exports.simpleTest = (req, res) => {
   let replacement = {};
   reqres.commonQueryBody("simple_test()", replacement, res);

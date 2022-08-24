@@ -1,5 +1,6 @@
 var DataTypes = require("sequelize").DataTypes;
 var _bus = require("../auto-models/bus");
+var _bus_arrival = require("../auto-models/bus_arrival");
 // var _business_place = require("../models/business_place");
 // var _company = require("../models/company");
 // var _company_group = require("../models/company_group");
@@ -8,11 +9,12 @@ var _cron_schedule = require("../auto-models/cron_schedule");
 // var _delete_user = require("../models/delete_user");
 // var _dispatch = require("../models/dispatch");
 // var _driving_issue = require("../models/driving_issue");
-// var _edge_device = require("../models/edge_device");
+var _edge_device = require("../auto-models/edge_device");
 // var _hibernate_sequence = require("../models/hibernate_sequence");
 // var _holidays = require("../models/holidays");
 // var _lost = require("../models/lost");
 // var _manage = require("../models/manage");
+var _motion_capture = require("../auto-models/motion_capture");
 var _notice = require("./notice");
 var _alert = require("./alert");
 var _user_alert = require("./user_alert");
@@ -37,6 +39,7 @@ var _work = require("../models/work");
 
 function initModels(sequelize) {
   var bus = _bus(sequelize, DataTypes);
+  var busArrival = _bus_arrival(sequelize, DataTypes);
   // var business_place = _business_place(sequelize, DataTypes);
   // var company = _company(sequelize, DataTypes);
   // var company_group = _company_group(sequelize, DataTypes);
@@ -45,11 +48,12 @@ function initModels(sequelize) {
   // var delete_user = _delete_user(sequelize, DataTypes);
   // var dispatch = _dispatch(sequelize, DataTypes);
   // var driving_issue = _driving_issue(sequelize, DataTypes);
-  // var edge_device = _edge_device(sequelize, DataTypes);
+  var edgeDevice = _edge_device(sequelize, DataTypes);
   // var hibernate_sequence = _hibernate_sequence(sequelize, DataTypes);
   // var holidays = _holidays(sequelize, DataTypes);
   // var lost = _lost(sequelize, DataTypes);
   // var manage = _manage(sequelize, DataTypes);
+  var motionCapture = _motion_capture(sequelize, DataTypes);
   var notice = _notice(sequelize, DataTypes);
   var alert = _alert(sequelize, DataTypes);
   var user_alert = _user_alert(sequelize, DataTypes);
@@ -184,6 +188,7 @@ function initModels(sequelize) {
 
   return {
     bus,
+    busArrival,
     // business_place,
     // company,
     // company_group,
@@ -192,11 +197,12 @@ function initModels(sequelize) {
     // delete_user,
     // dispatch,
     // driving_issue,
-    // edge_device,
+    edgeDevice,
     // hibernate_sequence,
     // holidays,
     // lost,
     // manage,
+    motionCapture,
     notice,
     alert,
     user_alert,

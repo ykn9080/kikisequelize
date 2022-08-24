@@ -55,7 +55,7 @@ const modifyData = (modelname) => {
             type: models.sequelize.QueryTypes.SELECT,
           })
           .then(function (resp) {
-            if (resp[0][0].offnum <= 0)
+            if (resp[0][0].offnum != null && resp[0][0].offnum <= 0)
               res.send("인원초과 ! 다른날을 선택하세요.");
             else next();
           })

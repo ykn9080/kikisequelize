@@ -683,6 +683,21 @@
       }
     }
   },
+  "/api/checkBusArrival": {
+    "get": {
+      "description": "최종정류장 도착 버스시간찾기",
+      "tags":["routeStation"],
+
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    }
+  },
   "/api/busedge/{routeId}": {
     "get": {
       "description": "Edge Device와 연동한 실시간 BUS정류장 도착 정보조회(개발중...)",
@@ -783,10 +798,10 @@
       }
     }
   },
-  "/api/leavedatebydriver/{routeId}/{Shift}": {
+  "/api/leavedatebydriver/{routeId}/{Shift}/{yearMonth}": {
     "get": {
       "description": "노선&조별 당월의 일별 휴무상태리스트",
-      "tags":["work"],
+      "tags":["rest"],
       "parameters": [
         {
           "name": "routeId",
@@ -805,6 +820,15 @@
             "type": "string"
           },
           "example":"A"
+        },
+        {
+          "name": "yearMonth",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":"2022-08"
         }
       ],
       "responses": {
@@ -890,7 +914,47 @@
       }
     }
   },
-  "/api/dispachlist/{routeId}/{date}": {
+  "/api/routeListByManager/{placeId}/{datetime}": {
+    "get": {
+      "description": "매니저별 접근 시간에 따른 영업소 및 노선정보",
+      "tags":["route"],
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "parameters": [
+        {
+          "name": "placeId",
+          "in": "path",
+          "description": "placeId=-1 일 경우 매니저 관리 전 영업소",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":-1
+        },
+        {
+          "name": "datetime",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "example":"2022-06-02 08:30:00"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/dispatchlist/{routeId}/{datetime}": {
     "get": {
       "description": "각 노선별 배차정보",
       "tags":["dispatch"],
@@ -906,13 +970,13 @@
           "example":19
         },
         {
-          "name": "date",
+          "name": "datetime",
           "in": "path",
           "required": true,
           "schema": {
             "type": "string"
           },
-          "example":"2022-03-16"
+          "example":"2021-11-20 08:30:00"
         }
       ],
       "responses": {
@@ -925,6 +989,7 @@
       }
     }
   },
+ 
   "/api/rest/driver/{yearMonth}": {
     "get": {
       "description": "월별 승무원별 휴무신청리스트",
@@ -1709,6 +1774,356 @@
         }
       ],
       "responses": {}
+    }
+  },
+  "/api/motionCapture": {
+    "post": {
+      "description": "",
+      "tags": [
+        "motionCapture"
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "403": {
+          "description": "Forbidden"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "detectionTime": {
+                  "example": ""
+                },
+                "busName": {
+                  "example": ""
+                },
+                "isbelt": {
+                  "example": ""
+                },
+                "iscellphone": {
+                  "example": ""
+                },
+                "imageId": {
+                  "example": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "get": {
+      "description": "",
+      "tags": [
+        "motionCapture"
+      ],
+      "parameters": [
+        {
+          "name": "detectionTime",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "busName",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "isbelt",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "iscellphone",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "imageId",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/motionCapture/{id}": {
+    "get": {
+      "description": "",
+      "tags": [
+        "motionCapture"
+      ],
+      "parameters": [
+        {
+          "name": "detectionTime",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "busName",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "isbelt",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "iscellphone",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "imageId",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
+    }
+  },
+  "/api/edgeDevice": {
+    "post": {
+      "description": "",
+      "tags": [
+        "edgeDevice"
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "403": {
+          "description": "Forbidden"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      },
+      "requestBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lon": {
+                  "example": ""
+                },
+                "lat": {
+                  "example": ""
+                },
+                "time": {
+                  "example": ""
+                },
+                "busName": {
+                  "example": ""
+                },
+                "speed": {
+                  "example": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "get": {
+      "description": "",
+      "tags": [
+        "edgeDevice"
+      ],
+      "parameters": [
+        {
+          "name": "lon",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "lat",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "time",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "busName",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "speed",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "description": "Bad Request"
+        }
+      }
+    }
+  },
+  "/api/edgeDevice/{id}": {
+    "get": {
+      "description": "",
+      "tags": [
+        "edgeDevice"
+      ],
+      "parameters": [
+        {
+          "name": "lon",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "lat",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "time",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "busName",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        },
+        {
+          "name": "speed",
+          "in": "query",
+          "required": false,
+          "schema": {
+            "type": "string"
+          },
+          "example": ""
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK"
+        },
+        "500": {
+          "description": "Internal Server Error"
+        }
+      }
     }
   }
   
