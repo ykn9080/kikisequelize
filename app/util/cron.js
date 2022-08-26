@@ -2,15 +2,15 @@ const cronJob = require("cron").CronJob;
 const db = require("../models");
 var fs = require("fs");
 const reqres = require("../controllers/requestResponse");
+const { default: axios } = require("axios");
 const path = "./app/util/cronhistory.txt";
 const jobs = [
   {
     title: "test1234",
     pattern: "*/10 * * * * *",
-    message: "this runs ever 15 seconds",
+    message: "this runs ever 10 seconds",
     action: () => {
-      const replacement = {};
-      reqres.noResponseBody("simpletest()", replacement, "INSERT", next);
+      axios.get("http://kikibus.iptime.org:8484/api/busLocation");
     },
   },
   // {
@@ -26,16 +26,22 @@ const jobs = [
 var query = "select * from cron_timer where isactive=1";
 var option = { type: db.sequelize.QueryTypes.SELECT };
 db.sequelize.query(query, option).then((resp) => {
-  //console.log(resp);
-  // if(resp.length>0){
-  // resp.forEach((job) => {
-  //   new cronJob(job.pattern, () => {
-  //     console.log(job.message);
-  //     eval(job.action)();
-  //   }).start();
-  // });
-  //}
+  console.log(resp);
+  if (resp.length > 0) {
+    resp.forEach((job) => {
+      new cronJob(job.pattern, () => {
+        console.log(job.message, new Date());
+        eval(job.action)();
+      }).start();
+    });
+  }
 });
+// new cronJob(jobs[0].pattern, () => {
+//   console.log(jobs[0].message, new Date());
+//   axios.get("http://localhost:8484/api/checkbusarrival").catch(function (err) {
+//     console.log("axios err", err); // 에러 처리 내용
+//   });
+// }).start();
 
 const next = (queryname, result) => {
   console.log("callback called!!!" + queryname + " result: " + result);

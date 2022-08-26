@@ -269,13 +269,14 @@ module.exports = (Table) => {
       where: condition,
     })
       .then((num) => {
+        console.log(num);
         if (num == 1) {
           res.send({
             message: "deleted successfully!",
           });
         } else {
           res.send({
-            message: `Cannot delete with  Maybe Tutorial was not found!`,
+            message: `Cannot delete Maybe data was not found!`,
           });
         }
       })

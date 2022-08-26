@@ -5,6 +5,7 @@ var _bus_arrival = require("../auto-models/bus_arrival");
 // var _company = require("../models/company");
 // var _company_group = require("../models/company_group");
 var _cron_schedule = require("../auto-models/cron_schedule");
+var _cron_timer = require("../auto-models/cron_timer");
 // var _day_off = require("../models/day_off");
 // var _delete_user = require("../models/delete_user");
 // var _dispatch = require("../models/dispatch");
@@ -26,7 +27,7 @@ var _route = require("../auto-models/route");
 var _route_driver = require("../auto-models/route_driver");
 var _route_station = require("../auto-models/route_station");
 var _route_driver1 = require("../auto-models/route_driver1");
-// var _route_setting = require("../models/route_setting");
+var _route_setting = require("../models/route_setting");
 // var _schedule_request = require("../models/schedule_request");
 // var _schedule_setting = require("../models/schedule_setting");
 var _stop_working = require("../auto-models/stop_working");
@@ -44,6 +45,7 @@ function initModels(sequelize) {
   // var company = _company(sequelize, DataTypes);
   // var company_group = _company_group(sequelize, DataTypes);
   var cronSchedule = _cron_schedule(sequelize, DataTypes);
+  var cronTimer = _cron_timer(sequelize, DataTypes);
   // var day_off = _day_off(sequelize, DataTypes);
   // var delete_user = _delete_user(sequelize, DataTypes);
   // var dispatch = _dispatch(sequelize, DataTypes);
@@ -64,7 +66,7 @@ function initModels(sequelize) {
   var route = _route(sequelize, DataTypes);
   var routeDriver = _route_driver(sequelize, DataTypes);
   var routeStation = _route_station(sequelize, DataTypes);
-  // var route_setting = _route_setting(sequelize, DataTypes);
+  var route_setting = _route_setting(sequelize, DataTypes);
   // var schedule_request = _schedule_request(sequelize, DataTypes);
   // var schedule_setting = _schedule_setting(sequelize, DataTypes);
   var stopworking = _stop_working(sequelize, DataTypes);
@@ -193,6 +195,7 @@ function initModels(sequelize) {
     // company,
     // company_group,
     cronSchedule,
+    cronTimer,
     // day_off,
     // delete_user,
     // dispatch,
@@ -213,7 +216,7 @@ function initModels(sequelize) {
     route,
     routeDriver,
     routeStation,
-    // route_setting,
+    route_setting,
     // schedule_request,
     // schedule_setting,
     stopworking,

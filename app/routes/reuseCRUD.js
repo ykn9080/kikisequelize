@@ -43,26 +43,30 @@ const modifyData = (modelname) => {
         break;
       case "rest":
         //update or insert: 해당일의 휴무가능일수가 >0인지를 체크
+        console.log(req.method);
+
         if (["POST", "PUT"].indexOf(req.method) === -1) next();
-        let replacement = {
-          driverId: req.id,
-          routeId: req.body.routeId,
-          restdate: req.body.date,
-        };
-        models["rest"].sequelize
-          .query("CALL leave_date_confirm(:driverId, :routeId, :restdate)", {
-            replacements: replacement,
-            type: models.sequelize.QueryTypes.SELECT,
-          })
-          .then(function (resp) {
-            if (resp[0][0].offnum != null && resp[0][0].offnum <= 0)
-              res.send("인원초과 ! 다른날을 선택하세요.");
-            else next();
-          })
-          .catch((err) => {
-            console.log(err);
-            res.err("에러나서 진행이 안됩니다.");
-          });
+        else {
+          let replacement = {
+            driverId: req.id,
+            routeId: req.body.routeId,
+            restdate: req.body.date,
+          };
+          models["rest"].sequelize
+            .query("CALL leave_date_confirm(:driverId, :routeId, :restdate)", {
+              replacements: replacement,
+              type: models.sequelize.QueryTypes.SELECT,
+            })
+            .then(function (resp) {
+              if (resp[0][0].offnum != null && resp[0][0].offnum <= 0)
+                res.send("인원초과 ! 다른날을 선택하세요.");
+              else next();
+            })
+            .catch((err) => {
+              console.log(err);
+              res.err("에러나서 진행이 안됩니다.");
+            });
+        }
         break;
       case "bus":
         if (req.method === "DELETE")

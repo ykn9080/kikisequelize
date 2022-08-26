@@ -1153,6 +1153,11 @@
     "delete": {
       "description": "",
       "tags":["rest"],
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
       "parameters": [
         {
           "name": "id",
@@ -1537,13 +1542,22 @@
                 }
               }},
               "examples": {
+                "1분간격으로": {
+                  "value": {
+                    "title": "차고지 버스도착시간 체크",
+                    "pattern": "* * * * *",
+                    "message": "",
+                    "action": "() => {reqres.axiosRun('post', 'http://kikibus.iptime.org:8484/api/busLocation');}",
+                    "isactive": 1
+                  }
+                },
                 "매일2:00am": {
                   "value": {
                     "title": "",
                     "pattern": "0 2 * * * *",
                     "message": "",
                     "action": "() => {const replacement = {param1:'a',param2:'b'}; reqres.noResponseBody(storedprocedurename(:param1,:param2), replacement, 'INSERT', next);}",
-                    "isActive": "0"
+                    "isactive": 0
                   }
                 },
                 "매월1일 2:00am": {
@@ -1552,7 +1566,7 @@
                     "pattern": "0 2 1 * *",
                     "message": "",
                     "action": "",
-                    "isActive": ""
+                    "isactive": 0
                   }
                 },
                 "매월3째주 화요일 2:00am": {
@@ -1561,7 +1575,7 @@
                     "pattern": "00 02 15-21 * 2",
                     "message": "",
                     "action": "",
-                    "isActive": ""
+                    "isactive": 0
                   }
                 }
               }
@@ -1831,53 +1845,6 @@
       "tags": [
         "motionCapture"
       ],
-      "parameters": [
-        {
-          "name": "detectionTime",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "busName",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "isbelt",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "iscellphone",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "imageId",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        }
-      ],
       "responses": {
         "200": {
           "description": "OK"
@@ -1894,53 +1861,7 @@
       "tags": [
         "motionCapture"
       ],
-      "parameters": [
-        {
-          "name": "detectionTime",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "busName",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "isbelt",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "iscellphone",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "imageId",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        }
-      ],
+
       "responses": {
         "200": {
           "description": "OK"
@@ -2006,53 +1927,7 @@
       "tags": [
         "edgeDevice"
       ],
-      "parameters": [
-        {
-          "name": "lon",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "lat",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "time",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "busName",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "speed",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        }
-      ],
+     
       "responses": {
         "200": {
           "description": "OK"
@@ -2069,53 +1944,7 @@
       "tags": [
         "edgeDevice"
       ],
-      "parameters": [
-        {
-          "name": "lon",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "lat",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "time",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "busName",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        },
-        {
-          "name": "speed",
-          "in": "query",
-          "required": false,
-          "schema": {
-            "type": "string"
-          },
-          "example": ""
-        }
-      ],
+
       "responses": {
         "200": {
           "description": "OK"

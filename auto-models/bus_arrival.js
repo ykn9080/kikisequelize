@@ -29,6 +29,14 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
+      stop_1: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      stop2_2: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
       check_time: {
         type: DataTypes.DATE,
         allowNull: true,

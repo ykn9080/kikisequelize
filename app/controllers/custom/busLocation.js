@@ -3,8 +3,9 @@ var xml2js = require("xml2js");
 const _ = require("lodash");
 const axios = require("axios");
 const convert = require("../../middleware/CamelSnake");
+const reqres = require("../requestResponse");
 
-exports.getBusLocation = async (req, res) => {
+const getBusLocation = async (req, res) => {
   let replacement = req.params;
   const routeId = req.params.routeId;
   const serviceKey =
@@ -50,7 +51,7 @@ exports.getBusLocation = async (req, res) => {
   return res.status(200).send(rtn1);
 };
 
-exports.getBusLocationEdge = async (req, res) => {
+const getBusLocationEdge = async (req, res) => {
   let replacement = req.params;
   const routeId = req.params.routeId;
   const serviceKey =
@@ -96,7 +97,7 @@ exports.getBusLocationEdge = async (req, res) => {
   return res.status(200).send(rtn1);
 };
 
-exports.checkBusArrival = async (req, res) => {
+const checkBusArrival = async (req, res) => {
   let replacement = req.params;
   const routeId = req.params.routeId;
   const serviceKey =
@@ -140,44 +141,6 @@ exports.checkBusArrival = async (req, res) => {
     { key: 277103100, start: 1 },
   ];
 
-  // const busStopArr = [
-  //   208000096,
-  //   208000097,
-  //   208000132,
-  //   208000195,
-  //   208000263,
-  //   209000053,
-  //   224000626,
-  //   225000426,
-  //   225000429,
-  //   226000155,
-  //   226000207,
-  //   277101753,
-  //   277102421,
-  //   277102718,
-  //   277102719,
-  //   277102720,
-  //   277102746,
-  //   277103101,
-  //   277104392,
-
-  //   209000076,
-  //   277102421, //
-  //   208000027,
-  //   225000180,
-  //   224000876,
-  //   208000236,
-  //   277102717,
-  //   225000430,
-  //   225000191,
-  //   226000318,
-  //   225000010,
-  //   208000264,
-  //   226000206,
-  //   225000425,
-  //   277103100,
-  // ];
-
   const returnObj = (k, time1, start) => {
     return {
       api_route_id: parseInt(k.routeId[0]),
@@ -187,6 +150,13 @@ exports.checkBusArrival = async (req, res) => {
       remain_2: isNaN(parseInt(k.predictTime2[0]))
         ? null
         : parseInt(k.predictTime2[0]),
+
+      stop_1: isNaN(parseInt(k.locationNo1[0]))
+        ? null
+        : parseInt(k.locationNo1[0]),
+      stop_2: isNaN(parseInt(k.locationNo2[0]))
+        ? null
+        : parseInt(k.locationNo2[0]),
       bus_1: k.plateNo1[0],
       bus_2: k.plateNo2[0],
       check_time: time1,
@@ -195,8 +165,22 @@ exports.checkBusArrival = async (req, res) => {
   };
 
   var parser = new xml2js.Parser();
-  let time = Date.now();
+  let time = new Date();
 
+  // time =
+  //   time.getFullYear() +
+  //   "-" +
+  //   ("0" + (time.getMonth() + 1)).slice(-2) +
+  //   "-" +
+  //   ("0" + time.getDate()).slice(-2) +
+  //   " " +
+  //   ("0" + time.getHours()).slice(-2) +
+  //   ":" +
+  //   ("0" + time.getMinutes()).slice(-2) +
+  //   ":" +
+  //   ("0" + time.getSeconds()).slice(-2);
+
+  console.log(time);
   let finalArr = [];
 
   finalArr = await Promise.all(
@@ -204,11 +188,11 @@ exports.checkBusArrival = async (req, res) => {
       const xml = await axios.get(
         `${url}?serviceKey=${serviceKey}&stationId=${z.key}`
       );
-      parser.parseString(xml.data, function (err, result) {
-        if (result?.response?.msgHeader)
-          time = result.response.msgHeader[0]["queryTime"][0];
-      });
-      console.log(time);
+      // parser.parseString(xml.data, function (err, result) {
+      //   if (result?.response?.msgHeader)
+      //     time = result.response.msgHeader[0]["queryTime"][0];
+      // });
+      // console.log(time);
 
       const result = await new Promise((resolve, reject) =>
         parser.parseString(xml.data, (err, result) => {
@@ -247,6 +231,8 @@ exports.checkBusArrival = async (req, res) => {
     db["busArrival"].create(k);
   });
 
+  const replacement1 = { checkTime: time };
+  reqres.noResponseBody("dispatch_arrival(:checkTime)", replacement1, "INSERT");
   //db["busArrival"].bulkCreate({ data: data });
 
   const rtn1 = {
@@ -271,3 +257,7 @@ const xmlParse = (xmldata, bodyComponent, returnObj, next) => {
   });
   return extractedData;
 };
+
+module.exports.checkBusArrival = checkBusArrival;
+module.exports.getBusLocation = getBusLocation;
+module.exports.getBusLocationEdge = getBusLocationEdge;

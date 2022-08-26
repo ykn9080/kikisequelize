@@ -72,7 +72,24 @@ db.sequelize.sync({ force: false, alter: false });
 // simple route
 const crypto = require("./app/util/crypto");
 app.get("/healthcheck", (req, res) => res.send("Hello World!"));
-app.get("/", (req, res) => res.send("Hello World root!"));
+app.get("/", (req, res) => {
+  let time = new Date();
+
+  time =
+    time.getFullYear() +
+    "-" +
+    ("0" + (time.getMonth() + 1)).slice(-2) +
+    "-" +
+    ("0" + time.getDate()).slice(-2) +
+    " " +
+    ("0" + time.getHours()).slice(-2) +
+    ":" +
+    ("0" + time.getMinutes()).slice(-2) +
+    ":" +
+    ("0" + time.getSeconds()).slice(-2);
+
+  res.send(time); //, "Hello World root!");
+});
 app.post("/enc", (req, res) => {
   console.log(req.body);
   res.json({
