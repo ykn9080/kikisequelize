@@ -1,4 +1,5 @@
 const reqres = require("./requestResponse");
+const db = require("../models");
 
 exports.managerReplacelist = (req, res) => {
   let replacement = {
@@ -69,6 +70,26 @@ exports.leaveSummaryByDriver = (req, res) => {
 exports.dispatchList = (req, res) => {
   console.log(req.params);
   reqres.commonQueryBody("dispatch_list(:routeId, :datetime)", req.params, res);
+};
+exports.dispatchList1 = async (req, res) => {
+  let option = {
+    replacements: req.params,
+    type: db.sequelize.QueryTypes["select"],
+    plain: true,
+  };
+  let queryOrProc = "CALL dispatch_list(:routeId, :datetime)";
+  const rtn = await db.sequelize.query(queryOrProc, option);
+  option = {
+    replacements: req.params,
+    type: db.sequelize.QueryTypes["select"],
+    plain: true,
+  };
+  option.replacements.managerId = req.id;
+  option.replacements.date = option.replacements.datetime;
+  queryOrProc = "CALL leave_summary_by_driver(:managerId,:routeId, :date)";
+  const rtn1 = await db.sequelize.query(queryOrProc, option);
+
+  console.log(rtn, rtn1);
 };
 exports.routeListByManager = (req, res) => {
   let replacement = req.params;

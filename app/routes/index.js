@@ -38,6 +38,7 @@ module.exports = (app) => {
     proc.schedulePeriodFind
   );
   app.use("/api/dispatchlist/:routeId/:datetime", proc.dispatchList);
+  app.use("/api/dispatchlist1/:routeId/:datetime", auth, proc.dispatchList1);
   app.use(
     "/api/routelistbymanager/:placeId/:datetime",
     auth,
