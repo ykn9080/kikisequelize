@@ -16,17 +16,18 @@ const verifyToken = (req, res, next) => {
     return res
       .status(403)
       .send(
-        req.headers["Authorization"] + "A token is required for authentication"
+        req.headers["Authorization"] + " A token is required for authentication"
       );
   }
 
   try {
     token = token.split(" ")[1];
+    console.log(token);
     let secret = config.TOKEN_KEY;
     if (!secret) secret = "NMA8JPctFuna59f5";
     //const decoded = jwt.verify(token, text);
     const decoded = jwt.decode(token, secret, (algorithm = "HS512"));
-
+    console.log;
     req.id = decoded.sub;
     console.log("req.id", req.id);
   } catch (err) {

@@ -67,11 +67,11 @@ exports.leaveSummaryByDriver = (req, res) => {
     res
   );
 };
-exports.dispatchList = (req, res) => {
+exports.dispatchList1 = (req, res) => {
   console.log(req.params);
   reqres.commonQueryBody("dispatch_list(:routeId, :datetime)", req.params, res);
 };
-exports.dispatchList1 = async (req, res) => {
+exports.dispatchList = async (req, res) => {
   let option = {
     replacements: req.params,
     type: db.sequelize.QueryTypes["select"],
@@ -88,8 +88,19 @@ exports.dispatchList1 = async (req, res) => {
   option.replacements.date = option.replacements.datetime;
   queryOrProc = "CALL leave_summary_by_driver(:managerId,:routeId, :date)";
   const rtn1 = await db.sequelize.query(queryOrProc, option);
-
-  console.log(rtn, rtn1);
+  let rtnn = Object.values(rtn);
+  let rtnn1 = Object.values(rtn1);
+  rtnn.map((k, i) => {
+    Object.values(rtn1).forEach((v) => {
+      if (k.driverId === v.driverId) {
+        k.leave_sum = v.leave_sum;
+        k.last_work_date = v.last_work_date;
+        k.work_inarow = v.work_inarow;
+        rtnn.splice(i, 1, k);
+      }
+    });
+  });
+  reqres.commonReturn(rtnn, res);
 };
 exports.routeListByManager = (req, res) => {
   let replacement = req.params;
