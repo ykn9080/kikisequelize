@@ -1493,6 +1493,34 @@
         "responses": {}
       }
     },
+    "/api/cronStart": {
+      "get": {
+        "description": "cronJob을 일괄 실행함",
+        "tags": ["cronTimer"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/cronStop": {
+      "get": {
+        "description": "cronJob을 일괄 중지함",
+        "tags": ["cronTimer"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
     "/api/cronTimer": {
       "post": {
         "description": "",

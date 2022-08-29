@@ -23,25 +23,35 @@ const jobs = [
   //   },
   // },
 ];
-var query = "select * from cron_timer where isactive=1";
-var option = { type: db.sequelize.QueryTypes.SELECT };
-db.sequelize.query(query, option).then((resp) => {
-  console.log(resp);
-  if (resp.length > 0) {
-    resp.forEach((job) => {
-      new cronJob(job.pattern, () => {
-        console.log(job.message, new Date());
-        eval(job.action)();
-      }).start();
-    });
-  }
-});
-// new cronJob(jobs[0].pattern, () => {
-//   console.log(jobs[0].message, new Date());
-//   axios.get("http://localhost:8484/api/checkbusarrival").catch(function (err) {
-//     console.log("axios err", err); // 에러 처리 내용
-//   });
-// }).start();
+let cronList = [];
+const cronStart = () => {
+  var query = "select * from cron_timer where isactive=1";
+  var option = { type: db.sequelize.QueryTypes.SELECT };
+  db.sequelize.query(query, option).then((resp) => {
+    console.log(resp);
+    if (resp.length > 0) {
+      resp.forEach((job) => {
+        const cJob = new cronJob(job.pattern, () => {
+          console.log(job.message, new Date());
+          eval(job.action)();
+        });
+        cJob.start();
+        cronList.push(cJob);
+      });
+    }
+  });
+  // new cronJob(jobs[0].pattern, () => {
+  //   console.log(jobs[0].message, new Date());
+  //   axios.get("http://localhost:8484/api/checkbusarrival").catch(function (err) {
+  //     console.log("axios err", err); // 에러 처리 내용
+  //   });
+  // }).start();
+};
+const cronStop = (req, res) => {
+  cronList.forEach((job) => {
+    job.stop();
+  });
+};
 
 const next = (queryname, result) => {
   console.log("callback called!!!" + queryname + " result: " + result);
@@ -74,3 +84,6 @@ exports.queryLog = (req, res) => {
     console.log(data);
   });
 };
+
+module.exports.cronRun = cronRun;
+module.exports.cronStop = cronStop;

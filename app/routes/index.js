@@ -8,6 +8,7 @@ const logresult = require("../../swagger/swaggerMaker");
 const sampledata = require("../util/data1");
 const routedriver = require("../util/data");
 const busLocation = require("../controllers/custom/busLocation");
+const cronJob = require("../util/cron");
 
 //const ctr_tutorial= require("../controllers/custom/tutorial.controller");
 const auth = require("../middleware/auth");
@@ -64,6 +65,9 @@ module.exports = (app) => {
   app.use("/api/buslocation/:routeId", busLocation.getBusLocation);
   app.use("/api/checkbusarrival", busLocation.checkBusArrival);
   app.use("/api/busEdge/:routeId", busLocation.getBusLocationEdge);
+
+  app.use("/api/cronStop", cronJob.cronStop);
+  app.use("/api/cronStart", cronJob.cronStart);
 
   // app.use("/api/dashboard", crud(db.dashboard));
   // app.use("/api/dashdata", crud(db.dashdata));
