@@ -28,11 +28,11 @@ const cronStart = () => {
   var query = "select * from cron_timer where isactive=1";
   var option = { type: db.sequelize.QueryTypes.SELECT };
   db.sequelize.query(query, option).then((resp) => {
-    console.log(resp);
+    //console.log(resp);
     if (resp.length > 0) {
       resp.forEach((job) => {
         const cJob = new cronJob(job.pattern, () => {
-          console.log(job.message, new Date());
+          //console.log(job.message, new Date());
           eval(job.action)();
         });
         cJob.start();
@@ -49,6 +49,7 @@ const cronStart = () => {
 };
 const cronStop = (req, res) => {
   cronList.forEach((job) => {
+    console.log(job.message, new Date(), " stopped!!!");
     job.stop();
   });
 };
@@ -81,9 +82,9 @@ exports.queryLog = (req, res) => {
       console.error(err);
       return;
     }
-    console.log(data);
+    //console.log(data);
   });
 };
 
-module.exports.cronRun = cronRun;
+module.exports.cronStart = cronStart;
 module.exports.cronStop = cronStop;

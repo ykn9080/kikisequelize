@@ -33,6 +33,9 @@ exports.toSnakeArray = (data) => {
     return _.snakeCase(k);
   });
 };
+exports.toSnakeSingle = (data) => {
+  return _.snakeCase(data);
+};
 
 exports.makeReturn = (resp) => {
   return _.mapKeys(resp, (value, key) => _.camelCase(key));

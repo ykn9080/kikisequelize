@@ -8,6 +8,7 @@ const crud = require("../controllers/reuseCRUD");
 const query = require("../controllers/query");
 const models = require("../models");
 const auth = require("../middleware/auth");
+const moment = require("moment");
 
 module.exports = (app) => {
   //  const models = require("../models");
@@ -74,9 +75,35 @@ const modifyData = (modelname) => {
         else next();
         break;
       case "work":
-        if (req.method === "GET") {
-          query.getWorkAddShift(req, res);
-        } else next();
+        switch (req.method) {
+          case "GET":
+            console.log("get,get,get", req.params);
+            if (Object.keys(req.params).length > 0)
+              query.getWorkAddShift(req, res);
+            else next();
+            break;
+          // case "POST":
+          //   break;
+          default:
+            next();
+        }
+        break;
+      case "motionCapture":
+        switch (req.method) {
+          case "POST":
+            req.body.detectionTime = moment(req.body.detectionTime).format(
+              "YYYY-MM-DD HH:mm:ss"
+            );
+            console.log("post,post", req.body.detectionTime);
+            next();
+            // if (Object.keys(req.params).length > 0)
+            //   query.getWorkAddShift(req, res);
+            // else next();
+            break;
+
+          default:
+            next();
+        }
         break;
       default:
         next();

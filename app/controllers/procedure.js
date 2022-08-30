@@ -1,5 +1,6 @@
 const reqres = require("./requestResponse");
 const db = require("../models");
+const moment = require("moment");
 
 exports.managerReplacelist = (req, res) => {
   let replacement = {
@@ -67,9 +68,56 @@ exports.leaveSummaryByDriver = (req, res) => {
     res
   );
 };
-exports.dispatchList1 = (req, res) => {
-  console.log(req.params);
-  reqres.commonQueryBody("dispatch_list(:routeId, :datetime)", req.params, res);
+exports.motionAnalysis = (req, res) => {
+  let replacement = req.params;
+  replacement.managerId = req.id;
+  reqres.commonQueryBody(
+    "motion_analysis(:managerId,:routeId, :yearMonth)",
+    replacement,
+    res
+  );
+};
+exports.dispatchList1 = async (req, res) => {
+  // console.log(req.params);
+  // reqres.commonQueryBody("dispatch_list(:routeId, :datetime)", req.params, res);
+  let option = {
+    replacements: req.params,
+    type: db.sequelize.QueryTypes["select"],
+    plain: true,
+  };
+  console.log(option);
+  let queryOrProc = "CALL dispatch_list(:routeId, :datetime)";
+  const rtn = await db.sequelize.query(queryOrProc, option);
+  option = {
+    replacements: req.params,
+    type: db.sequelize.QueryTypes["select"],
+    plain: true,
+  };
+  option.replacements.managerId = req.id;
+  option.replacements.date = moment(option.replacements.datetime).format(
+    "YYYY-MM-DD"
+  );
+
+  delete option.replacements.datetime;
+  queryOrProc = "CALL leave_summary_by_driver(:managerId,:routeId, :date)";
+  console.log(option);
+  const rtn1 = await db.sequelize.query(queryOrProc, option);
+  let rtnn = Object.values(rtn);
+  let rtnn1 = Object.values(rtn1);
+
+  await Promise.all(
+    rtnn.map((k, i) => {
+      Object.values(rtn1).forEach((v) => {
+        if (k.driverId === v.driverId) {
+          k.leave_sum = v.leave_sum;
+          k.last_work_date = v.last_work_date;
+          k.work_inarow = v.work_inarow;
+          rtnn.splice(i, 1, k);
+        }
+      });
+    })
+  );
+  await reqres.commonReturn(rtnn1, res);
 };
 exports.dispatchList = async (req, res) => {
   let option = {
@@ -90,17 +138,20 @@ exports.dispatchList = async (req, res) => {
   const rtn1 = await db.sequelize.query(queryOrProc, option);
   let rtnn = Object.values(rtn);
   let rtnn1 = Object.values(rtn1);
-  rtnn.map((k, i) => {
-    Object.values(rtn1).forEach((v) => {
-      if (k.driverId === v.driverId) {
-        k.leave_sum = v.leave_sum;
-        k.last_work_date = v.last_work_date;
-        k.work_inarow = v.work_inarow;
-        rtnn.splice(i, 1, k);
-      }
-    });
-  });
-  reqres.commonReturn(rtnn, res);
+
+  await Promise.all(
+    rtnn.map((k, i) => {
+      Object.values(rtn1).forEach((v) => {
+        if (k.driverId === v.driverId) {
+          k.leave_sum = v.leave_sum;
+          k.last_work_date = v.last_work_date;
+          k.work_inarow = v.work_inarow;
+          rtnn.splice(i, 1, k);
+        }
+      });
+    })
+  );
+  await reqres.commonReturn(rtnn, res);
 };
 exports.routeListByManager = (req, res) => {
   let replacement = req.params;

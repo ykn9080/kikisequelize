@@ -26,6 +26,11 @@ const getBusLocation = async (req, res) => {
   );
 
   const result = xmlParse(xml.data, "busLocationList", returnObj);
+  // const edgeresult = reqres.noResponseBody(
+  //   "dispatch_arrival(:checkTime)",
+  //   replacement1,
+  //   "INSERT"
+  // );
   const stations = await db["routeStation"].findAll({
     where: { route_id: routeId },
     raw: true,
@@ -53,12 +58,10 @@ const getBusLocation = async (req, res) => {
 
 const getBusLocationEdge = async (req, res) => {
   let replacement = req.params;
+  console.log(replacement);
   const routeId = req.params.routeId;
-  const serviceKey =
-    "jmMJDKdbuZ8hYoXuyXlCKHYlNp02SQOlUaXXtTfryLsNQmC8HjxAnAe1NFofJ91BANDONhet17UQuHzY3DHJcw%3D%3D";
-  const url = `http://apis.data.go.kr/6410000/buslocationservice/getBusLocationList`;
-  // find api_route_id from route_id
-  const routeRow = await db["route"].findByPk(routeId);
+  const cdate = req.params.cdate;
+  console.log(cdate);
   const returnObj = (k) => {
     return {
       station_id: parseInt(k.stationId[0]),
@@ -67,31 +70,40 @@ const getBusLocationEdge = async (req, res) => {
       bus_number: k.plateNo[0],
     };
   };
-  const xml = await axios.get(
-    `${url}?serviceKey=${serviceKey}&routeId=${routeRow.api_route_id}`
+  const replacement1 = { routeId: routeId, cdate: cdate };
+  let option = {
+    replacements: replacement1,
+    type: db.sequelize.QueryTypes["SELECT"],
+    raw: true,
+  };
+  const rtn = await db.sequelize.query(
+    "call edge_by_time(:routeId,:cdate)",
+    option
   );
 
-  const result = xmlParse(xml.data, "busLocationList", returnObj);
   const stations = await db["routeStation"].findAll({
     where: { route_id: routeId },
     raw: true,
   });
   stations.map((k, i) => {
-    k["bus_arrival"] = 0;
+    k["bus_edge_arrival"] = 0;
     k["bus_number"] = null;
-    result.map((s, j) => {
-      if (k.station_id === s.station_id) {
-        k.bus_arrival = 1;
-        k.bus_number = s.bus_number;
+    stations.splice(i, 1, convert.toCamel(k));
+    Object.values(rtn[0]).map((s, j) => {
+      if (isInCircle({ lng: s.lon, lat: s.lat }, { lng: k.x, lat: k.y }, 0.5)) {
+        k.busEdgeArrival = 1;
+        k.busNumber = s.bus_name;
+        stations.splice(i, 1, k);
+        console.log("imin", k);
+        return;
       }
     });
-    stations.splice(i, 1, convert.toCamel(k));
   });
 
   const rtn1 = {
     status: 200,
     message: "success",
-    object: stations,
+    object: Object.values(stations),
   };
 
   return res.status(200).send(rtn1);
@@ -180,7 +192,7 @@ const checkBusArrival = async (req, res) => {
   //   ":" +
   //   ("0" + time.getSeconds()).slice(-2);
 
-  console.log(time);
+  ///console.log(time);
   let finalArr = [];
 
   finalArr = await Promise.all(
@@ -200,12 +212,17 @@ const checkBusArrival = async (req, res) => {
           else {
             if (!result?.response?.msgBody) resolve(null);
             else {
-              const rtn = result.response.msgBody[0]["busArrivalList"].map(
-                (k, i) => {
-                  return returnObj(k, time, z.start);
-                }
-              );
-              resolve(rtn);
+              try {
+                const rtn = result.response.msgBody[0]["busArrivalList"].map(
+                  (k, i) => {
+                    return returnObj(k, time, z.start);
+                  }
+                );
+                resolve(rtn);
+              } catch (e) {
+                console.log("error happened!!!!");
+                resolve(null);
+              }
             }
           }
         })
@@ -226,7 +243,7 @@ const checkBusArrival = async (req, res) => {
 
     return false;
   });
-  console.log(data);
+
   data.map((k, i) => {
     db["busArrival"].create(k);
   });
@@ -249,14 +266,61 @@ const xmlParse = (xmldata, bodyComponent, returnObj, next) => {
   var parser = new xml2js.Parser();
   parser.parseString(xmldata, function (err, result) {
     //Extract the value from the data element
-    extractedData = result.response.msgBody[0][bodyComponent].map((k, i) => {
-      return returnObj(k);
-    });
+    if (result?.response?.msgBody)
+      extractedData = result.response.msgBody[0][bodyComponent].map((k, i) => {
+        return returnObj(k);
+      });
 
     //if (next) next(extractedData);
   });
   return extractedData;
 };
+
+function degreesToRadians(degrees) {
+  return (degrees * Math.PI) / 180;
+}
+
+function distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
+  var earthRadiusKm = 6371;
+
+  var dLat = degreesToRadians(lat2 - lat1);
+  var dLon = degreesToRadians(lon2 - lon1);
+
+  lat1 = degreesToRadians(lat1);
+  lat2 = degreesToRadians(lat2);
+
+  var a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return earthRadiusKm * c;
+}
+
+/**
+ *
+ * @param {*} currentPos 버스현재 위치
+ * @param {*} stationPos 정류장 위치
+ * @param {*} radius 반경 km :0.05(50m)
+ */
+function isInCircle(currentPos, stationPos, radius) {
+  const distance = distanceInKmBetweenEarthCoordinates(
+    currentPos.lat,
+    currentPos.lng,
+    stationPos.lat,
+    stationPos.lng
+  );
+
+  const calculationResult = distance <= radius;
+  console.log(
+    "Is inside",
+    stationPos,
+    currentPos,
+    distance,
+    radius,
+    calculationResult
+  );
+  return calculationResult;
+}
 
 module.exports.checkBusArrival = checkBusArrival;
 module.exports.getBusLocation = getBusLocation;

@@ -36,11 +36,12 @@ exports.getRestbyManagerAndYearmonth = (req, res) => {
  * @param {*} res
  */
 exports.getWorkAddShift = (req, res) => {
+  console.log(req.params);
   var query =
     "select a.*,b.shift from work a " +
     "join route_driver b on a.driver_id=b.driver_id and a.route_id=b.route_id " +
     "where status like 'work%' and a.route_id=:routeId and a.date=:date";
-  reqres.commonQueryBody(query, req.query, res);
+  reqres.commonQueryBody(query, req.params, res);
 };
 exports.cronJobSetting = (req, res, next) => {
   var query = "select * from cron_timer where isactive=1";

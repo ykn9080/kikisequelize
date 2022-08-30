@@ -9,7 +9,7 @@ const proc = require("./procedure");
 // Create and Save a new Tutorial
 module.exports = (Table) => {
   const create = (req, res) => {
-    console.log(Table);
+    console.log(req.body);
     if (req.body.data && req.body.data.length > 0) {
       /** bulk insert일 경우, data에 key를 제외한 필드전송
        * data= [
@@ -19,7 +19,7 @@ module.exports = (Table) => {
        */
 
       const data = convert.toSnakeObjArray(req.body.data);
-      console.log(data);
+
       Table.bulkCreate(data)
         .then(function (response) {
           let array = Object.values(response).map((k, i) => {
@@ -37,7 +37,7 @@ module.exports = (Table) => {
         });
     } else {
       const bd = convert.toSnake(req.body);
-      console.log(req.body, bd);
+      console.log(bd);
       Table.create(bd)
         .then((data) => {
           let newdata = convert.toCamel(data.get({ plain: true }));
@@ -60,7 +60,6 @@ module.exports = (Table) => {
       let op;
       switch (opp) {
         case ">=":
-          op = Op.gte;
           break;
         case ">":
           op = Op.gt;
@@ -151,7 +150,9 @@ module.exports = (Table) => {
   // Retrieve all Tutorials from the database.
   const readMany = (req, res) => {
     req.query = queryClean(req.query);
+
     req.query = convert.toSnake(req.query);
+
     const order = req.query.order;
     const attributes = req.query.attributes;
     delete req.query.order;
@@ -166,6 +167,7 @@ module.exports = (Table) => {
       var odr = order.split("^");
       odr.map((k, i) => {
         let kk = k.split("-");
+        kk[0] = convert.toSnakeSingle(kk[0]);
         if (!kk[1]) kk[1] = "asc";
         odr.splice(i, 1, kk);
       });
@@ -269,7 +271,6 @@ module.exports = (Table) => {
       where: condition,
     })
       .then((num) => {
-        console.log(num);
         if (num == 1) {
           res.send({
             message: "deleted successfully!",
