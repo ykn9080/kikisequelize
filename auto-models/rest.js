@@ -29,6 +29,10 @@ module.exports = function (sequelize, DataTypes) {
           key: "id",
         },
       },
+      isauto: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
       created_at: {
         type: DataTypes.DATE,
         allowNull: true,

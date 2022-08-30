@@ -1129,6 +1129,9 @@
                   "routeId": {
                     "example": "19"
                   },
+                  "isauto": {
+                    "example": "0"
+                  },
                   "date": {
                     "example": "2022-04-01"
                   }
@@ -1931,7 +1934,7 @@
             "schema": {
               "type": "string"
             },
-            "example":19
+            "example": 19
           },
           {
             "name": "yearMonth",
@@ -1940,7 +1943,7 @@
             "schema": {
               "type": "string"
             },
-            "example":"2022-08"
+            "example": "2022-08"
           }
         ],
         "responses": {
