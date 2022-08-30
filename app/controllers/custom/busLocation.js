@@ -21,9 +21,11 @@ const getBusLocation = async (req, res) => {
       bus_number: k.plateNo[0],
     };
   };
-  const xml = await axios.get(
-    `${url}?serviceKey=${serviceKey}&routeId=${routeRow.api_route_id}`
-  );
+  const xml = await axios
+    .get(`${url}?serviceKey=${serviceKey}&routeId=${routeRow.api_route_id}`)
+    .catch(function (error) {
+      console.log(error.toJSON());
+    });
 
   const result = xmlParse(xml.data, "busLocationList", returnObj);
   // const edgeresult = reqres.noResponseBody(
@@ -197,9 +199,11 @@ const checkBusArrival = async (req, res) => {
 
   finalArr = await Promise.all(
     busStopArr.map(async (z, w) => {
-      const xml = await axios.get(
-        `${url}?serviceKey=${serviceKey}&stationId=${z.key}`
-      );
+      const xml = await axios
+        .get(`${url}?serviceKey=${serviceKey}&stationId=${z.key}`)
+        .catch(function (error) {
+          console.log(error.toJSON());
+        });
       // parser.parseString(xml.data, function (err, result) {
       //   if (result?.response?.msgHeader)
       //     time = result.response.msgHeader[0]["queryTime"][0];
