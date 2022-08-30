@@ -92,7 +92,7 @@ const getBusLocationEdge = async (req, res) => {
     k["bus_number"] = null;
     stations.splice(i, 1, convert.toCamel(k));
     Object.values(rtn[0]).map((s, j) => {
-      if (isInCircle({ lng: s.lon, lat: s.lat }, { lng: k.x, lat: k.y }, 0.5)) {
+      if (isInCircle({ lng: s.lon, lat: s.lat }, { lng: k.x, lat: k.y }, 0.2)) {
         k.busEdgeArrival = 1;
         k.busNumber = s.bus_name;
         stations.splice(i, 1, k);
