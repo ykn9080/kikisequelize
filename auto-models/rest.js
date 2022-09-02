@@ -31,7 +31,7 @@ module.exports = function (sequelize, DataTypes) {
       },
       isauto: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
+        allowNull: true,
       },
       created_at: {
         type: DataTypes.DATE,

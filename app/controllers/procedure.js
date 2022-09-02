@@ -42,6 +42,16 @@ exports.leaveDateByDriver = (req, res) => {
     res
   );
 };
+exports.getRestbyManagerAndYearmonth = (req, res) => {
+  let replacement = req.params;
+  replacement.managerId = req.id;
+  reqres.commonQueryBody(
+    "rest_by_manager(:managerId, :routeId, :yearMonth)",
+    replacement,
+    res
+  );
+};
+
 exports.dailyBusnumWorknumYearMonth = (req, res) => {
   let replacement = req.params;
   replacement.managerId = req.id;

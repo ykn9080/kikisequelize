@@ -34,6 +34,7 @@ module.exports = (app) => {
     auth,
     proc.dailyBusnumWorknumYearMonth
   );
+  app.use("/api/getworkaddshift/:routeId/:date", query.getWorkAddShift);
   app.use(
     "/api/scheduleperiodfind/:routeId/:yearMonth",
     proc.schedulePeriodFind
@@ -54,7 +55,7 @@ module.exports = (app) => {
   app.use(
     "/api/rest/manager/:yearMonth/:routeId",
     auth,
-    query.getRestbyManagerAndYearmonth
+    proc.getRestbyManagerAndYearmonth
   );
 
   //app.use("/api/tutorial", ctr_tutorial(models.tutorial));
@@ -63,16 +64,14 @@ module.exports = (app) => {
   app.use("/api/log", log.queryLog);
   app.use("/api/logresult", logresult.swaggerMaker);
   app.use("/api/buslocation/:routeId", busLocation.getBusLocation);
-  app.use(
-    "/api/buslocationedge/:routeId/:cdate",
-    busLocation.getBusLocationEdge
-  );
+  app.use("/api/buslocationedge/:routeId", busLocation.getBusLocationEdge);
   app.use("/api/checkbusarrival", busLocation.checkBusArrival);
   app.use("/api/busEdge/:routeId", busLocation.getBusLocationEdge);
 
   app.use("/api/cronStop", cronJob.cronStop);
   app.use("/api/cronStart", cronJob.cronStart);
   app.use("/api/motionAnalysis/:routeId/:yearMonth", auth, proc.motionAnalysis);
+  app.use("/api/getbuslocationedgetest", busLocation.getBusLocationEdgeTest);
 
   // app.use("/api/dashboard", crud(db.dashboard));
   // app.use("/api/dashdata", crud(db.dashdata));

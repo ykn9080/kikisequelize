@@ -9,7 +9,6 @@ const proc = require("./procedure");
 // Create and Save a new Tutorial
 module.exports = (Table) => {
   const create = (req, res) => {
-    console.log(req.body);
     if (req.body.data && req.body.data.length > 0) {
       /** bulk insert일 경우, data에 key를 제외한 필드전송
        * data= [
@@ -37,7 +36,6 @@ module.exports = (Table) => {
         });
     } else {
       const bd = convert.toSnake(req.body);
-      console.log(bd);
       Table.create(bd)
         .then((data) => {
           let newdata = convert.toCamel(data.get({ plain: true }));
