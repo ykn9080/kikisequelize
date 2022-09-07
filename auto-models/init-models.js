@@ -1,6 +1,7 @@
 var DataTypes = require("sequelize").DataTypes;
 var _bus = require("../auto-models/bus");
 var _bus_arrival = require("../auto-models/bus_arrival");
+var _bus_arrival_station = require("../auto-models/bus_arrival_station");
 // var _business_place = require("../models/business_place");
 // var _company = require("../models/company");
 // var _company_group = require("../models/company_group");
@@ -41,6 +42,7 @@ var _work = require("../models/work");
 function initModels(sequelize) {
   var bus = _bus(sequelize, DataTypes);
   var busArrival = _bus_arrival(sequelize, DataTypes);
+  var busArrivalStation = _bus_arrival_station(sequelize, DataTypes);
   // var business_place = _business_place(sequelize, DataTypes);
   // var company = _company(sequelize, DataTypes);
   // var company_group = _company_group(sequelize, DataTypes);
@@ -191,6 +193,7 @@ function initModels(sequelize) {
   return {
     bus,
     busArrival,
+    busArrivalStation,
     // business_place,
     // company,
     // company_group,

@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-require("./app/util/cron").cronStart(); //cron job실행
+//require("./app/util/cron").cronStartAll();
 //require("./app/util/xmlParser");
 const app = express();
 //require("./swagger")(app);

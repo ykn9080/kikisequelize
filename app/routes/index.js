@@ -65,13 +65,15 @@ module.exports = (app) => {
   app.use("/api/logresult", logresult.swaggerMaker);
   app.use("/api/buslocation/:routeId", busLocation.getBusLocation);
   app.use("/api/buslocationedge/:routeId", busLocation.getBusLocationEdge);
+  app.use("/api/buslocationbatch", busLocation.getBusLocationBatch);
   app.use("/api/checkbusarrival", busLocation.checkBusArrival);
   app.use("/api/busEdge/:routeId", busLocation.getBusLocationEdge);
 
-  app.use("/api/cronStop", cronJob.cronStop);
-  app.use("/api/cronStart", cronJob.cronStart);
+  app.use("/api/cronStopAll", cronJob.cronStopAll);
+  app.use("/api/cronStartAll", cronJob.cronStartAll);
+  app.use("/api/cronStop/:id", cronJob.cronStop);
+  app.use("/api/cronStart/:id", cronJob.cronStart);
   app.use("/api/motionAnalysis/:routeId/:yearMonth", auth, proc.motionAnalysis);
-  app.use("/api/getbuslocationedgetest", busLocation.getBusLocationEdgeTest);
 
   // app.use("/api/dashboard", crud(db.dashboard));
   // app.use("/api/dashdata", crud(db.dashdata));
