@@ -87,63 +87,63 @@ const getBusLocationBatch = async (req, res) => {
 
   let finalArr = [];
   console.log("getBusLocationBatch");
-  // finalArr = await Promise.all(
-  //   routeRow.map(async (z, w) => {
-  //     const xml = await axios
-  //       .get(`${url}?serviceKey=${serviceKey}&routeId=${z.api_route_id}`)
-  //       .catch(function (error) {
-  //         console.log("error getBusLocation xml.get()");
-  //       });
+  finalArr = await Promise.all(
+    routeRow.map(async (z, w) => {
+      const xml = await axios
+        .get(`${url}?serviceKey=${serviceKey}&routeId=${z.api_route_id}`)
+        .catch(function (error) {
+          console.log("error getBusLocation xml.get()");
+        });
 
-  //     const result = await new Promise((resolve, reject) => {
-  //       if (xml)
-  //         parser.parseString(xml.data, (err, result) => {
-  //           if (err) reject(err);
-  //           else {
-  //             if (result && result.response && result.response.msgBody) {
-  //               try {
-  //                 const rtn = result.response.msgBody[0]["busLocationList"].map(
-  //                   (k, i) => {
-  //                     return returnObj(k, time);
-  //                   }
-  //                 );
-  //                 resolve(rtn);
-  //               } catch (e) {
-  //                 console.log("error happened!!!!");
-  //                 resolve(null);
-  //               }
-  //             } else resolve(null);
-  //           }
-  //         });
-  //     });
-  //     return result;
-  //   })
-  // );
-  // let newArr = [];
-  // finalArr.map((k, i) => {
-  //   newArr = _.concat(newArr, k);
-  // });
+      const result = await new Promise((resolve, reject) => {
+        if (xml)
+          parser.parseString(xml.data, (err, result) => {
+            if (err) reject(err);
+            else {
+              if (result && result.response && result.response.msgBody) {
+                try {
+                  const rtn = result.response.msgBody[0]["busLocationList"].map(
+                    (k, i) => {
+                      return returnObj(k, time);
+                    }
+                  );
+                  resolve(rtn);
+                } catch (e) {
+                  console.log("error happened!!!!");
+                  resolve(null);
+                }
+              } else resolve(null);
+            }
+          });
+      });
+      return result;
+    })
+  );
+  let newArr = [];
+  finalArr.map((k, i) => {
+    newArr = _.concat(newArr, k);
+  });
 
-  // let data = convert.toSnakeObjArray(newArr);
-  // data = data.filter((element) => {
-  //   if (Object.keys(element).length !== 0) {
-  //     return true;
-  //   }
+  let data = convert.toSnakeObjArray(newArr);
+  data = data.filter((element) => {
+    if (Object.keys(element).length !== 0) {
+      return true;
+    }
 
-  //   return false;
-  // });
+    return false;
+  });
 
-  // data.map((k, i) => {
-  //   db["busArrivalStation"].create(k);
-  // });
+  data.map((k, i) => {
+    db["busArrivalStation"].create(k);
+  });
 
-  // const rtn1 = {
-  //   status: 200,
-  //   message: "success",
-  //   object: newArr,
-  // };
+  const rtn1 = {
+    status: 200,
+    message: "success",
+    object: newArr,
+  };
 
-  // return res.status(200).send(rtn1);
+  return res.status(200).send(rtn1);
 };
 
 const getBusLocationEdge = async (req, res) => {

@@ -172,6 +172,27 @@ exports.routeListByManager = (req, res) => {
     res
   );
 };
+exports.getBusArrivalStation = (req, res) => {
+  const rq = req.path.split("/");
+  let replacement = { routeId: -1, date: "1900-01-01" };
+  if (rq[1]) replacement.routeId = rq[1];
+  if (rq[2]) replacement.cdate = rq[2];
+  console.log(
+    "replace",
+    req.params,
+    req.path,
+    rq[0],
+    rq[1],
+    rq[2],
+    replacement
+  );
+  reqres.commonQueryBody(
+    "get_bus_arrival_station(:routeId,:cdate)",
+    replacement,
+    res
+  );
+};
+
 exports.simpleTest = (req, res) => {
   let replacement = {};
   reqres.commonQueryBody("simple_test()", replacement, res);

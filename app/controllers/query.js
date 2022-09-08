@@ -42,6 +42,7 @@ exports.getWorkAddShift = (req, res) => {
     "where status like 'work%' and a.route_id=:routeId and a.date=:date";
   reqres.commonQueryBody(query, req.query, res);
 };
+
 exports.cronJobSetting = (req, res, next) => {
   var query = "select * from cron_timer where isactive=1";
   reqres.commonQueryBody(query, null, res);

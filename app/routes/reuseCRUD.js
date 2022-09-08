@@ -6,6 +6,7 @@
 
 const crud = require("../controllers/reuseCRUD");
 const query = require("../controllers/query");
+const proc = require("../controllers/procedure");
 const models = require("../models");
 const auth = require("../middleware/auth");
 const moment = require("moment");
@@ -72,6 +73,10 @@ const modifyData = (modelname) => {
       case "bus":
         if (req.method === "DELETE")
           res.send("차량정보 삭제금지 update로 isrun=0로 변경하세요.");
+        else next();
+        break;
+      case "busArrivalStation":
+        if (req.method === "GET") proc.getBusArrivalStation(req, res);
         else next();
         break;
       case "work":

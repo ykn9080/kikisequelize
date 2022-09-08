@@ -286,22 +286,33 @@ module.exports = (Table) => {
       });
   };
 
-  // // Delete all Tutorials from the database.
-  // const deleteAll = (req, res) => {
-  //   Table.destroy({
-  //     where: {},
-  //     truncate: false,
-  //   })
-  //     .then((nums) => {
-  //       res.send({ message: `${nums} Tutorials were deleted successfully!` });
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).send({
-  //         message:
-  //           err.message || "Some error occurred while removing all tutorials.",
-  //       });
-  //     });
-  // };
+  // Delete all Tutorials from the database.
+  const deleteAll = (req, res) => {
+    req.query = queryClean(req.query);
+    req.query = convert.toSnake(req.query);
+    const cnt = Object.keys(req.query).length;
+
+    var condition = cnt > 0 ? req.query : null;
+    if (condition) condition = makeCondition(condition);
+    let option = { where: condition };
+    option.truncate = false;
+
+    // res.send({
+    //   message: "deleteAll",
+    //   option: option,
+    // });
+    Table.destroy(option)
+      .then((nums) => {
+        res.send({ message: `${nums} Tutorials were deleted successfully!` });
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while removing all tutorials.",
+        });
+      });
+    afterCreateEvent;
+  };
 
   // // find all published Tutorial
   // exports.findAllPublished = (req, res) => {
@@ -340,6 +351,7 @@ module.exports = (Table) => {
   router.get("/:id", readOne);
   router.put("/:id", update);
   router.delete("/:id", remove);
+  router.delete("/", deleteAll);
 
   return router;
 };
