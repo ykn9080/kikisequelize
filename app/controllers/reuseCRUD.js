@@ -4,7 +4,7 @@ const express = require("express");
 const Tutorial = db.tutorials;
 const Op = db.Sequelize.Op;
 const convert = require("../middleware/CamelSnake");
-const proc = require("./procedure");
+const reqres = require("./requestResponse");
 
 // Create and Save a new Tutorial
 module.exports = (Table) => {
@@ -36,9 +36,11 @@ module.exports = (Table) => {
         });
     } else {
       const bd = convert.toSnake(req.body);
+
       Table.create(bd)
         .then((data) => {
           let newdata = convert.toCamel(data.get({ plain: true }));
+
           afterCreateEvent(Table, newdata, res);
           res.send({
             status: 200,
@@ -179,8 +181,10 @@ module.exports = (Table) => {
         let array = Object.values(data).map((k, i) => {
           return convert.toCamel(k);
         });
-
-        return res.status(200).send(array);
+        return res.send({
+          status: 200,
+          object: array,
+        });
       })
       .catch((err) => {
         res.status(500).send({
@@ -197,7 +201,10 @@ module.exports = (Table) => {
 
     Table.findByPk(id)
       .then((data) => {
-        res.send(data);
+        return res.send({
+          status: 200,
+          object: data,
+        });
       })
       .catch((err) => {
         res.status(500).send({
@@ -334,7 +341,7 @@ module.exports = (Table) => {
         driverId: data.driverId,
         referId: data.id,
       };
-      proc.commonQueryBody(
+      reqres.commonQueryBody(
         "alert_create(:driverId,null,'stop_working', :referId)",
         replacement
       );

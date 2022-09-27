@@ -39,6 +39,7 @@ const getBusLocation = async (req, res) => {
   //   replacement1,
   //   "INSERT"
   // );
+  if (!result) return;
   const stations = await db["routeStation"].findAll({
     where: { route_id: routeId },
     raw: true,
@@ -87,6 +88,7 @@ const getBusLocationBatch = async (req, res) => {
 
   let finalArr = [];
   console.log("getBusLocationBatch");
+  //return;
   finalArr = await Promise.all(
     routeRow.map(async (z, w) => {
       const xml = await axios
@@ -148,10 +150,9 @@ const getBusLocationBatch = async (req, res) => {
 
 const getBusLocationEdge = async (req, res) => {
   let replacement = req.params;
-  console.log(replacement);
+
   const routeId = req.params.routeId;
   const cdate = req.params.cdate;
-  console.log(cdate);
 
   //const replacement1 = { routeId: routeId };
   const replacement1 = { routeId: routeId, cdate: cdate };
@@ -165,7 +166,7 @@ const getBusLocationEdge = async (req, res) => {
   //   "where route_id=:routeId and time>date_sub(now(), interval 1 minute)  and time<=now() order by time desc limit 1";
   const rtnn = await db.sequelize.query("CALL edge_by_time(:routeId)", option);
   //const rtnn = await db.sequelize.query(query, option);
-  console.log(option, rtnn);
+
   const stations = await db["routeStation"].findAll({
     where: { route_id: routeId },
     raw: true,
@@ -174,7 +175,7 @@ const getBusLocationEdge = async (req, res) => {
   let min = 1000,
     businfo;
   const rtn2 = rtnn[0]["0"];
-  console.log(option, rtnn);
+
   await Promise.all(
     stations.map((k, i) => {
       const distance = distanceInKmBetweenEarthCoordinates(
@@ -247,101 +248,175 @@ const checkBusArrival = async (req, res) => {
     { key: 277103100, start: 1 },
   ];
 
-  // const returnObj = (k, time1, start) => {
-  //   return {
-  //     api_route_id: parseInt(k.routeId[0]),
-  //     remain_1: isNaN(parseInt(k.predictTime1[0]))
-  //       ? null
-  //       : parseInt(k.predictTime1[0]),
-  //     remain_2: isNaN(parseInt(k.predictTime2[0]))
-  //       ? null
-  //       : parseInt(k.predictTime2[0]),
+  const returnObj = (k, time1, start) => {
+    return {
+      api_route_id: parseInt(k.routeId[0]),
+      remain_1: isNaN(parseInt(k.predictTime1[0]))
+        ? null
+        : parseInt(k.predictTime1[0]),
+      remain_2: isNaN(parseInt(k.predictTime2[0]))
+        ? null
+        : parseInt(k.predictTime2[0]),
 
-  //     stop_1: isNaN(parseInt(k.locationNo1[0]))
-  //       ? null
-  //       : parseInt(k.locationNo1[0]),
-  //     stop_2: isNaN(parseInt(k.locationNo2[0]))
-  //       ? null
-  //       : parseInt(k.locationNo2[0]),
-  //     bus_1: k.plateNo1[0],
-  //     bus_2: k.plateNo2[0],
-  //     check_time: time1,
-  //     isstart: start,
-  //   };
-  // };
+      stop_1: isNaN(parseInt(k.locationNo1[0]))
+        ? null
+        : parseInt(k.locationNo1[0]),
+      stop_2: isNaN(parseInt(k.locationNo2[0]))
+        ? null
+        : parseInt(k.locationNo2[0]),
+      bus_1: k.plateNo1[0],
+      bus_2: k.plateNo2[0],
+      check_time: time1,
+      isstart: start,
+    };
+  };
 
-  // var parser = new xml2js.Parser();
-  // let time = new Date();
-  // //dateFormat(new Date(), "%Y-%m-%d %H:%M:%S", false);
+  var parser = new xml2js.Parser();
+  let time = new Date();
+  //dateFormat(new Date(), "%Y-%m-%d %H:%M:%S", false);
 
-  // let finalArr = [];
+  let finalArr = [];
 
-  // finalArr = await Promise.all(
-  //   busStopArr.map(async (z, w) => {
-  //     const xml = await axios
-  //       .get(`${url}?serviceKey=${serviceKey}&stationId=${z.key}`)
-  //       .catch(function (error) {
-  //         console.log("checkBusArrival error");
-  //       });
-  //     // parser.parseString(xml.data, function (err, result) {
-  //     //   if (result?.response?.msgHeader)
-  //     //     time = result.response.msgHeader[0]["queryTime"][0];
-  //     // });
-  //     // console.log(time);
+  finalArr = await Promise.all(
+    busStopArr.map(async (z, w) => {
+      const xml = await axios
+        .get(`${url}?serviceKey=${serviceKey}&stationId=${z.key}`)
+        .catch(function (error) {
+          console.log("checkBusArrival error");
+        });
+      // parser.parseString(xml.data, function (err, result) {
+      //   if (result?.response?.msgHeader)
+      //     time = result.response.msgHeader[0]["queryTime"][0];
+      // });
+      // console.log(time);
 
-  //     const result = await new Promise((resolve, reject) => {
-  //       if (xml)
-  //         parser.parseString(xml.data, (err, result) => {
-  //           if (err) reject(err);
-  //           else {
-  //             if (result && result.response && result.response.msgBody) {
-  //               try {
-  //                 const rtn = result.response.msgBody[0]["busArrivalList"].map(
-  //                   (k, i) => {
-  //                     return returnObj(k, time, z.start);
-  //                   }
-  //                 );
-  //                 resolve(rtn);
-  //               } catch (e) {
-  //                 console.log("error happened!!!!");
-  //                 resolve(null);
-  //               }
-  //             } else resolve(null);
-  //           }
-  //         });
-  //     });
-  //     return result;
-  //   })
+      const result = await new Promise((resolve, reject) => {
+        if (xml)
+          parser.parseString(xml.data, (err, result) => {
+            if (err) reject(err);
+            else {
+              if (result && result.response && result.response.msgBody) {
+                try {
+                  const rtn = result.response.msgBody[0]["busArrivalList"].map(
+                    (k, i) => {
+                      return returnObj(k, time, z.start);
+                    }
+                  );
+                  resolve(rtn);
+                } catch (e) {
+                  console.log("error happened!!!!");
+                  resolve(null);
+                }
+              } else resolve(null);
+            }
+          });
+      });
+      return result;
+    })
+  );
+  let newArr = [];
+  finalArr.map((k, i) => {
+    newArr = _.concat(newArr, k);
+  });
+
+  let data = convert.toSnakeObjArray(newArr);
+  data = data.filter((element) => {
+    if (Object.keys(element).length !== 0) {
+      return true;
+    }
+
+    return false;
+  });
+
+  data.map((k, i) => {
+    db["busArrival"].create(k);
+  });
+
+  const replacement1 = { checkTime: time };
+  reqres.noResponseBody("dispatch_arrival(:checkTime)", replacement1, "INSERT");
+  //db["busArrival"].bulkCreate({ data: data });
+
+  const rtn1 = {
+    status: 200,
+    message: "success",
+    object: newArr,
+  };
+
+  return res.status(200).send(rtn1);
+};
+
+const getWeather = async (req, res) => {
+  let replacement = req.params;
+  const sdate = req.params.sdate.replace("-", "").replace("-", "");
+  const edate = req.params.edate.replace("-", "").replace("-", "");
+  console.log("getweather", sdate, edate);
+  const serviceKey =
+    "jmMJDKdbuZ8hYoXuyXlCKHYlNp02SQOlUaXXtTfryLsNQmC8HjxAnAe1NFofJ91BANDONhet17UQuHzY3DHJcw%3D%3D";
+  const url = `http://apis.data.go.kr/1360000/AsosDalyInfoService/getWthrDataList`;
+
+  const returnObj = (k) => {
+    return {
+      date: k.tm[0],
+      max_temp: isNaN(parseInt(k.maxTa[0])) ? null : parseInt(k.maxTa[0]),
+      min_temp: isNaN(parseInt(k.minTa[0])) ? null : parseInt(k.minTa[0]),
+      avg_temp: isNaN(parseInt(k.avgTa[0])) ? null : parseInt(k.avgTa[0]),
+      rain: isNaN(parseInt(k.sumRn[0])) ? null : parseInt(k.sumRn[0]),
+      snow: isNaN(parseInt(k.ddMes[0])) ? null : parseInt(k.ddMes[0]),
+    };
+  };
+  const xml = await axios
+    // .get(
+    //   `${url}?serviceKey=${serviceKey}&numOfRows=10&pageNo=1
+    // &dataCd=ASOS&dateCd=DAY&startDt=${sdate}&endDt=${edate}&stnIds=119`
+    // )
+    .get(
+      `${url}?serviceKey=${serviceKey}&numOfRows=365&pageNo=1&dataCd=ASOS&dateCd=DAY&startDt=${sdate}&endDt=${edate}&stnIds=119`
+    )
+    .catch(function (error) {
+      console.log("error weather xml.get()");
+    });
+
+  if (!(xml && xml.data))
+    return res.status(200).send({
+      status: 400,
+      message: "fail, no data available.",
+    });
+
+  const result = xmlWeather(xml.data, "item", returnObj);
+  console.log(result);
+  result.map((k, i) => {
+    db["weather"].create(k);
+  });
+
+  // const edgeresult = reqres.noResponseBody(
+  //   "dispatch_arrival(:checkTime)",
+  //   replacement1,
+  //   "INSERT"
   // );
-  // let newArr = [];
-  // finalArr.map((k, i) => {
-  //   newArr = _.concat(newArr, k);
+  if (!result) return;
+  // const stations = await db["routeStation"].findAll({
+  //   where: { route_id: routeId },
+  //   raw: true,
+  // });
+  // stations.map((k, i) => {
+  //   k["bus_arrival"] = 0;
+  //   k["bus_number"] = null;
+  //   result.map((s, j) => {
+  //     if (k.station_id === s.station_id) {
+  //       k.bus_arrival = 1;
+  //       k.bus_number = s.bus_number;
+  //     }
+  //   });
+  //   stations.splice(i, 1, convert.toCamel(k));
   // });
 
-  // let data = convert.toSnakeObjArray(newArr);
-  // data = data.filter((element) => {
-  //   if (Object.keys(element).length !== 0) {
-  //     return true;
-  //   }
+  const rtn1 = {
+    status: 200,
+    message: "success",
+    object: result,
+  };
 
-  //   return false;
-  // });
-
-  // data.map((k, i) => {
-  //   db["busArrival"].create(k);
-  // });
-
-  // const replacement1 = { checkTime: time };
-  // reqres.noResponseBody("dispatch_arrival(:checkTime)", replacement1, "INSERT");
-  // //db["busArrival"].bulkCreate({ data: data });
-
-  // const rtn1 = {
-  //   status: 200,
-  //   message: "success",
-  //   object: newArr,
-  // };
-
-  // return res.status(200).send(rtn1);
+  return res.status(200).send(rtn1);
 };
 
 const xmlParse = (xmldata, bodyComponent, returnObj, next) => {
@@ -355,6 +430,21 @@ const xmlParse = (xmldata, bodyComponent, returnObj, next) => {
       });
 
     //if (next) next(extractedData);
+  });
+  return extractedData;
+};
+const xmlWeather = (xmldata, bodyComponent, returnObj, next) => {
+  var extractedData = "";
+  var parser = new xml2js.Parser();
+  parser.parseString(xmldata, function (err, result) {
+    //Extract the value from the data element
+    console.log(result.response.body[0].items[0].item);
+    if (result && result.response && result.response.body) {
+      extractedData = result.response.body[0].items[0].item.map((k, i) => {
+        return returnObj(k);
+      });
+      //if (next) next(extractedData);
+    }
   });
   return extractedData;
 };
@@ -394,14 +484,7 @@ function isInCircle(currentPos, stationPos, radius) {
   );
 
   const calculationResult = distance <= radius;
-  console.log(
-    "Is inside",
-    stationPos,
-    currentPos,
-    distance,
-    radius,
-    calculationResult
-  );
+
   return calculationResult;
 }
 function isInCircle1(currentPos, stationPos, radius) {
@@ -458,3 +541,4 @@ module.exports.checkBusArrival = checkBusArrival;
 module.exports.getBusLocation = getBusLocation;
 module.exports.getBusLocationEdge = getBusLocationEdge;
 module.exports.getBusLocationBatch = getBusLocationBatch;
+module.exports.getWeather = getWeather;

@@ -19,7 +19,10 @@ module.exports = (app) => {
   app.use("/api/getQuery", query.getQuery);
   app.use("/api/managerreplacelist", auth, proc.managerReplacelist);
   app.use("/api/managerworkbydateandroute", proc.getWorkbyManager);
-  app.use("/api/findshiftthismonth/:routeId/:date", proc.findShiftThisMonth);
+  app.use(
+    "/api/findshiftthismonth/:routeId/:yearMonth",
+    proc.findShiftThisMonth
+  );
   app.use(
     "/api/leavedatebydriver/:routeId/:shift/:yearMonth",
     proc.leaveDateByDriver
@@ -39,6 +42,8 @@ module.exports = (app) => {
     "/api/scheduleperiodfind/:routeId/:yearMonth",
     proc.schedulePeriodFind
   );
+  app.use("/api/dispatchbasis/:routeId/:cdate", proc.dispatchBasis);
+  app.use("/api/dispatchhistory/:routeId/:weekDay", proc.dispatchHistory);
   app.use("/api/dispatchlist/:routeId/:datetime", auth, proc.dispatchList);
   app.use("/api/dispatchlist1/:routeId/:datetime", auth, proc.dispatchList1);
   app.use(
@@ -68,6 +73,7 @@ module.exports = (app) => {
   app.use("/api/buslocationbatch", busLocation.getBusLocationBatch);
   app.use("/api/checkbusarrival", busLocation.checkBusArrival);
   app.use("/api/busEdge/:routeId", busLocation.getBusLocationEdge);
+  app.use("/api/getWeather/:sdate/:edate", busLocation.getWeather);
 
   app.use("/api/cronStopAll", cronJob.cronStopAll);
   app.use("/api/cronStartAll", cronJob.cronStartAll);

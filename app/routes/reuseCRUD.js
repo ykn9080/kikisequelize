@@ -32,44 +32,52 @@ const modifyData = (modelname) => {
   return function (req, res, next) {
     switch (modelname) {
       case "stopworking":
+        if (req.method === "GET") {
+          next();
+        }
         //update
-        if (req.method === "PUT") {
+        else if (req.method === "PUT") {
           req.body.updated_at = Date.now();
+          next();
         }
         //create
         else if ((req.method = "POST")) {
           req.body.created_at = Date.now();
           req.body.updated_at = null;
+          next();
         }
-        next();
-        break;
-      case "rest":
-        //update or insert: 해당일의 휴무가능일수가 >0인지를 체크
-        console.log(req.method);
 
-        if (["POST", "PUT"].indexOf(req.method) === -1) next();
-        else {
-          let replacement = {
-            driverId: req.id,
-            routeId: req.body.routeId,
-            restdate: req.body.date,
-          };
-          models["rest"].sequelize
-            .query("CALL leave_date_confirm(:driverId, :routeId, :restdate)", {
-              replacements: replacement,
-              type: models.sequelize.QueryTypes.SELECT,
-            })
-            .then(function (resp) {
-              if (resp[0][0].offnum != null && resp[0][0].offnum <= 0)
-                res.send("인원초과 ! 다른날을 선택하세요.");
-              else next();
-            })
-            .catch((err) => {
-              console.log(err);
-              res.err("에러나서 진행이 안됩니다.");
-            });
-        }
         break;
+      // case "rest":
+      //   //update or insert: 해당일의 휴무가능일수가 >0인지를 체크
+
+      //   if (["POST", "PUT"].indexOf(req.method) === -1) next();
+      //   else {
+      //     let replacement = {
+      //       driverId: req.id,
+      //       routeId: req.body.routeId,
+      //       restdate: req.body.date,
+      //     };
+      //     console.log(req.body);
+      //     if (!req.body.routeId | !req.body.data)
+      //       res.send("error!!, routeId, data 필수입니다.");
+
+      //     models["rest"].sequelize
+      //       .query("CALL leave_date_confirm(:driverId, :routeId, :restdate)", {
+      //         replacements: replacement,
+      //         type: models.sequelize.QueryTypes.SELECT,
+      //       })
+      //       .then(function (resp) {
+      //         if (resp[0][0].offnum != null && resp[0][0].offnum <= 0)
+      //           res.send("인원초과 ! 다른날을 선택하세요.");
+      //         else next();
+      //       })
+      //       .catch((err) => {
+      //         console.log(err);
+      //         res.err("에러나서 진행이 안됩니다.");
+      //       });
+      //   }
+      //   break;
       case "bus":
         if (req.method === "DELETE")
           res.send("차량정보 삭제금지 update로 isrun=0로 변경하세요.");
@@ -82,7 +90,6 @@ const modifyData = (modelname) => {
       case "work":
         switch (req.method) {
           case "GET":
-            console.log("get,get,get", req.params);
             if (Object.keys(req.params).length > 0)
               query.getWorkAddShift(req, res);
             else next();
@@ -99,7 +106,7 @@ const modifyData = (modelname) => {
             req.body.detectionTime = moment(req.body.detectionTime).format(
               "YYYY-MM-DD HH:mm:ss"
             );
-            console.log("post,post", req.body.detectionTime);
+
             next();
             // if (Object.keys(req.params).length > 0)
             //   query.getWorkAddShift(req, res);

@@ -29,12 +29,13 @@ var _route_driver = require("../auto-models/route_driver");
 var _route_station = require("../auto-models/route_station");
 var _route_driver1 = require("../auto-models/route_driver1");
 var _route_setting = require("../models/route_setting");
-// var _schedule_request = require("../models/schedule_request");
-// var _schedule_setting = require("../models/schedule_setting");
+var _schedule_request = require("../models/schedule_request");
+var _schedule_setting = require("../models/schedule_setting");
 var _stop_working = require("../auto-models/stop_working");
 var _tutorial = require("../auto-models/tutorial");
 // var _user = require("../models/user");
 // var _user_notice = require("../models/user_notice");
+var _weather = require("../auto-models/weather");
 var _work = require("../models/work");
 // var _work_check = require("../models/work_check");
 // var _work_request = require("../models/work_request");
@@ -69,12 +70,13 @@ function initModels(sequelize) {
   var routeDriver = _route_driver(sequelize, DataTypes);
   var routeStation = _route_station(sequelize, DataTypes);
   var route_setting = _route_setting(sequelize, DataTypes);
-  // var schedule_request = _schedule_request(sequelize, DataTypes);
-  // var schedule_setting = _schedule_setting(sequelize, DataTypes);
+  var scheduleRequest = _schedule_request(sequelize, DataTypes);
+  var scheduleSetting = _schedule_setting(sequelize, DataTypes);
   var stopworking = _stop_working(sequelize, DataTypes);
   var tutorial = _tutorial(sequelize, DataTypes);
   // var user = _user(sequelize, DataTypes);
   // var user_notice = _user_notice(sequelize, DataTypes);
+  var weather = _weather(sequelize, DataTypes);
   var work = _work(sequelize, DataTypes);
   // var work_check = _work_check(sequelize, DataTypes);
   // var work_request = _work_request(sequelize, DataTypes);
@@ -220,12 +222,13 @@ function initModels(sequelize) {
     routeDriver,
     routeStation,
     route_setting,
-    // schedule_request,
-    // schedule_setting,
+    scheduleRequest,
+    scheduleSetting,
     stopworking,
     tutorial,
     // user,
     // user_notice,
+    weather,
     work,
     // work_check,
     // work_request,

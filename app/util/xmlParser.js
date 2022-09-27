@@ -88,7 +88,6 @@ const xmlParse = (xmldata, bodyComponent, realRouteId, returnObj, next) => {
   parser.parseString(xmldata, function (err, result) {
     //Extract the value from the data element
     extractedData = result.response.msgBody[0][bodyComponent].map((k, i) => {
-      console.log(k);
       return returnObj(k, realRouteId);
     });
     if (next) next(extractedData);

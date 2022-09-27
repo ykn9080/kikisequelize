@@ -30,7 +30,7 @@ exports.userDetail = (req, res) => {
 
 exports.findShiftThisMonth = (req, res) => {
   reqres.commonQueryBody(
-    "find_shift_this_month(:routeId, :date)",
+    "find_shift_this_month(:routeId, :yearMonth)",
     req.params,
     res
   );
@@ -87,6 +87,20 @@ exports.motionAnalysis = (req, res) => {
     res
   );
 };
+
+exports.dispatchBasis = (req, res) => {
+  let replacement = req.params;
+  //  replacement.managerId = req.id;
+  reqres.commonQueryBody("dispatch_basis(:routeId, :cdate)", replacement, res);
+};
+exports.dispatchHistory = (req, res) => {
+  let replacement = req.params;
+  reqres.commonQueryBody(
+    "dispatch_history(:routeId, :weekDay)",
+    replacement,
+    res
+  );
+};
 exports.dispatchList1 = async (req, res) => {
   // console.log(req.params);
   // reqres.commonQueryBody("dispatch_list(:routeId, :datetime)", req.params, res);
@@ -95,7 +109,7 @@ exports.dispatchList1 = async (req, res) => {
     type: db.sequelize.QueryTypes["select"],
     plain: true,
   };
-  console.log(option);
+
   let queryOrProc = "CALL dispatch_list(:routeId, :datetime)";
   const rtn = await db.sequelize.query(queryOrProc, option);
   option = {
@@ -110,7 +124,7 @@ exports.dispatchList1 = async (req, res) => {
 
   delete option.replacements.datetime;
   queryOrProc = "CALL leave_summary_by_driver(:managerId,:routeId, :date)";
-  console.log(option);
+
   const rtn1 = await db.sequelize.query(queryOrProc, option);
   let rtnn = Object.values(rtn);
   let rtnn1 = Object.values(rtn1);
@@ -177,15 +191,7 @@ exports.getBusArrivalStation = (req, res) => {
   let replacement = { routeId: -1, date: "1900-01-01" };
   if (rq[1]) replacement.routeId = rq[1];
   if (rq[2]) replacement.cdate = rq[2];
-  console.log(
-    "replace",
-    req.params,
-    req.path,
-    rq[0],
-    rq[1],
-    rq[2],
-    replacement
-  );
+
   reqres.commonQueryBody(
     "get_bus_arrival_station(:routeId,:cdate)",
     replacement,

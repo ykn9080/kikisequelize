@@ -652,8 +652,8 @@
     },
     "/api/buslocation/{routeId}": {
       "get": {
-        "description": "실시간 BUS정류장 도착 정보조회",
-        "tags": ["routeStation"],
+        "description": "[공공DB] 실시간 BUS정류장 도착 정보조회",
+        "tags": ["공공DB"],
         "parameters": [
           {
             "name": "routeId",
@@ -703,8 +703,8 @@
     },
     "/api/checkBusArrival": {
       "get": {
-        "description": "최종정류장 도착 버스시간찾기",
-        "tags": ["routeStation"],
+        "description": "[공공DB] 최종정류장 도착 버스시간찾기",
+        "tags": ["공공DB"],
 
         "responses": {
           "200": {
@@ -731,6 +731,42 @@
             "example": 1
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/getWeather": {
+      "get": {
+        "description": "[공공DB] 수원지역의 날씨정보",
+        "tags": ["공공DB"],
+        "parameters": [
+          {
+            "name": "sdate",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example":  "2022-04-01"
+          },
+          {
+            "name": "edate",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example":  "2022-04-01"
+          }
+
+        ],
+       
         "responses": {
           "200": {
             "description": "OK"
@@ -900,7 +936,7 @@
         }
       }
     },
-    "/api/findshiftthismonth/{routeId}/{date}": {
+    "/api/findshiftthismonth/{routeId}/{yearMonth}": {
       "get": {
         "description": "노선별 해당월의 시작조찾기",
         "tags": ["work"],
@@ -915,13 +951,13 @@
             "example": 21
           },
           {
-            "name": "date",
+            "name": "yearMonth",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
             },
-            "example": "2022-06-23"
+            "example": "2022-06"
           }
         ],
         "responses": {
@@ -962,6 +998,74 @@
               "type": "string"
             },
             "example": "2022-06-02 08:30:00"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/dispatchbasis/{routeId}/{cdate}": {
+      "get": {
+        "description": "근무자별 가장 최근에 만들어진 dispatch일자 및 startorder찾기",
+        "tags": ["dispatch"],
+        "parameters": [
+          {
+            "name": "routeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": 19
+          },
+          {
+            "name": "cdate",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2022-09-08"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/dispatchhistory/{routeId}/{weekday}": {
+      "get": {
+        "description": "노선별 요일별 dispatch이력",
+        "tags": ["dispatch"],
+        "parameters": [
+          {
+            "name": "routeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": 19
+          },
+          {
+            "name": "weekday",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2"
           }
         ],
         "responses": {

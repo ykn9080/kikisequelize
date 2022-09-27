@@ -27,7 +27,7 @@ const axiosRun = (method, url, data) => {
     url,
   };
   if (data) options.data = data;
-  console.log(options);
+
   axios(options).catch(function (err) {
     console.log("axios err", err); // 에러 처리 내용
   });

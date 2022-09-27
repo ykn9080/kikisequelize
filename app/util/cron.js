@@ -6,7 +6,6 @@ const reqres = require("../controllers/requestResponse");
 const { default: axios } = require("axios");
 const path = "./app/util/cronhistory.txt";
 
-console.log("server_url:", process.env.SERVER_URL);
 const jobs = [
   {
     title: "test1234",
@@ -56,19 +55,18 @@ const cronStartAll = async () => {
         cjob.start();
       });
     }
-
-    console.log(cronList);
   });
 };
 const cronStopAll = (req, res) => {
-  cronList.map((job) => {
-    job.job.stop();
+  cronList.map((job, i) => {
+    job.job.destroy();
+    cronList.splice(i, 1);
   });
 };
 
 const cronStart = async (req, res) => {
   const cronid = req.params.id;
-  const job = await db["cron_timer"].findByPk(cronid);
+  const job = await db["cronTimer"].findByPk(cronid, { raw: true });
 
   if (job) {
     //const job = await db["cron_timer"].findByPk(cronid);
@@ -87,22 +85,37 @@ const cronStart = async (req, res) => {
     obj.stime = new Date();
     obj.job = cjob;
     job.isactive = 1;
-    db["cron_timer"].update(job, {
-      where: { id: job.id },
+    // db["cronTimer"].update(job, {
+    //   where: { id: job.id },
+    // });
+    let chkexist = false;
+    cronList.map((k, i) => {
+      if (k.id == job.id) {
+        cronList.splice(i, 1, obj);
+        chkexist = true;
+      }
     });
-    addOrReplace(cronList, cjob);
+    if (!chkexist) {
+      cronList.push(obj);
+    }
+    //addOrReplace(cronList, cjob);
+    cjob.start();
   }
 };
 const cronStop = (req, res) => {
   const cronid = req.params.id;
   console.log(cronid);
   const job = cronList.find((job) => job.id == cronid);
-  console.log(job);
-  if (job) job.job.stop();
+  try {
+    if (job) {
+      job.job.stop();
+    }
+  } catch (e) {
+    console.log(e.message);
+  }
 };
 
 const next = (queryname, result) => {
-  console.log("callback called!!!" + queryname + " result: " + result);
   fs.appendFile(path, logMake(queryname, result), (err) => {
     if (err) {
       console.log(err.message);
@@ -139,7 +152,7 @@ exports.queryLog = (req, res) => {
  * @returns
  */
 function addOrReplace(arr, newObj) {
-  return [...arr.filter((obj) => obj.uid !== newObj.uid), { ...newObj }];
+  return [...arr.filter((obj) => obj.id !== newObj.id), { ...newObj }];
 }
 module.exports.cronStartAll = cronStartAll;
 module.exports.cronStopAll = cronStopAll;

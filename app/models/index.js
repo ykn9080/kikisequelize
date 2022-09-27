@@ -1,6 +1,5 @@
 let dbConfig = require("../config/db.config1.js");
 
-console.log(dbConfig)
 //if(dbConfig.HOST==="undefined")
 // dbConfig={
 //   HOST: "imcmaster.iptime.org",
@@ -16,14 +15,14 @@ console.log(dbConfig)
 //     idle: 10000,
 //   },
 // }
-const initModel=require("../../auto-models/init-models")
+const initModel = require("../../auto-models/init-models");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
   port: dbConfig.port,
   operatorsAliases: 0,
-
+  logging: false,
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
@@ -47,10 +46,10 @@ db.sequelize = sequelize;
 db.tutorial = require("./tutorial.model.js")(sequelize, Sequelize);
 
 //db = require("./misc.js")(sequelize, Sequelize, db);
-const model=initModel(sequelize);
+const model = initModel(sequelize);
 
-Object.keys(model).map((k,i)=>{
-  return db[k]=model[k];
-})
+Object.keys(model).map((k, i) => {
+  return (db[k] = model[k]);
+});
 
 module.exports = db;
