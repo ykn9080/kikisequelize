@@ -3,6 +3,7 @@ const db = require("../models");
 const moment = require("moment");
 
 exports.managerReplacelist = (req, res) => {
+  if (req.id === undefined) req.id = null;
   let replacement = {
     managerId: req.id,
     routeId: req.body.routeId,
@@ -43,6 +44,7 @@ exports.leaveDateByDriver = (req, res) => {
   );
 };
 exports.getRestbyManagerAndYearmonth = (req, res) => {
+  if (req.id === undefined) req.id = null;
   let replacement = req.params;
   replacement.managerId = req.id;
   reqres.commonQueryBody(
@@ -53,6 +55,7 @@ exports.getRestbyManagerAndYearmonth = (req, res) => {
 };
 
 exports.dailyBusnumWorknumYearMonth = (req, res) => {
+  if (req.id === undefined) req.id = null;
   let replacement = req.params;
   replacement.managerId = req.id;
   reqres.commonQueryBody(
@@ -70,6 +73,7 @@ exports.schedulePeriodFind = (req, res) => {
 };
 
 exports.leaveSummaryByDriver = (req, res) => {
+  if (req.id === undefined) req.id = null;
   let replacement = req.params;
   replacement.managerId = req.id;
   reqres.commonQueryBody(
@@ -79,6 +83,7 @@ exports.leaveSummaryByDriver = (req, res) => {
   );
 };
 exports.motionAnalysis = (req, res) => {
+  if (req.id === undefined) req.id = null;
   let replacement = req.params;
   replacement.managerId = req.id;
   reqres.commonQueryBody(
@@ -102,8 +107,7 @@ exports.dispatchHistory = (req, res) => {
   );
 };
 exports.dispatchList1 = async (req, res) => {
-  // console.log(req.params);
-  // reqres.commonQueryBody("dispatch_list(:routeId, :datetime)", req.params, res);
+  if (req.id === undefined) req.id = null;
   let option = {
     replacements: req.params,
     type: db.sequelize.QueryTypes["select"],
@@ -144,6 +148,8 @@ exports.dispatchList1 = async (req, res) => {
   await reqres.commonReturn(rtnn1, res);
 };
 exports.dispatchList = async (req, res) => {
+  if (req.id === undefined) req.id = null;
+
   let option = {
     replacements: req.params,
     type: db.sequelize.QueryTypes["select"],
@@ -178,6 +184,7 @@ exports.dispatchList = async (req, res) => {
   await reqres.commonReturn(rtnn, res);
 };
 exports.routeListByManager = (req, res) => {
+  if (req.id === undefined) req.id = null;
   let replacement = req.params;
   replacement.managerId = req.id;
   reqres.commonQueryBody(

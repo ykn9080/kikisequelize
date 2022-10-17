@@ -345,7 +345,9 @@ const checkBusArrival = async (req, res) => {
   return res.status(200).send(rtn1);
 };
 
+//getweather
 const getWeather = async (req, res) => {
+  console.log("getWeather");
   let replacement = req.params;
   const sdate = req.params.sdate.replace("-", "").replace("-", "");
   const edate = req.params.edate.replace("-", "").replace("-", "");
@@ -385,7 +387,11 @@ const getWeather = async (req, res) => {
   const result = xmlWeather(xml.data, "item", returnObj);
   console.log(result);
   result.map((k, i) => {
-    db["weather"].create(k);
+    if (db["weather"].findOne({ where: { date: k.date } })) {
+      console.log("already exist");
+    } else {
+      db["weather"].create(k);
+    }
   });
 
   // const edgeresult = reqres.noResponseBody(
@@ -418,6 +424,7 @@ const getWeather = async (req, res) => {
 
   return res.status(200).send(rtn1);
 };
+//end of getweather
 
 const xmlParse = (xmldata, bodyComponent, returnObj, next) => {
   var extractedData = "";
@@ -433,11 +440,13 @@ const xmlParse = (xmldata, bodyComponent, returnObj, next) => {
   });
   return extractedData;
 };
+
 const xmlWeather = (xmldata, bodyComponent, returnObj, next) => {
   var extractedData = "";
   var parser = new xml2js.Parser();
   parser.parseString(xmldata, function (err, result) {
     //Extract the value from the data element
+    console.log("response!! : " + result.response);
     console.log(result.response.body[0].items[0].item);
     if (result && result.response && result.response.body) {
       extractedData = result.response.body[0].items[0].item.map((k, i) => {

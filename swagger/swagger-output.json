@@ -741,7 +741,7 @@
         }
       }
     },
-    "/api/getWeather": {
+    "/api/getWeather/{sdate}/{edate}": {
       "get": {
         "description": "[공공DB] 수원지역의 날씨정보",
         "tags": ["공공DB"],

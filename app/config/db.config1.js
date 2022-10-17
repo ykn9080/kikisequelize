@@ -1,7 +1,7 @@
 module.exports = {
-  HOST: "kikib-mysql.mysql.database.azure.com",
-  USER: "kikii",
-  PASSWORD: "mysql-1733",
+  HOST: "kikib-korea.mysql.database.azure.com",
+  USER: "kikii@kikib-korea",
+  PASSWORD: "1733a-sql",
   DB: "dev-kikib",
   port: 3306,
   dialect: "mysql",

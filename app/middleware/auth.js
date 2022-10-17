@@ -26,7 +26,6 @@ const verifyToken = (req, res, next) => {
     if (!secret) secret = "NMA8JPctFuna59f5";
     //const decoded = jwt.verify(token, text);
     const decoded = jwt.decode(token, secret, (algorithm = "HS512"));
-
     req.id = decoded.sub;
   } catch (err) {
     return res.status(401).send("Invalid Token");

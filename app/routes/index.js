@@ -44,7 +44,7 @@ module.exports = (app) => {
   );
   app.use("/api/dispatchbasis/:routeId/:cdate", proc.dispatchBasis);
   app.use("/api/dispatchhistory/:routeId/:weekDay", proc.dispatchHistory);
-  app.use("/api/dispatchlist/:routeId/:datetime", auth, proc.dispatchList);
+  app.use("/api/dispatchlist/:routeId/:datetime", proc.dispatchList);
   app.use("/api/dispatchlist1/:routeId/:datetime", auth, proc.dispatchList1);
   app.use(
     "/api/routelistbymanager/:placeId/:datetime",

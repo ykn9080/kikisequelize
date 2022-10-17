@@ -13,6 +13,7 @@ exports.getRestbyDriverAndYearmonth = (req, res) => {
   var query =
     "SELECT * FROM rest" +
     " WHERE driver_id=:driverId and DATE_FORMAT(date,'%Y-%m')= :yearMonth";
+  if (req.id === undefined) req.id = null;
   const replacement = req.params;
   replacement.driverId = req.id;
   reqres.commonQueryBody(query, replacement, res);
