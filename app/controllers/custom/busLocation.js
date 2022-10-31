@@ -65,88 +65,88 @@ const getBusLocation = async (req, res) => {
   return res.status(200).send(rtn1);
 };
 
-const getBusLocationBatch = async (req, res) => {
-  const serviceKey =
-    "jmMJDKdbuZ8hYoXuyXlCKHYlNp02SQOlUaXXtTfryLsNQmC8HjxAnAe1NFofJ91BANDONhet17UQuHzY3DHJcw%3D%3D";
-  const url = `http://apis.data.go.kr/6410000/buslocationservice/getBusLocationList`;
+// const getBusLocationBatch = async (req, res) => {
+//   const serviceKey =
+//     "jmMJDKdbuZ8hYoXuyXlCKHYlNp02SQOlUaXXtTfryLsNQmC8HjxAnAe1NFofJ91BANDONhet17UQuHzY3DHJcw%3D%3D";
+//   const url = `http://apis.data.go.kr/6410000/buslocationservice/getBusLocationList`;
 
-  const routeRow = await db["route"].findAll();
-  const returnObj = (k, time1) => {
-    return {
-      station_id: parseInt(k.stationId[0]),
-      station_seq: parseInt(k.stationSeq[0]),
-      api_route_id: parseInt(k.routeId[0]),
-      bus_number: k.plateNo[0],
-      check_time: time1,
-    };
-  };
+//   const routeRow = await db["route"].findAll();
+//   const returnObj = (k, time1) => {
+//     return {
+//       station_id: parseInt(k.stationId[0]),
+//       station_seq: parseInt(k.stationSeq[0]),
+//       api_route_id: parseInt(k.routeId[0]),
+//       bus_number: k.plateNo[0],
+//       check_time: time1,
+//     };
+//   };
 
-  var parser = new xml2js.Parser();
-  //let time = new Date();
-  let time = dateFormat(new Date(), "%Y-%m-%d %H:%M:%S", false);
-  //dateFormat(new Date(), "%Y-%m-%d %H:%M:%S", false);
+//   var parser = new xml2js.Parser();
+//   //let time = new Date();
+//   let time = dateFormat(new Date(), "%Y-%m-%d %H:%M:%S", false);
+//   //dateFormat(new Date(), "%Y-%m-%d %H:%M:%S", false);
 
-  let finalArr = [];
-  console.log("getBusLocationBatch");
-  //return;
-  finalArr = await Promise.all(
-    routeRow.map(async (z, w) => {
-      const xml = await axios
-        .get(`${url}?serviceKey=${serviceKey}&routeId=${z.api_route_id}`)
-        .catch(function (error) {
-          console.log("error getBusLocation xml.get()");
-        });
+//   let finalArr = [];
+//   console.log("getBusLocationBatch");
+//   //return;
+//   finalArr = await Promise.all(
+//     routeRow.map(async (z, w) => {
+//       const xml = await axios
+//         .get(`${url}?serviceKey=${serviceKey}&routeId=${z.api_route_id}`)
+//         .catch(function (error) {
+//           console.log("error getBusLocation xml.get()");
+//         });
 
-      const result = await new Promise((resolve, reject) => {
-        if (xml)
-          parser.parseString(xml.data, (err, result) => {
-            if (err) reject(err);
-            else {
-              if (result && result.response && result.response.msgBody) {
-                try {
-                  const rtn = result.response.msgBody[0]["busLocationList"].map(
-                    (k, i) => {
-                      return returnObj(k, time);
-                    }
-                  );
-                  resolve(rtn);
-                } catch (e) {
-                  console.log("error happened!!!!");
-                  resolve(null);
-                }
-              } else resolve(null);
-            }
-          });
-      });
-      return result;
-    })
-  );
-  let newArr = [];
-  finalArr.map((k, i) => {
-    newArr = _.concat(newArr, k);
-  });
+//       const result = await new Promise((resolve, reject) => {
+//         if (xml)
+//           parser.parseString(xml.data, (err, result) => {
+//             if (err) reject(err);
+//             else {
+//               if (result && result.response && result.response.msgBody) {
+//                 try {
+//                   const rtn = result.response.msgBody[0]["busLocationList"].map(
+//                     (k, i) => {
+//                       return returnObj(k, time);
+//                     }
+//                   );
+//                   resolve(rtn);
+//                 } catch (e) {
+//                   console.log("error happened!!!!");
+//                   resolve(null);
+//                 }
+//               } else resolve(null);
+//             }
+//           });
+//       });
+//       return result;
+//     })
+//   );
+//   let newArr = [];
+//   finalArr.map((k, i) => {
+//     newArr = _.concat(newArr, k);
+//   });
 
-  let data = convert.toSnakeObjArray(newArr);
-  data = data.filter((element) => {
-    if (Object.keys(element).length !== 0) {
-      return true;
-    }
+//   let data = convert.toSnakeObjArray(newArr);
+//   data = data.filter((element) => {
+//     if (Object.keys(element).length !== 0) {
+//       return true;
+//     }
 
-    return false;
-  });
+//     return false;
+//   });
 
-  data.map((k, i) => {
-    db["busArrivalStation"].create(k);
-  });
+//   data.map((k, i) => {
+//     db["busArrivalStation"].create(k);
+//   });
 
-  const rtn1 = {
-    status: 200,
-    message: "success",
-    object: newArr,
-  };
+//   const rtn1 = {
+//     status: 200,
+//     message: "success",
+//     object: newArr,
+//   };
 
-  return res.status(200).send(rtn1);
-};
+//   return res.status(200).send(rtn1);
+// };
 
 const getBusLocationEdge = async (req, res) => {
   let replacement = req.params;
@@ -203,147 +203,147 @@ const getBusLocationEdge = async (req, res) => {
   return res.status(200).send(rtn1);
 };
 
-const checkBusArrival = async (req, res) => {
-  console.log("checkBusArrival");
-  let replacement = req.params;
-  const routeId = req.params.routeId;
-  const serviceKey =
-    "jmMJDKdbuZ8hYoXuyXlCKHYlNp02SQOlUaXXtTfryLsNQmC8HjxAnAe1NFofJ91BANDONhet17UQuHzY3DHJcw%3D%3D";
-  const url = `http://apis.data.go.kr/6410000/busarrivalservice/getBusArrivalList`;
+// const checkBusArrival = async (req, res) => {
+//   console.log("checkBusArrival");
+//   let replacement = req.params;
+//   const routeId = req.params.routeId;
+//   const serviceKey =
+//     "jmMJDKdbuZ8hYoXuyXlCKHYlNp02SQOlUaXXtTfryLsNQmC8HjxAnAe1NFofJ91BANDONhet17UQuHzY3DHJcw%3D%3D";
+//   const url = `http://apis.data.go.kr/6410000/busarrivalservice/getBusArrivalList`;
 
-  const busStopArr = [
-    { key: 208000096, start: 0 },
-    { key: 208000097, start: 0 },
-    { key: 208000132, start: 0 },
-    { key: 208000195, start: 0 },
-    { key: 208000263, start: 0 },
-    { key: 209000053, start: 0 },
-    { key: 224000626, start: 0 },
-    { key: 225000426, start: 0 },
-    { key: 225000429, start: 0 },
-    { key: 226000155, start: 0 },
-    { key: 226000207, start: 0 },
-    { key: 277101753, start: 0 },
-    { key: 277102421, start: 0 },
-    { key: 277102718, start: 0 },
-    { key: 277102719, start: 0 },
-    { key: 277102720, start: 0 },
-    { key: 277102746, start: 0 },
-    { key: 277103101, start: 0 },
-    { key: 277104392, start: 0 },
-    { key: 209000076, start: 1 },
-    { key: 277102421, start: 1 },
-    { key: 208000027, start: 1 },
-    { key: 225000180, start: 1 },
-    { key: 224000876, start: 1 },
-    { key: 208000236, start: 1 },
-    { key: 277102717, start: 1 },
-    { key: 225000430, start: 1 },
-    { key: 225000191, start: 1 },
-    { key: 226000318, start: 1 },
-    { key: 225000010, start: 1 },
-    { key: 208000264, start: 1 },
-    { key: 226000206, start: 1 },
-    { key: 225000425, start: 1 },
-    { key: 277103100, start: 1 },
-  ];
+//   const busStopArr = [
+//     { key: 208000096, start: 0 },
+//     { key: 208000097, start: 0 },
+//     { key: 208000132, start: 0 },
+//     { key: 208000195, start: 0 },
+//     { key: 208000263, start: 0 },
+//     { key: 209000053, start: 0 },
+//     { key: 224000626, start: 0 },
+//     { key: 225000426, start: 0 },
+//     { key: 225000429, start: 0 },
+//     { key: 226000155, start: 0 },
+//     { key: 226000207, start: 0 },
+//     { key: 277101753, start: 0 },
+//     { key: 277102421, start: 0 },
+//     { key: 277102718, start: 0 },
+//     { key: 277102719, start: 0 },
+//     { key: 277102720, start: 0 },
+//     { key: 277102746, start: 0 },
+//     { key: 277103101, start: 0 },
+//     { key: 277104392, start: 0 },
+//     { key: 209000076, start: 1 },
+//     { key: 277102421, start: 1 },
+//     { key: 208000027, start: 1 },
+//     { key: 225000180, start: 1 },
+//     { key: 224000876, start: 1 },
+//     { key: 208000236, start: 1 },
+//     { key: 277102717, start: 1 },
+//     { key: 225000430, start: 1 },
+//     { key: 225000191, start: 1 },
+//     { key: 226000318, start: 1 },
+//     { key: 225000010, start: 1 },
+//     { key: 208000264, start: 1 },
+//     { key: 226000206, start: 1 },
+//     { key: 225000425, start: 1 },
+//     { key: 277103100, start: 1 },
+//   ];
 
-  const returnObj = (k, time1, start) => {
-    return {
-      api_route_id: parseInt(k.routeId[0]),
-      remain_1: isNaN(parseInt(k.predictTime1[0]))
-        ? null
-        : parseInt(k.predictTime1[0]),
-      remain_2: isNaN(parseInt(k.predictTime2[0]))
-        ? null
-        : parseInt(k.predictTime2[0]),
+//   const returnObj = (k, time1, start) => {
+//     return {
+//       api_route_id: parseInt(k.routeId[0]),
+//       remain_1: isNaN(parseInt(k.predictTime1[0]))
+//         ? null
+//         : parseInt(k.predictTime1[0]),
+//       remain_2: isNaN(parseInt(k.predictTime2[0]))
+//         ? null
+//         : parseInt(k.predictTime2[0]),
 
-      stop_1: isNaN(parseInt(k.locationNo1[0]))
-        ? null
-        : parseInt(k.locationNo1[0]),
-      stop_2: isNaN(parseInt(k.locationNo2[0]))
-        ? null
-        : parseInt(k.locationNo2[0]),
-      bus_1: k.plateNo1[0],
-      bus_2: k.plateNo2[0],
-      check_time: time1,
-      isstart: start,
-    };
-  };
+//       stop_1: isNaN(parseInt(k.locationNo1[0]))
+//         ? null
+//         : parseInt(k.locationNo1[0]),
+//       stop_2: isNaN(parseInt(k.locationNo2[0]))
+//         ? null
+//         : parseInt(k.locationNo2[0]),
+//       bus_1: k.plateNo1[0],
+//       bus_2: k.plateNo2[0],
+//       check_time: time1,
+//       isstart: start,
+//     };
+//   };
 
-  var parser = new xml2js.Parser();
-  let time = new Date();
-  //dateFormat(new Date(), "%Y-%m-%d %H:%M:%S", false);
+//   var parser = new xml2js.Parser();
+//   let time = new Date();
+//   //dateFormat(new Date(), "%Y-%m-%d %H:%M:%S", false);
 
-  let finalArr = [];
+//   let finalArr = [];
 
-  finalArr = await Promise.all(
-    busStopArr.map(async (z, w) => {
-      const xml = await axios
-        .get(`${url}?serviceKey=${serviceKey}&stationId=${z.key}`)
-        .catch(function (error) {
-          console.log("checkBusArrival error");
-        });
-      // parser.parseString(xml.data, function (err, result) {
-      //   if (result?.response?.msgHeader)
-      //     time = result.response.msgHeader[0]["queryTime"][0];
-      // });
-      // console.log(time);
+//   finalArr = await Promise.all(
+//     busStopArr.map(async (z, w) => {
+//       const xml = await axios
+//         .get(`${url}?serviceKey=${serviceKey}&stationId=${z.key}`)
+//         .catch(function (error) {
+//           console.log("checkBusArrival error");
+//         });
+//       // parser.parseString(xml.data, function (err, result) {
+//       //   if (result?.response?.msgHeader)
+//       //     time = result.response.msgHeader[0]["queryTime"][0];
+//       // });
+//       // console.log(time);
 
-      const result = await new Promise((resolve, reject) => {
-        if (xml)
-          parser.parseString(xml.data, (err, result) => {
-            if (err) reject(err);
-            else {
-              if (result && result.response && result.response.msgBody) {
-                try {
-                  const rtn = result.response.msgBody[0]["busArrivalList"].map(
-                    (k, i) => {
-                      return returnObj(k, time, z.start);
-                    }
-                  );
-                  resolve(rtn);
-                } catch (e) {
-                  console.log("error happened!!!!");
-                  resolve(null);
-                }
-              } else resolve(null);
-            }
-          });
-      });
-      return result;
-    })
-  );
-  let newArr = [];
-  finalArr.map((k, i) => {
-    newArr = _.concat(newArr, k);
-  });
+//       const result = await new Promise((resolve, reject) => {
+//         if (xml)
+//           parser.parseString(xml.data, (err, result) => {
+//             if (err) reject(err);
+//             else {
+//               if (result && result.response && result.response.msgBody) {
+//                 try {
+//                   const rtn = result.response.msgBody[0]["busArrivalList"].map(
+//                     (k, i) => {
+//                       return returnObj(k, time, z.start);
+//                     }
+//                   );
+//                   resolve(rtn);
+//                 } catch (e) {
+//                   console.log("error happened!!!!");
+//                   resolve(null);
+//                 }
+//               } else resolve(null);
+//             }
+//           });
+//       });
+//       return result;
+//     })
+//   );
+//   let newArr = [];
+//   finalArr.map((k, i) => {
+//     newArr = _.concat(newArr, k);
+//   });
 
-  let data = convert.toSnakeObjArray(newArr);
-  data = data.filter((element) => {
-    if (Object.keys(element).length !== 0) {
-      return true;
-    }
+//   let data = convert.toSnakeObjArray(newArr);
+//   data = data.filter((element) => {
+//     if (Object.keys(element).length !== 0) {
+//       return true;
+//     }
 
-    return false;
-  });
+//     return false;
+//   });
 
-  data.map((k, i) => {
-    db["busArrival"].create(k);
-  });
+//   data.map((k, i) => {
+//     db["busArrival"].create(k);
+//   });
 
-  const replacement1 = { checkTime: time };
-  reqres.noResponseBody("dispatch_arrival(:checkTime)", replacement1, "INSERT");
-  //db["busArrival"].bulkCreate({ data: data });
+//   const replacement1 = { checkTime: time };
+//   reqres.noResponseBody("dispatch_arrival(:checkTime)", replacement1, "INSERT");
+//   //db["busArrival"].bulkCreate({ data: data });
 
-  const rtn1 = {
-    status: 200,
-    message: "success",
-    object: newArr,
-  };
+//   const rtn1 = {
+//     status: 200,
+//     message: "success",
+//     object: newArr,
+//   };
 
-  return res.status(200).send(rtn1);
-};
+//   return res.status(200).send(rtn1);
+// };
 
 //getweather
 const getWeather = async (req, res) => {
@@ -546,8 +546,9 @@ function dateFormat(date, fstr, utc) {
 /* dateFormat (new Date (), "%Y-%m-%d %H:%M:%S", true) returns 
    "2012-05-18 05:37:21"  */
 
-module.exports.checkBusArrival = checkBusArrival;
+// module.exports.checkBusArrival = checkBusArrival;
 module.exports.getBusLocation = getBusLocation;
 module.exports.getBusLocationEdge = getBusLocationEdge;
-module.exports.getBusLocationBatch = getBusLocationBatch;
+// module.exports.getBusLocationBatch = getBusLocationBatch;
 module.exports.getWeather = getWeather;
+636;

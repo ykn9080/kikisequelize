@@ -7,8 +7,12 @@
   },
   "servers": [
     {
+      "url": "http://125.132.182.213:8484"
+    },
+    {
       "url": "http://kikibus.iptime.org:8484"
     }
+
   ],
   "paths": {
     "/api/notice/": {

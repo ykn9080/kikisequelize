@@ -70,8 +70,8 @@ module.exports = (app) => {
   app.use("/api/logresult", logresult.swaggerMaker);
   app.use("/api/buslocation/:routeId", busLocation.getBusLocation);
   app.use("/api/buslocationedge/:routeId", busLocation.getBusLocationEdge);
-  app.use("/api/buslocationbatch", busLocation.getBusLocationBatch);
-  app.use("/api/checkbusarrival", busLocation.checkBusArrival);
+  // app.use("/api/buslocationbatch", busLocation.getBusLocationBatch);
+  // app.use("/api/checkbusarrival", busLocation.checkBusArrival);
   app.use("/api/busEdge/:routeId", busLocation.getBusLocationEdge);
   app.use("/api/getWeather/:sdate/:edate", busLocation.getWeather);
 

@@ -9,7 +9,7 @@ exports.managerReplacelist = (req, res) => {
     routeId: req.body.routeId,
     yearmonth: req.body.yearMonth,
   };
-
+  console.log(replacement);
   reqres.commonQueryBody(
     " request_leave(:managerId, :routeId, :yearmonth)",
     replacement,
@@ -18,10 +18,12 @@ exports.managerReplacelist = (req, res) => {
 };
 
 exports.getWorkbyManager = (req, res) => {
+  console.log(req.body);
   let replacement = {
     routeId: req.body.routeId,
     date: req.body.date,
   };
+  console.log(replacement);
   reqres.commonQueryBody("workbymanager(:routeId, :date)", replacement, res);
 };
 
