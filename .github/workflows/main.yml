@@ -36,7 +36,7 @@ env:
   ECS_SERVICE: kiki-orm-new-service # set this to your Amazon ECS service name
   ECS_CLUSTER: default # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION:
-    ./task-definition.json # set this to the path to your Amazon ECS task definition
+    .aws/task-definition.json # set this to the path to your Amazon ECS task definition
     # file, e.g. .aws/task-definition.json
   CONTAINER_NAME:
     kiki-orm-new-container # set this to the name of the container in the
