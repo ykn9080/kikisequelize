@@ -1,8 +1,8 @@
 module.exports = {
-  HOST: "kikib-korea.mysql.database.azure.com",
-  USER: "kikii@kikib-korea",
-  PASSWORD: "1733a-sql",
-  DB: "dev-kikib",
+  HOST: "kiki-deploy.c2gc9pfwihfe.ap-northeast-2.rds.amazonaws.com",
+  USER: "admin",
+  PASSWORD: "mysql-1733",
+  DB: "deploy-kikib",
   port: 3306,
   dialect: "mysql",
   pool: {
