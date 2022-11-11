@@ -36,7 +36,7 @@ module.exports = (Table) => {
         });
     } else {
       const bd = convert.toSnake(req.body);
-
+      console.log(bd);
       Table.create(bd)
         .then((data) => {
           let newdata = convert.toCamel(data.get({ plain: true }));

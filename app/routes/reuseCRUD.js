@@ -44,6 +44,7 @@ const modifyData = (modelname) => {
         else if ((req.method = "POST")) {
           req.body.created_at = Date.now();
           req.body.updated_at = null;
+          console.log(req.body);
           next();
         }
 

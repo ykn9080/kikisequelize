@@ -4,5 +4,8 @@ WORKDIR /
 COPY package.json .
 RUN npm install
 COPY . .
-RUN npm prune --production
+# ENV PATH  ./.env
+ENV PATH="$PATH:/.etc"
+EXPOSE 80
+# RUN npm prune --production
 CMD npm start

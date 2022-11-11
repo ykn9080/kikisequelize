@@ -29,15 +29,15 @@ services:
       - kong-net
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
-    environment:
+    #environment:
       # --docker와 연결할 경우
       # - DB_HOST=mariadb
       # --local mariadb와 연결할 경우
-      - DB_HOST=$DB_HOST
-      - DB_USER=$DB_USER
-      - DB_PASSWORD=$DB_PASSWORD
-      - DB_NAME=$DB_NAME
-      - DB_PORT=$DB_PORT
+      # - DB_HOST=$DB_HOST
+      # - DB_USER=$DB_USER
+      # - DB_PASSWORD=$DB_PASSWORD
+      # - DB_NAME=$DB_NAME
+      # - DB_PORT=$DB_PORT
     stdin_open: true
     tty: true
 # volumes:
